@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<title>Deana | Personal Page</title>
+
+<style>
+
+body{
+    font-family: Arial;
+    margin:0;
+    background: linear-gradient(135deg,#6a8cff,#8fd3f4);
+    color:white;
+    text-align:center;
+}
+
+/* 個人卡片 */
+.profile{
+    padding:40px 20px;
+}
+
+.profile img{
+    width:140px;
+    height:140px;
+    border-radius:50%;
+    border:4px solid white;
+}
+
+/* 導航按鈕 */
+
+.nav{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:10px;
+    margin:20px;
+}
+
+.nav a{
+    text-decoration:none;
+    background:white;
+    color:#333;
+    padding:10px 18px;
+    border-radius:20px;
+    font-weight:bold;
+}
+
+/* 區塊 */
+
+.section{
+    background:white;
+    color:#333;
+    margin:30px auto;
+    padding:30px;
+    border-radius:15px;
+    width:80%;
+    max-width:700px;
+}
+
+/* 技能條 */
+
+.skill{
+    text-align:left;
+    margin:15px 0;
+}
+
+.bar{
+    background:#ddd;
+    border-radius:10px;
+    overflow:hidden;
+}
+
+.bar div{
+    height:10px;
+    background:#6a8cff;
+}
+
+/* 興趣標籤 */
+
+.tags{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:10px;
+}
+
+.tag{
+    background:#6a8cff;
+    color:white;
+    padding:8px 15px;
+    border-radius:20px;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- 個人照片 -->
+<div class="profile">
+
+<img src="yourphoto.jpg">
+
+<h1>Deana</h1>
+
+<p>Creative • Tech • Design</p>
+
+</div>
+
+<!-- 導航 -->
+
+<div class="nav">
+
+<a href="#about">About</a>
+<a href="#skills">Skills</a>
+<a href="#interests">Interests</a>
+<a href="#projects">Projects</a>
+<a href="#contact">Contact</a>
+
+</div>
+
+
+<!-- About -->
+
+<div class="section" id="about">
+
+<h2>About Me</h2>
+
+<p>
+Hi, I'm Deana.<br>
+我喜歡科技、設計與創作，目前正在學習製作網站。
+</p>
+
+</div>
+
+
+<!-- Skills -->
+
+<div class="section" id="skills">
+
+<h2>Skills</h2>
+
+<div class="skill">
+HTML
+<div class="bar"><div style="width:80%"></div></div>
+</div>
+
+<div class="skill">
+CSS
+<div class="bar"><div style="width:70%"></div></div>
+</div>
+
+<div class="skill">
+Design
+<div class="bar"><div style="width:60%"></div></div>
+</div>
+
+<div class="skill">
+Creativity
+<div class="bar"><div style="width:85%"></div></div>
+</div>
+
+</div>
+
+
+<!-- Interests -->
+
+<div class="section" id="interests">
+
+<h2>My Interests</h2>
+
+<div class="tags">
+
+<div class="tag">Tech</div>
+<div class="tag">Design</div>
+<div class="tag">Gaming</div>
+<div class="tag">Music</div>
+<div class="tag">Anime</div>
+<div class="tag">Photography</div>
+
+</div>
+
+</div>
+
+
+<!-- Projects -->
+
+<div class="section" id="projects">
+
+<h2>Projects</h2>
+
+<p>Personal Website</p>
+<p>Web Design Practice</p>
+
+</div>
+
+
+<!-- Contact -->
+
+<div class="section" id="contact">
+
+<h2>Contact</h2>
+
+<p>Email: example@email.com</p>
+<p>Instagram: @yourname</p>
+
+</div>
+
+</body>
+</html>

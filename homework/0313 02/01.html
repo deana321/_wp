@@ -1,170 +1,171 @@
-<!DOCTYPE html>
-<html lang="zh-Hant">
+<!DOCTYPE html> <!-- 宣告這是一份 HTML5 文件 -->
+<html lang="zh-Hant"> <!-- 網頁根元素，語言設定為繁體中文 -->
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>個人自我介紹表單</title>
+    <meta charset="UTF-8"> <!-- 設定字元編碼為 UTF-8，避免中文亂碼 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- 讓手機、平板也能正常顯示 -->
+    <title>個人自我介紹表單</title> <!-- 瀏覽器分頁上顯示的標題 -->
+
     <style>
         body {
-            font-family: "Microsoft JhengHei", sans-serif;
-            background: #f4f8fb;
-            margin: 0;
-            padding: 30px;
+            font-family: "Microsoft JhengHei", sans-serif; /* 設定整體字型，優先使用微軟正黑體 */
+            background: #f4f8fb; /* 設定頁面背景顏色 */
+            margin: 0; /* 移除瀏覽器預設外距 */
+            padding: 30px; /* 內部四周留白 30px */
         }
 
         .container {
-            max-width: 850px;
-            margin: auto;
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            max-width: 850px; /* 容器最大寬度 850px */
+            margin: auto; /* 讓容器水平置中 */
+            background: white; /* 容器背景白色 */
+            padding: 30px; /* 容器內距 */
+            border-radius: 15px; /* 圓角 */
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* 陰影效果 */
         }
 
         h1 {
-            text-align: center;
-            color: #2c3e50;
+            text-align: center; /* 標題置中 */
+            color: #2c3e50; /* 標題文字顏色 */
         }
 
         p {
-            text-align: center;
-            color: #666;
+            text-align: center; /* 段落文字置中 */
+            color: #666; /* 文字灰色 */
         }
 
         fieldset {
-            border: 2px solid #dbe6f0;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            padding: 20px;
+            border: 2px solid #dbe6f0; /* 區塊邊框 */
+            border-radius: 10px; /* 區塊圓角 */
+            margin-bottom: 20px; /* 每個區塊下方間距 */
+            padding: 20px; /* 區塊內距 */
         }
 
         legend {
-            font-weight: bold;
-            color: #34495e;
-            padding: 0 10px;
+            font-weight: bold; /* 標題加粗 */
+            color: #34495e; /* 標題文字顏色 */
+            padding: 0 10px; /* 左右留白 */
         }
 
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 15px; /* 每個表單項目底部間距 */
         }
 
         label {
-            display: inline-block;
-            margin-bottom: 6px;
-            font-weight: bold;
-            color: #333;
+            display: inline-block; /* 讓 label 可設定 margin */
+            margin-bottom: 6px; /* 與下方輸入框保持距離 */
+            font-weight: bold; /* 文字加粗 */
+            color: #333; /* 深灰色 */
         }
 
         input, select, textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #bbb;
-            border-radius: 8px;
-            box-sizing: border-box;
-            font-size: 15px;
+            width: 100%; /* 寬度填滿父容器 */
+            padding: 10px; /* 內距 */
+            border: 1px solid #bbb; /* 邊框 */
+            border-radius: 8px; /* 圓角 */
+            box-sizing: border-box; /* 讓 padding 不會把寬度撐爆 */
+            font-size: 15px; /* 字體大小 */
         }
 
         textarea {
-            resize: vertical;
+            resize: vertical; /* 只能上下調整大小 */
         }
 
         .inline-group {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-top: 8px;
+            display: flex; /* 使用彈性排版 */
+            flex-wrap: wrap; /* 放不下時自動換行 */
+            gap: 15px; /* 每個選項之間的距離 */
+            margin-top: 8px; /* 和上方標題保持距離 */
         }
 
         .inline-group label {
-            font-weight: normal;
+            font-weight: normal; /* 這裡的 label 不加粗 */
         }
 
         .small-input {
-            width: auto;
-            margin-right: 5px;
+            width: auto; /* checkbox / radio 不要撐滿整行 */
+            margin-right: 5px; /* 選項按鈕和文字間隔 */
         }
 
         .btn-group {
-            text-align: center;
-            margin-top: 20px;
+            text-align: center; /* 按鈕置中 */
+            margin-top: 20px; /* 與上方內容保持距離 */
         }
 
         button {
-            padding: 12px 25px;
-            margin: 5px;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            cursor: pointer;
+            padding: 12px 25px; /* 按鈕內距 */
+            margin: 5px; /* 按鈕與按鈕之間留距離 */
+            border: none; /* 移除預設邊框 */
+            border-radius: 8px; /* 圓角 */
+            font-size: 16px; /* 字體大小 */
+            cursor: pointer; /* 滑鼠移上去變手指 */
         }
 
         .submit-btn {
-            background-color: #4CAF50;
-            color: white;
+            background-color: #4CAF50; /* 送出按鈕背景色：綠色 */
+            color: white; /* 文字白色 */
         }
 
         .reset-btn {
-            background-color: #e67e22;
-            color: white;
+            background-color: #e67e22; /* 重設按鈕背景色：橘色 */
+            color: white; /* 文字白色 */
         }
 
         button:hover {
-            opacity: 0.9;
+            opacity: 0.9; /* 滑鼠移上去時稍微透明 */
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>個人自我介紹表單</h1>
-        <p>請填寫以下資料，讓大家更認識你！</p>
+    <div class="container"> <!-- 主要內容容器 -->
+        <h1>個人自我介紹表單</h1> <!-- 主標題 -->
+        <p>請填寫以下資料，讓大家更認識你！</p> <!-- 說明文字 -->
 
-        <form>
-            <fieldset>
-                <legend>基本資料</legend>
+        <form> <!-- 表單開始 -->
+            <fieldset> <!-- 基本資料區塊 -->
+                <legend>基本資料</legend> <!-- 區塊標題 -->
 
                 <div class="form-group">
-                    <label for="name">姓名：</label>
-                    <input type="text" id="name" name="name" placeholder="請輸入你的姓名" required>
+                    <label for="name">姓名：</label> <!-- 欄位標題 -->
+                    <input type="text" id="name" name="name" placeholder="請輸入你的姓名" required> <!-- 文字輸入框，必填 -->
                 </div>
 
                 <div class="form-group">
                     <label for="nickname">暱稱：</label>
-                    <input type="text" id="nickname" name="nickname" placeholder="例如：小雨、小安">
+                    <input type="text" id="nickname" name="nickname" placeholder="例如：小雨、小安"> <!-- 一般文字輸入 -->
                 </div>
 
                 <div class="form-group">
                     <label for="password">密碼：</label>
-                    <input type="password" id="password" name="password" placeholder="請輸入密碼">
+                    <input type="password" id="password" name="password" placeholder="請輸入密碼"> <!-- 密碼欄位，輸入內容會隱藏 -->
                 </div>
 
                 <div class="form-group">
                     <label for="email">電子郵件：</label>
-                    <input type="email" id="email" name="email" placeholder="example@gmail.com">
+                    <input type="email" id="email" name="email" placeholder="example@gmail.com"> <!-- Email 格式輸入框 -->
                 </div>
 
                 <div class="form-group">
                     <label for="phone">電話：</label>
-                    <input type="tel" id="phone" name="phone" placeholder="09xxxxxxxx">
+                    <input type="tel" id="phone" name="phone" placeholder="09xxxxxxxx"> <!-- 電話輸入框 -->
                 </div>
 
                 <div class="form-group">
                     <label for="birthday">生日：</label>
-                    <input type="date" id="birthday" name="birthday">
+                    <input type="date" id="birthday" name="birthday"> <!-- 日期選擇器 -->
                 </div>
 
                 <div class="form-group">
                     <label for="age">年齡：</label>
-                    <input type="number" id="age" name="age" min="1" max="120" placeholder="請輸入年齡">
+                    <input type="number" id="age" name="age" min="1" max="120" placeholder="請輸入年齡"> <!-- 數字輸入框，限制 1~120 -->
                 </div>
             </fieldset>
 
-            <fieldset>
+            <fieldset> <!-- 個人選項區塊 -->
                 <legend>個人選項</legend>
 
                 <div class="form-group">
                     <label>性別：</label>
-                    <div class="inline-group">
-                        <label><input class="small-input" type="radio" name="gender" value="male"> 男</label>
+                    <div class="inline-group"> <!-- 讓選項橫向排列 -->
+                        <label><input class="small-input" type="radio" name="gender" value="male"> 男</label> <!-- 單選按鈕 -->
                         <label><input class="small-input" type="radio" name="gender" value="female"> 女</label>
                         <label><input class="small-input" type="radio" name="gender" value="other"> 其他</label>
                     </div>
@@ -172,8 +173,8 @@
 
                 <div class="form-group">
                     <label for="blood">血型：</label>
-                    <select id="blood" name="blood">
-                        <option value="">請選擇血型</option>
+                    <select id="blood" name="blood"> <!-- 下拉式選單 -->
+                        <option value="">請選擇血型</option> <!-- 預設提示 -->
                         <option value="A">A 型</option>
                         <option value="B">B 型</option>
                         <option value="O">O 型</option>
@@ -202,7 +203,7 @@
 
                 <div class="form-group">
                     <label for="department">科系：</label>
-                    <input type="text" id="department" name="department" placeholder="例如：資訊工程學系">
+                    <input type="text" id="department" name="department" placeholder="例如：資訊工程學系"> <!-- 科系輸入框 -->
                 </div>
 
                 <div class="form-group">
@@ -218,13 +219,13 @@
                 </div>
             </fieldset>
 
-            <fieldset>
+            <fieldset> <!-- 興趣與偏好區塊 -->
                 <legend>興趣與偏好</legend>
 
                 <div class="form-group">
                     <label>興趣：</label>
                     <div class="inline-group">
-                        <label><input class="small-input" type="checkbox" name="hobby" value="music"> 音樂</label>
+                        <label><input class="small-input" type="checkbox" name="hobby" value="music"> 音樂</label> <!-- 複選框，可多選 -->
                         <label><input class="small-input" type="checkbox" name="hobby" value="sports"> 運動</label>
                         <label><input class="small-input" type="checkbox" name="hobby" value="reading"> 閱讀</label>
                         <label><input class="small-input" type="checkbox" name="hobby" value="travel"> 旅遊</label>
@@ -236,7 +237,7 @@
                 <div class="form-group">
                     <label>擅長項目（可多選）：</label>
                     <div class="inline-group">
-                        <label><input class="small-input" type="checkbox" name="skills" value="寫程式"> 寫程式</label>
+                        <label><input class="small-input" type="checkbox" name="skills" value="寫程式"> 寫程式</label> <!-- 複選框 -->
                         <label><input class="small-input" type="checkbox" name="skills" value="設計"> 設計</label>
                         <label><input class="small-input" type="checkbox" name="skills" value="唱歌"> 唱歌</label>
                         <label><input class="small-input" type="checkbox" name="skills" value="跳舞"> 跳舞</label>
@@ -247,49 +248,49 @@
 
                 <div class="form-group">
                     <label for="favcolor">喜歡的顏色：</label>
-                    <input type="color" id="favcolor" name="favcolor">
+                    <input type="color" id="favcolor" name="favcolor"> <!-- 顏色選擇器 -->
                 </div>
 
                 <div class="form-group">
                     <label for="personality">活潑程度：</label>
-                    <input type="range" id="personality" name="personality" min="0" max="10">
+                    <input type="range" id="personality" name="personality" min="0" max="10"> <!-- 滑桿，範圍 0~10 -->
                 </div>
             </fieldset>
 
-            <fieldset>
+            <fieldset> <!-- 自我介紹區塊 -->
                 <legend>自我介紹內容</legend>
 
                 <div class="form-group">
                     <label for="motto">座右銘：</label>
-                    <input type="text" id="motto" name="motto" placeholder="輸入一句最能代表你的話">
+                    <input type="text" id="motto" name="motto" placeholder="輸入一句最能代表你的話"> <!-- 座右銘輸入框 -->
                 </div>
 
                 <div class="form-group">
                     <label for="website">個人網站 / 社群連結：</label>
-                    <input type="url" id="website" name="website" placeholder="https://example.com">
+                    <input type="url" id="website" name="website" placeholder="https://example.com"> <!-- 網址輸入框 -->
                 </div>
 
                 <div class="form-group">
                     <label for="time">平常起床時間：</label>
-                    <input type="time" id="time" name="time">
+                    <input type="time" id="time" name="time"> <!-- 時間選擇器 -->
                 </div>
 
                 <div class="form-group">
                     <label for="photo">上傳個人照片：</label>
-                    <input type="file" id="photo" name="photo" accept="image/*">
+                    <input type="file" id="photo" name="photo" accept="image/*"> <!-- 上傳圖片檔案 -->
                 </div>
 
                 <div class="form-group">
                     <label for="intro">自我介紹：</label>
-                    <textarea id="intro" name="intro" rows="6" placeholder="請輸入你的自我介紹內容"></textarea>
+                    <textarea id="intro" name="intro" rows="6" placeholder="請輸入你的自我介紹內容"></textarea> <!-- 多行文字輸入框 -->
                 </div>
             </fieldset>
 
-            <div class="btn-group">
-                <button type="submit" class="submit-btn">送出表單</button>
-                <button type="reset" class="reset-btn">重新填寫</button>
+            <div class="btn-group"> <!-- 按鈕群組 -->
+                <button type="submit" class="submit-btn">送出表單</button> <!-- 送出按鈕 -->
+                <button type="reset" class="reset-btn">重新填寫</button> <!-- 重設按鈕 -->
             </div>
-        </form>
-    </div>
+        </form> <!-- 表單結束 -->
+    </div> <!-- 容器結束 -->
 </body>
 </html>

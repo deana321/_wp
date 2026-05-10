@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %> - 網易網誌</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="container">
+    <header class="blog-header">
+      <h1><a href="/">網易網誌</a></h1>
+      <nav>
+        <a href="/" class="nav-link">首頁</a>
+        <a href="/login" class="nav-link">登入</a>
+      </nav>
+    </header>
+    <main class="auth-main">
+      <div class="auth-card">
+        <h1 class="auth-title">註冊</h1>
+        <% if (error) { %>
+          <div class="error-msg"><%= error %></div>
+        <% } %>
+        <form action="/register" method="POST" class="blog-form">
+          <div class="form-group">
+            <label for="username">帳號</label>
+            <input type="text" id="username" name="username" required>
+          </div>
+          <div class="form-group">
+            <label for="nickname">暱稱</label>
+            <input type="text" id="nickname" name="nickname" placeholder="顯示名稱">
+          </div>
+          <div class="form-group">
+            <label for="password">密碼</label>
+            <input type="password" id="password" name="password" required>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn">註冊</button>
+            <a href="/login" class="btn btn-secondary">已有帳號？登入</a>
+          </div>
+        </form>
+      </div>
+    </main>
+    <footer class="blog-footer">
+      <p>&copy; 2026 網易網誌 - Powered by Node.js + SQLite</p>
+    </footer>
+  </div>
+</body>
+</html>

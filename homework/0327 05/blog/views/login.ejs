@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %> - 網易網誌</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="container">
+    <header class="blog-header">
+      <h1><a href="/">網易網誌</a></h1>
+      <nav>
+        <a href="/" class="nav-link">首頁</a>
+        <a href="/register" class="nav-link">註冊</a>
+      </nav>
+    </header>
+    <main class="auth-main">
+      <div class="auth-card">
+        <h1 class="auth-title">登入</h1>
+        <% if (error) { %>
+          <div class="error-msg"><%= error %></div>
+        <% } %>
+        <form action="/login" method="POST" class="blog-form">
+          <div class="form-group">
+            <label for="username">帳號</label>
+            <input type="text" id="username" name="username" required>
+          </div>
+          <div class="form-group">
+            <label for="password">密碼</label>
+            <input type="password" id="password" name="password" required>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn">登入</button>
+            <a href="/register" class="btn btn-secondary">還沒有帳號？註冊</a>
+          </div>
+        </form>
+      </div>
+    </main>
+    <footer class="blog-footer">
+      <p>&copy; 2026 網易網誌 - Powered by Node.js + SQLite</p>
+    </footer>
+  </div>
+</body>
+</html>

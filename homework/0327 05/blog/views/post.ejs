@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %> - 網易網誌</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="container">
+    <header class="blog-header">
+      <h1><a href="/">網易網誌</a></h1>
+      <nav>
+        <a href="/" class="nav-link">首頁</a>
+        <a href="/post/new" class="nav-link">寫文章</a>
+        <% if (user) { %>
+          <span class="nav-link">歡迎, <%= user.nickname || user.username %></span>
+          <a href="/logout" class="nav-link">登出</a>
+        <% } else { %>
+          <a href="/login" class="nav-link">登入</a>
+          <a href="/register" class="nav-link">註冊</a>
+        <% } %>
+      </nav>
+    </header>
+    <div class="layout">
+      <main class="main-content">
+        <article class="post-full">
+          <h1 class="post-full-title"><%= post.title %></h1>
+          <div class="post-meta">
+            <span class="category"><%= post.category %></span>
+            <span class="date"><%= new Date(post.created_at).toLocaleDateString('zh-TW') %></span>
+            <% if (post.nickname) { %><span class="author"><%= post.nickname %></span><% } %>
+            <% if (post.updated_at !== post.created_at) { %>
+              <span class="updated">(更新: <%= new Date(post.updated_at).toLocaleDateString('zh-TW') %>)</span>
+            <% } %>
+          </div>
+          <div class="post-content"><%- marked(post.content) %></div>
+          <% if (user) { %>
+            <div class="post-full-actions">
+              <a href="/post/<%= post.id %>/edit" class="btn">編輯</a>
+              <form action="/post/<%= post.id %>/delete" method="POST" style="display:inline">
+                <button type="submit" class="btn btn-danger" onclick="return confirm('確定刪除？')">刪除</button>
+              </form>
+              <a href="/" class="btn btn-secondary">返回首頁</a>
+            </div>
+          <% } else { %>
+            <div class="post-full-actions">
+              <a href="/" class="btn btn-secondary">返回首頁</a>
+            </div>
+          <% } %>
+        </article>
+
+        <section class="comments-section" id="comments">
+          <h2 class="comments-title">留言</h2>
+          <% if (comments.length === 0) { %>
+            <p class="no-comments">暫無留言，快來搶頭香！</p>
+          <% } else { %>
+            <div class="comments-list">
+              <% comments.forEach(c => { %>
+                <div class="comment">
+                  <div class="comment-header">
+                    <strong class="comment-author"><%= c.author %></strong>
+                    <span class="comment-date"><%= new Date(c.created_at).toLocaleString('zh-TW') %></span>
+                  </div>
+                  <p class="comment-body"><%= c.content %></p>
+                </div>
+              <% }) %>
+            </div>
+          <% } %>
+
+          <form action="/post/<%= post.id %>/comment" method="POST" class="comment-form">
+            <h3>發表留言</h3>
+            <div class="form-group">
+              <label for="author">暱稱</label>
+              <input type="text" id="author" name="author" required placeholder="你的名字">
+            </div>
+            <div class="form-group">
+              <label for="content">留言內容</label>
+              <textarea id="content" name="content" rows="4" required placeholder="說點什麼吧…"></textarea>
+            </div>
+            <button type="submit" class="btn">送出留言</button>
+          </form>
+        </section>
+      </main>
+      <aside class="sidebar">
+        <div class="sidebar-section">
+          <h3>關於我</h3>
+          <div class="sidebar-about">
+            <% if (user) { %>
+              <p><strong><%= user.nickname || user.username %></strong></p>
+              <p class="bio-text">這個 Blogger 很懶，什麼都沒留下…</p>
+            <% } else { %>
+              <p>歡迎來到我的網易網誌！</p>
+              <p class="bio-text"><a href="/register">註冊</a> 開始寫部落格</p>
+            <% } %>
+          </div>
+        </div>
+        <div class="sidebar-section">
+          <h3>文章分類</h3>
+          <ul class="sidebar-list">
+            <% categories.forEach(c => { %>
+              <li><a href="/?category=<%= encodeURIComponent(c.category) %>"><%= c.category %></a> <span class="count">(<%= c.count %>)</span></li>
+            <% }) %>
+          </ul>
+        </div>
+        <div class="sidebar-section">
+          <h3>月份封存</h3>
+          <ul class="sidebar-list">
+            <% archiveMonths.forEach(m => { %>
+              <li><a href="/?month=<%= m.month %>"><%= m.month %></a> <span class="count">(<%= m.count %>)</span></li>
+            <% }) %>
+          </ul>
+        </div>
+        <div class="sidebar-section">
+          <h3>最新留言</h3>
+          <ul class="sidebar-comments">
+            <% recentComments.forEach(c => { %>
+              <li>
+                <a href="/post/<%= c.post_id %>#comments" class="comment-text"><%= c.content.length > 30 ? c.content.slice(0, 30) + '…' : c.content %></a>
+                <span class="comment-author">- <%= c.author %></span>
+              </li>
+            <% }) %>
+            <% if (recentComments.length === 0) { %>
+              <li class="no-data">暫無留言</li>
+            <% } %>
+          </ul>
+        </div>
+      </aside>
+    </div>
+    <footer class="blog-footer">
+      <p>&copy; 2026 網易網誌 - Powered by Node.js + SQLite</p>
+    </footer>
+  </div>
+</body>
+</html>

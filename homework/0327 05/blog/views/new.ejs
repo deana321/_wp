@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %> - 網易網誌</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="container">
+    <header class="blog-header">
+      <h1><a href="/">網易網誌</a></h1>
+      <nav>
+        <a href="/" class="nav-link">首頁</a>
+        <a href="/post/new" class="nav-link">寫文章</a>
+        <% if (user) { %>
+          <a href="/logout" class="nav-link">登出</a>
+        <% } %>
+      </nav>
+    </header>
+    <main>
+      <h1 class="form-title">寫新文章</h1>
+      <form action="/post/new" method="POST" class="blog-form">
+        <div class="form-group">
+          <label for="title">標題</label>
+          <input type="text" id="title" name="title" required>
+        </div>
+        <div class="form-group">
+          <label for="category">分類</label>
+          <input type="text" id="category" name="category" placeholder="未分類">
+        </div>
+        <div class="form-group">
+          <label for="summary">摘要</label>
+          <textarea id="summary" name="summary" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="content">內容 (支援 Markdown)</label>
+          <textarea id="content" name="content" rows="15" required></textarea>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="btn">發表文章</button>
+          <a href="/" class="btn btn-secondary">取消</a>
+        </div>
+      </form>
+    </main>
+    <footer class="blog-footer">
+      <p>&copy; 2026 網易網誌 - Powered by Node.js + SQLite</p>
+    </footer>
+  </div>
+</body>
+</html>

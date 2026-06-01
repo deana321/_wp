@@ -1,20 +1,31 @@
 import fs from 'fs';
 import path from 'path';
 
-const DB_PATH = path.join(process.cwd(), 'data', 'db.json');
+const IS_VERCEL = !!process.env.VERCEL;
+const DB_PATH = IS_VERCEL
+  ? path.join('/tmp', 'db.json')
+  : path.join(process.cwd(), 'data', 'db.json');
+const SEED_PATH = path.join(process.cwd(), 'data', 'db.json');
 
 let cache = null;
 
 export function readDB() {
   if (cache) return JSON.parse(JSON.stringify(cache));
-  const raw = fs.readFileSync(DB_PATH, 'utf-8');
+
+  // On Vercel, try /tmp first, then fall back to seed
+  const sourcePath = IS_VERCEL && fs.existsSync(DB_PATH) ? DB_PATH : SEED_PATH;
+  const raw = fs.readFileSync(sourcePath, 'utf-8');
   cache = JSON.parse(raw);
   return JSON.parse(JSON.stringify(cache));
 }
 
 export function writeDB(data) {
   cache = data;
-  fs.writeFileSync(DB_PATH, JSON.stringify(data, null, 2), 'utf-8');
+  try {
+    fs.writeFileSync(DB_PATH, JSON.stringify(data, null, 2), 'utf-8');
+  } catch (e) {
+    console.error('writeDB failed (read-only FS?):', e.message);
+  }
 }
 
 export function getCurrentUser(db) {

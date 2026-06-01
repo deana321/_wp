@@ -11,7 +11,7 @@ const navItems = [
   { href: '/mail', label: '信箱', icon: '✉️' },
   { href: '/school', label: '校務', icon: '📚' },
   { href: '/search', label: '搜尋', icon: '🔍' },
-  { href: '/projects', label: '專案', icon: '📂' },
+  { href: '/projects', label: '輔助系統', icon: '📂' },
   { href: '/leaderboard', label: '排行榜', icon: '🏆' },
 ];
 
@@ -57,7 +57,7 @@ export default function Sidebar() {
   return (
     <aside className="sidebar">
       <div className="sidebar-header">
-        <h1>CampusHub Notes</h1>
+        <h1>CampusHub.test Notes</h1>
         <div className="subtitle">校園筆記本</div>
       </div>
 

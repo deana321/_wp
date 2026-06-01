@@ -1,10 +1,11 @@
 {
   "currentUser": "user1",
   "users": [
-    { "id": "user1", "name": "小莓", "avatar": "🍓", "email": "berry@campushub.edu" },
-    { "id": "user2", "name": "奶茶", "avatar": "🧋", "email": "milktea@campushub.edu" },
-    { "id": "user3", "name": "布丁", "avatar": "🍮", "email": "pudding@campushub.edu" },
-    { "id": "user4", "name": "雪寶", "avatar": "☁️", "email": "snow@campushub.edu" }
+    { "id": "user1", "name": "味噌miso", "avatar": "🍓", "email": "miso@campushub.test" },
+    { "id": "user2", "name": "黑暗領主", "avatar": "🧋", "email": "darklord@campushub.test" },
+    { "id": "user3", "name": "小布丁", "avatar": "🍮", "email": "pudding@campushub.test" },
+    { "id": "user4", "name": "小蛋糕", "avatar": "☁️", "email": "cake@campushub.test" },
+    { "id": "user5", "name": "平湖秋月", "avatar": "🌙", "email": "moon@campushub.test" }
   ],
   "posts": [
     {
@@ -82,7 +83,8 @@
     "user1": { "prod2": 1 },
     "user2": {},
     "user3": {},
-    "user4": {}
+    "user4": {},
+    "user5": {}
   },
   "emails": [
     {
@@ -96,8 +98,8 @@
       "isRead": true, "createdAt": "2026-05-30T10:00:00Z"
     },
     {
-      "id": "e3", "from": "奶茶", "to": "user1", "subject": "明天讀書會確認",
-      "body": "小莓～\n\n明天下午的讀書會在三點沒錯吧？我會帶手工餅乾過去！\n\n奶茶 🧋",
+      "id": "e3", "from": "黑暗領主", "to": "user1", "subject": "明天讀書會確認",
+      "body": "味噌miso～\n\n明天下午的讀書會在三點沒錯吧？我會帶手工餅乾過去！\n\n黑暗領主 🧋",
       "isRead": false, "createdAt": "2026-06-01T08:30:00Z"
     },
     {
@@ -106,8 +108,8 @@
       "isRead": true, "createdAt": "2026-05-29T14:00:00Z"
     },
     {
-      "id": "e5", "from": "布丁", "to": "user1", "subject": "謝謝昨天的筆記！",
-      "body": "小莓～\n\n昨天借我的筆記已經抄完了！真的超感謝你～明天帶飲料請你喝 ☕\n\n布丁 🍮",
+      "id": "e5", "from": "小布丁", "to": "user1", "subject": "謝謝昨天的筆記！",
+      "body": "味噌miso～\n\n昨天借我的筆記已經抄完了！真的超感謝你～明天帶飲料請你喝 ☕\n\n小布丁 🍮",
       "isRead": false, "createdAt": "2026-06-01T07:00:00Z"
     }
   ],
@@ -125,9 +127,9 @@
   ],
   "projects": [
     {
-      "id": "prj1", "name": "CampusHub 校園平台", "owner": "user1",
+      "id": "prj1", "name": "CampusHub.test 校園平台", "owner": "user1",
       "description": "一個粉色系校園社群整合平台，包含社群、商店、信箱等功能。",
-      "readme": "# CampusHub\n\n這是一個校園社群整合平台，使用 Next.js 打造。\n\n## 功能\n- 社群討論\n- 商品瀏覽\n- 信件收發",
+      "readme": "# CampusHub.test\n\n這是一個校園社群整合平台，使用 Next.js 打造。\n\n## 功能\n- 社群討論\n- 商品瀏覽\n- 信件收發",
       "stars": ["user2", "user3"], "createdAt": "2026-05-01T00:00:00Z"
     },
     {
@@ -149,10 +151,11 @@
     { "id": "iss3", "projectId": "prj2", "userId": "user1", "title": "希望能新增照片上傳", "content": "食記沒有照片感覺缺少說服力，希望可以上傳圖片。", "createdAt": "2026-05-18T00:00:00Z" }
   ],
   "scores": [
-    { "id": "s1", "playerName": "小莓", "score": 9800, "createdAt": "2026-05-30T10:00:00Z" },
-    { "id": "s2", "playerName": "奶茶", "score": 8500, "createdAt": "2026-05-29T14:00:00Z" },
-    { "id": "s3", "playerName": "布丁", "score": 7200, "createdAt": "2026-05-28T09:00:00Z" },
-    { "id": "s4", "playerName": "雪寶", "score": 6500, "createdAt": "2026-05-27T16:00:00Z" },
-    { "id": "s5", "playerName": "小莓", "score": 12300, "createdAt": "2026-05-31T08:00:00Z" }
+    { "id": "s1", "playerName": "味噌miso", "score": 9800, "createdAt": "2026-05-30T10:00:00Z" },
+    { "id": "s2", "playerName": "黑暗領主", "score": 8500, "createdAt": "2026-05-29T14:00:00Z" },
+    { "id": "s3", "playerName": "小布丁", "score": 7200, "createdAt": "2026-05-28T09:00:00Z" },
+    { "id": "s4", "playerName": "小蛋糕", "score": 6500, "createdAt": "2026-05-27T16:00:00Z" },
+    { "id": "s5", "playerName": "平湖秋月", "score": 11000, "createdAt": "2026-05-31T08:00:00Z" },
+    { "id": "s6", "playerName": "味噌miso", "score": 12300, "createdAt": "2026-05-31T12:00:00Z" }
   ]
 }

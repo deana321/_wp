@@ -25,6 +25,37 @@ export default function SchoolPage() {
   const [announcements, setAnnouncements] = useState([]);
   const [activeSection, setActiveSection] = useState('timetable');
   const [checkedCourses, setCheckedCourses] = useState({});
+  const [showModal, setShowModal] = useState(false);
+  const [form, setForm] = useState({
+    name: '', code: '', credits: '', teacher: '',
+    day: 'Monday', time: '09:00-11:00', classroom: '', grade: '',
+  });
+
+  function resetForm() {
+    setForm({ name: '', code: '', credits: '', teacher: '', day: 'Monday', time: '09:00-11:00', classroom: '', grade: '' });
+  }
+
+  async function handleCreateCourse(e) {
+    e.preventDefault();
+    const dayLabel = dayMap[form.day].replace('週', '');
+    const schedule = `週${dayLabel} ${form.time}`;
+    const payload = {
+      name: form.name,
+      code: form.code,
+      credits: Number(form.credits),
+      teacher: form.teacher,
+      day: form.day,
+      time: form.time,
+      classroom: form.classroom,
+      schedule,
+    };
+    if (form.grade !== '') payload.grade = Number(form.grade);
+    await fetch('/api/courses', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+    const updated = await fetch('/api/courses').then(r => r.json());
+    setCourses(updated);
+    setShowModal(false);
+    resetForm();
+  }
 
   useEffect(() => {
     fetch('/api/courses').then((r) => r.json()).then(setCourses);
@@ -79,7 +110,14 @@ export default function SchoolPage() {
       </div>
 
       {activeSection === 'timetable' && (
-        <div className="card" style={{ overflowX: 'auto' }}>
+        <div>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
+            <h3 style={{ margin: 0 }}>📅 本學期課表</h3>
+            <button className="btn btn-pink" onClick={() => setShowModal(true)}>
+              + 新增課程
+            </button>
+          </div>
+          <div className="card" style={{ overflowX: 'auto' }}>
           <table className="timetable">
             <thead>
               <tr>
@@ -116,6 +154,7 @@ export default function SchoolPage() {
               ))}
             </tbody>
           </table>
+        </div>
         </div>
       )}
 
@@ -207,6 +246,34 @@ export default function SchoolPage() {
               </div>
             </div>
           ))}
+        </div>
+      )}
+
+      {showModal && (
+        <div className="modal-overlay" onClick={() => { setShowModal(false); resetForm(); }}>
+          <div className="modal-content" onClick={e => e.stopPropagation()}>
+            <h3>📚 新增課程</h3>
+            <form onSubmit={handleCreateCourse}>
+              <input className="input-field" placeholder="課程名稱" value={form.name} onChange={e => setForm(f => ({ ...f, name: e.target.value }))} required style={{ marginBottom: 10 }} />
+              <input className="input-field" placeholder="課程代碼" value={form.code} onChange={e => setForm(f => ({ ...f, code: e.target.value }))} required style={{ marginBottom: 10 }} />
+              <input className="input-field" type="number" placeholder="學分" value={form.credits} onChange={e => setForm(f => ({ ...f, credits: e.target.value }))} required min="1" style={{ marginBottom: 10 }} />
+              <input className="input-field" placeholder="授課教師" value={form.teacher} onChange={e => setForm(f => ({ ...f, teacher: e.target.value }))} required style={{ marginBottom: 10 }} />
+              <div style={{ display: 'flex', gap: 10, marginBottom: 10 }}>
+                <select className="input-field" value={form.day} onChange={e => setForm(f => ({ ...f, day: e.target.value }))} style={{ flex: 1 }}>
+                  {days.map(d => <option key={d} value={d}>{dayMap[d]}</option>)}
+                </select>
+                <select className="input-field" value={form.time} onChange={e => setForm(f => ({ ...f, time: e.target.value }))} style={{ flex: 1 }}>
+                  {timeSlots.map(t => <option key={t} value={t}>{t}</option>)}
+                </select>
+              </div>
+              <input className="input-field" placeholder="教室" value={form.classroom} onChange={e => setForm(f => ({ ...f, classroom: e.target.value }))} required style={{ marginBottom: 10 }} />
+              <input className="input-field" type="number" placeholder="成績 (選填)" value={form.grade} onChange={e => setForm(f => ({ ...f, grade: e.target.value }))} min="0" max="100" style={{ marginBottom: 16 }} />
+              <div className="modal-actions">
+                <button type="button" className="btn" onClick={() => { setShowModal(false); resetForm(); }}>取消</button>
+                <button type="submit" className="btn btn-pink">新增</button>
+              </div>
+            </form>
+          </div>
         </div>
       )}
     </div>

@@ -10,11 +10,14 @@
   <header class="site-header">
     <nav class="nav" aria-label="主要導覽">
       <a class="brand" href="#home">Web Design Portfolio</a>
-      <div class="nav-links">
-        <a href="#home">首頁</a>
-        <a href="#course">課程資訊</a>
-        <a href="#assignments">作業總覽</a>
-        <a href="#reflection">學習心得</a>
+      <div class="nav-actions">
+        <div class="nav-links">
+          <a href="#home">首頁</a>
+          <a href="#course">課程資訊</a>
+          <a href="#assignments">作業總覽</a>
+          <a href="#reflection">學習心得</a>
+        </div>
+        <button class="nav-edit-button" id="edit-mode-button" type="button">編輯</button>
       </div>
     </nav>
   </header>
@@ -65,23 +68,23 @@
             </div>
             <div>
               <dt>授課教師</dt>
-              <dd>＿＿＿＿＿＿</dd>
+              <dd>陳鍾誠</dd>
             </div>
             <div>
               <dt>班級</dt>
-              <dd>＿＿＿＿＿＿</dd>
+              <dd>資工一</dd>
             </div>
             <div>
               <dt>姓名</dt>
-              <dd>＿＿＿＿＿＿</dd>
+              <dd>張睿蓁</dd>
             </div>
             <div>
               <dt>學號</dt>
-              <dd>＿＿＿＿＿＿</dd>
+              <dd>111410561</dd>
             </div>
             <div>
               <dt>繳交日期</dt>
-              <dd>＿＿＿＿＿＿</dd>
+              <dd>2026-06-04</dd>
             </div>
           </dl>
         </div>
@@ -95,38 +98,34 @@
           <h2>作業總覽</h2>
         </div>
 
-        <div class="assignment-grid" aria-label="六份作業總覽">
+        <div class="assignment-grid" aria-label="八份作業總覽">
           <article class="assignment-card">
             <span class="assignment-number">作業一</span>
-            <h3>＿＿＿＿＿＿＿＿</h3>
-            <p>簡短說明：＿＿＿＿＿＿＿＿</p>
+            <h3>個人介紹網頁</h3>
+            <p>使用 HTML + CSS 製作的個人介紹頁面</p>
             <div class="chip-row">
               <span>HTML</span>
               <span>CSS</span>
-              <span>JavaScript</span>
             </div>
             <a href="#assignment-1" class="small-button">查看詳細</a>
           </article>
 
           <article class="assignment-card">
             <span class="assignment-number">作業二</span>
-            <h3>＿＿＿＿＿＿＿＿</h3>
-            <p>簡短說明：＿＿＿＿＿＿＿＿</p>
+            <h3>個人自我介紹表單</h3>
+            <p>使用多種 HTML 表單元素製作的自我介紹表單頁面</p>
             <div class="chip-row">
               <span>HTML</span>
               <span>CSS</span>
-              <span>JavaScript</span>
             </div>
             <a href="#assignment-2" class="small-button">查看詳細</a>
           </article>
 
           <article class="assignment-card">
             <span class="assignment-number">作業三</span>
-            <h3>＿＿＿＿＿＿＿＿</h3>
-            <p>簡短說明：＿＿＿＿＿＿＿＿</p>
+            <h3>第一個 JavaScript 程式</h3>
+            <p>使用 console.log() 輸出訊息的基礎 JS 練習</p>
             <div class="chip-row">
-              <span>HTML</span>
-              <span>CSS</span>
               <span>JavaScript</span>
             </div>
             <a href="#assignment-3" class="small-button">查看詳細</a>
@@ -134,11 +133,9 @@
 
           <article class="assignment-card">
             <span class="assignment-number">作業四</span>
-            <h3>＿＿＿＿＿＿＿＿</h3>
-            <p>簡短說明：＿＿＿＿＿＿＿＿</p>
+            <h3>JavaScript 基礎語法 10 題</h3>
+            <p>涵蓋 if、for、while、函式、陣列、物件、JSON 的 JS 基礎練習</p>
             <div class="chip-row">
-              <span>HTML</span>
-              <span>CSS</span>
               <span>JavaScript</span>
             </div>
             <a href="#assignment-4" class="small-button">查看詳細</a>
@@ -146,26 +143,49 @@
 
           <article class="assignment-card">
             <span class="assignment-number">作業五</span>
-            <h3>＿＿＿＿＿＿＿＿</h3>
-            <p>簡短說明：＿＿＿＿＿＿＿＿</p>
+            <h3>網易網誌部落格系統</h3>
+            <p>使用 Node.js + Express + SQLite 建立的全端部落格</p>
             <div class="chip-row">
-              <span>HTML</span>
-              <span>CSS</span>
-              <span>JavaScript</span>
+              <span>Node.js</span>
+              <span>Express</span>
+              <span>SQLite</span>
+              <span>EJS</span>
             </div>
             <a href="#assignment-5" class="small-button">查看詳細</a>
           </article>
 
           <article class="assignment-card">
             <span class="assignment-number">作業六</span>
-            <h3>＿＿＿＿＿＿＿＿</h3>
-            <p>簡短說明：＿＿＿＿＿＿＿＿</p>
+            <h3>進階 JavaScript 10 題</h3>
+            <p>練習 callback、closure、IIFE、map/filter 等進階 JS 概念</p>
             <div class="chip-row">
-              <span>HTML</span>
-              <span>CSS</span>
               <span>JavaScript</span>
+              <span>ES6+</span>
             </div>
             <a href="#assignment-6" class="small-button">查看詳細</a>
+          </article>
+
+          <article class="assignment-card">
+            <span class="assignment-number">作業七</span>
+            <h3>JavaScript 後端模式 10 題</h3>
+            <p>練習解構、error-first callback、模板字串等 Express 常用模式</p>
+            <div class="chip-row">
+              <span>JavaScript</span>
+              <span>ES6+</span>
+            </div>
+            <a href="#assignment-7" class="small-button">查看詳細</a>
+          </article>
+
+          <article class="assignment-card">
+            <span class="assignment-number">期中專案</span>
+            <h3>CampusHub 校園筆記本</h3>
+            <p>使用 Next.js 16 + React 19 打造的校園整合平台</p>
+            <div class="chip-row">
+              <span>Next.js</span>
+              <span>React</span>
+              <span>CSS</span>
+            </div>
+            <a href="#assignment-midterm" class="small-button">查看詳細</a>
           </article>
         </div>
       </div>
@@ -180,133 +200,241 @@
 
         <div class="detail-stack">
           <article id="assignment-1" class="detail-card">
-            <h3>作業一：＿＿＿＿＿＿＿＿</h3>
+            <h3>作業一：個人介紹網頁 — Wz Profile Page</h3>
             <div class="detail-grid">
               <div class="detail-copy">
                 <ul>
-                  <li><strong>作業主題：</strong>＿＿＿＿＿＿＿＿</li>
-                  <li><strong>作業目的：</strong>＿＿＿＿＿＿＿＿</li>
-                  <li><strong>使用技術：</strong><span class="inline-chip">HTML</span><span class="inline-chip">CSS</span><span class="inline-chip">JavaScript</span><span class="inline-chip">＿＿＿＿</span></li>
-                  <li><strong>作業內容：</strong>＿＿＿＿＿＿＿＿</li>
-                  <li><strong>操作方式：</strong>＿＿＿＿＿＿＿＿</li>
-                  <li><strong>學習重點：</strong>＿＿＿＿＿＿＿＿</li>
-                  <li><strong>遇到問題：</strong>＿＿＿＿＿＿＿＿</li>
-                  <li><strong>解決方式：</strong>＿＿＿＿＿＿＿＿</li>
+                  <li><strong>作業主題：</strong>個人介紹網頁（Wz Profile Page）</li>
+                  <li><strong>作業目的：</strong>學習使用 HTML 與 CSS 製作個人介紹頁面，熟悉版面設計與視覺風格</li>
+                  <li><strong>使用技術：</strong><span class="inline-chip">HTML</span><span class="inline-chip">CSS</span></li>
+                  <li><strong>作業內容：</strong>個人介紹檔，包含自我介紹、興趣卡片、時間軸、聯絡資訊等區塊</li>
+                  <li><strong>學習重點：</strong>使用 CSS Grid 進行雙欄版面排列（如 header 左右分欄）；使用 CSS 偽元素 ::before / ::after 裝飾卡片</li>
+                  <li><strong>遇到問題：</strong>手機版版面跑版，文字與元素重疊；背景漸層與星星裝飾的定位對齊不易</li>
+                  <li><strong>解決方式：</strong>使用 @media 查詢設定 RWD 斷點，將 grid 改為單欄；裝飾層用 position: fixed + inset:0 固定，不影響內容流</li>
+                  <li><strong>作業連結：</strong><a href="../0306%2001/01.html" target="_blank" class="assignment-link">開啟作業一</a></li>
+                  <li><strong>使用 AI：</strong>opencode + ChatGPT 協助完成（<a href="https://chatgpt.com/share/69f7079e-65e4-83e8-a8a7-419e0c91a36e" target="_blank" class="assignment-link">對話紀錄</a>）</li>
                 </ul>
               </div>
-              <div class="screenshot-frame">
-                <span>成果截圖</span>
-                <small>圖片之後補上</small>
+              <div class="screenshot-frame" data-screenshot-key="assignment-1">
+                <div class="screenshot-display">
+                  <span>成果截圖</span>
+                  <small>圖片之後補上</small>
+                </div>
+                <div class="screenshot-actions">
+                  <label for="file-input-1" class="upload-label">選擇圖片</label>
+                  <input type="file" id="file-input-1" accept="image/png,image/jpeg,image/webp,image/gif" class="file-input">
+                  <button type="button" class="screenshot-remove">移除圖片</button>
+                </div>
               </div>
             </div>
           </article>
 
           <article id="assignment-2" class="detail-card">
-            <h3>作業二：＿＿＿＿＿＿＿＿</h3>
+            <h3>作業二：個人自我介紹表單 — Form Page</h3>
             <div class="detail-grid">
               <div class="detail-copy">
                 <ul>
-                  <li><strong>作業主題：</strong>＿＿＿＿＿＿＿＿</li>
-                  <li><strong>作業目的：</strong>＿＿＿＿＿＿＿＿</li>
-                  <li><strong>使用技術：</strong><span class="inline-chip">HTML</span><span class="inline-chip">CSS</span><span class="inline-chip">JavaScript</span><span class="inline-chip">＿＿＿＿</span></li>
-                  <li><strong>作業內容：</strong>＿＿＿＿＿＿＿＿</li>
-                  <li><strong>操作方式：</strong>＿＿＿＿＿＿＿＿</li>
-                  <li><strong>學習重點：</strong>＿＿＿＿＿＿＿＿</li>
-                  <li><strong>遇到問題：</strong>＿＿＿＿＿＿＿＿</li>
-                  <li><strong>解決方式：</strong>＿＿＿＿＿＿＿＿</li>
+                  <li><strong>作業主題：</strong>個人自我介紹表單</li>
+                  <li><strong>作業目的：</strong>學習使用各種 HTML 表單元素，熟悉表單設計與資料收集</li>
+                  <li><strong>使用技術：</strong><span class="inline-chip">HTML</span><span class="inline-chip">CSS</span></li>
+                  <li><strong>作業內容：</strong>包含基本資料、個人選項、興趣偏好、自我介紹等功能區塊的完整表單頁面</li>
+                  <li><strong>學習重點：</strong>使用 fieldset/legend 分組、多種 input type（text/password/email/tel/date/number/color/range/time/file/url）、radio/checkbox、select 下拉選單、textarea</li>
+                  <li><strong>遇到問題：</strong>表單元素樣式在各瀏覽器不一致，選項排版容易跑掉</li>
+                  <li><strong>解決方式：</strong>統一設定 border-radius、padding 等樣式重置，使用 flexbox 排列 inline 群組</li>
+                  <li><strong>作業連結：</strong><a href="../0313%2002/01.html" target="_blank" class="assignment-link">開啟作業二</a></li>
+                  <li><strong>使用 AI：</strong>opencode + ChatGPT 協助完成（<a href="https://chatgpt.com/share/69bcb528-0af4-8000-a28b-11bfb99f57a5" target="_blank" class="assignment-link">對話紀錄</a>）</li>
                 </ul>
               </div>
-              <div class="screenshot-frame">
-                <span>成果截圖</span>
-                <small>圖片之後補上</small>
+              <div class="screenshot-frame" data-screenshot-key="assignment-2">
+                <div class="screenshot-display">
+                  <span>成果截圖</span>
+                  <small>圖片之後補上</small>
+                </div>
+                <div class="screenshot-actions">
+                  <label for="file-input-2" class="upload-label">選擇圖片</label>
+                  <input type="file" id="file-input-2" accept="image/png,image/jpeg,image/webp,image/gif" class="file-input">
+                  <button type="button" class="screenshot-remove">移除圖片</button>
+                </div>
               </div>
             </div>
           </article>
 
           <article id="assignment-3" class="detail-card">
-            <h3>作業三：＿＿＿＿＿＿＿＿</h3>
+            <h3>作業三：第一個 JavaScript 程式 — Hello JS</h3>
             <div class="detail-grid">
               <div class="detail-copy">
                 <ul>
-                  <li><strong>作業主題：</strong>＿＿＿＿＿＿＿＿</li>
-                  <li><strong>作業目的：</strong>＿＿＿＿＿＿＿＿</li>
-                  <li><strong>使用技術：</strong><span class="inline-chip">HTML</span><span class="inline-chip">CSS</span><span class="inline-chip">JavaScript</span><span class="inline-chip">＿＿＿＿</span></li>
-                  <li><strong>作業內容：</strong>＿＿＿＿＿＿＿＿</li>
-                  <li><strong>操作方式：</strong>＿＿＿＿＿＿＿＿</li>
-                  <li><strong>學習重點：</strong>＿＿＿＿＿＿＿＿</li>
-                  <li><strong>遇到問題：</strong>＿＿＿＿＿＿＿＿</li>
-                  <li><strong>解決方式：</strong>＿＿＿＿＿＿＿＿</li>
+                  <li><strong>作業主題：</strong>第一個 JavaScript 程式</li>
+                  <li><strong>作業目的：</strong>認識 JavaScript 基本語法與執行環境</li>
+                  <li><strong>使用技術：</strong><span class="inline-chip">JavaScript</span></li>
+                  <li><strong>作業內容：</strong>使用 console.log() 輸出「Hello,你好」</li>
+                  <li><strong>學習重點：</strong>console.log 輸出、JavaScript 基本執行方式</li>
+                  <li><strong>遇到問題：</strong>無（首次基礎練習）</li>
+                  <li><strong>解決方式：</strong>無</li>
+                  <li><strong>作業連結：</strong><a href="../0320%2003/" target="_blank" class="assignment-link">開啟作業三資料夾</a> <a href="https://deana321.github.io/_wp/homework/0320%2003/index.html" target="_blank" class="assignment-link">線上筆記</a></li>
+                  <li><strong>使用 AI：</strong>opencode 協助完成</li>
                 </ul>
               </div>
-              <div class="screenshot-frame">
-                <span>成果截圖</span>
-                <small>圖片之後補上</small>
+              <div class="screenshot-frame" data-screenshot-key="assignment-3">
+                <div class="screenshot-display">
+                  <span>成果截圖</span>
+                  <small>圖片之後補上</small>
+                </div>
+                <div class="screenshot-actions">
+                  <label for="file-input-3" class="upload-label">選擇圖片</label>
+                  <input type="file" id="file-input-3" accept="image/png,image/jpeg,image/webp,image/gif" class="file-input">
+                  <button type="button" class="screenshot-remove">移除圖片</button>
+                </div>
               </div>
             </div>
           </article>
 
           <article id="assignment-4" class="detail-card">
-            <h3>作業四：＿＿＿＿＿＿＿＿</h3>
+            <h3>作業四：JavaScript 基礎語法 10 題</h3>
             <div class="detail-grid">
               <div class="detail-copy">
                 <ul>
-                  <li><strong>作業主題：</strong>＿＿＿＿＿＿＿＿</li>
-                  <li><strong>作業目的：</strong>＿＿＿＿＿＿＿＿</li>
-                  <li><strong>使用技術：</strong><span class="inline-chip">HTML</span><span class="inline-chip">CSS</span><span class="inline-chip">JavaScript</span><span class="inline-chip">＿＿＿＿</span></li>
-                  <li><strong>作業內容：</strong>＿＿＿＿＿＿＿＿</li>
-                  <li><strong>操作方式：</strong>＿＿＿＿＿＿＿＿</li>
-                  <li><strong>學習重點：</strong>＿＿＿＿＿＿＿＿</li>
-                  <li><strong>遇到問題：</strong>＿＿＿＿＿＿＿＿</li>
-                  <li><strong>解決方式：</strong>＿＿＿＿＿＿＿＿</li>
+                  <li><strong>作業主題：</strong>JavaScript 基礎語法練習</li>
+                  <li><strong>作業目的：</strong>練習 JS 基本語法：條件判斷、迴圈、函式、陣列、物件、JSON</li>
+                  <li><strong>使用技術：</strong><span class="inline-chip">JavaScript</span></li>
+                  <li><strong>作業內容：</strong>10 支程式涵蓋 if、if else if、for、while、function、array、object、JSON.parse 等主題</li>
+                  <li><strong>學習重點：</strong>if/else if 判斷式、for/while 迴圈、function 定義與呼叫、陣列操作、物件建立、JSON 解析</li>
+                  <li><strong>遇到問題：</strong>JSON.parse() 若格式錯誤會報錯；迴圈邊界條件容易搞錯</li>
+                  <li><strong>解決方式：</strong>使用 try-catch 包裹 JSON 解析；檢查迴圈條件（&lt; vs &lt;=）</li>
+                  <li><strong>作業連結：</strong><a href="../0320%2004/" target="_blank" class="assignment-link">開啟作業四資料夾</a> <a href="https://deana321.github.io/_wp/homework/0320%2004/" target="_blank" class="assignment-link">線上筆記</a></li>
+                  <li><strong>使用 AI：</strong>opencode + ChatGPT 協助完成（<a href="https://chatgpt.com/share/69bcc4c1-2d7c-8000-8038-75c739301be6" target="_blank" class="assignment-link">對話紀錄</a>）</li>
                 </ul>
               </div>
-              <div class="screenshot-frame">
-                <span>成果截圖</span>
-                <small>圖片之後補上</small>
+              <div class="screenshot-frame" data-screenshot-key="assignment-4">
+                <div class="screenshot-display">
+                  <span>成果截圖</span>
+                  <small>圖片之後補上</small>
+                </div>
+                <div class="screenshot-actions">
+                  <label for="file-input-4" class="upload-label">選擇圖片</label>
+                  <input type="file" id="file-input-4" accept="image/png,image/jpeg,image/webp,image/gif" class="file-input">
+                  <button type="button" class="screenshot-remove">移除圖片</button>
+                </div>
               </div>
             </div>
           </article>
 
           <article id="assignment-5" class="detail-card">
-            <h3>作業五：＿＿＿＿＿＿＿＿</h3>
+            <h3>作業五：網易網誌部落格系統 — Express Blog</h3>
             <div class="detail-grid">
               <div class="detail-copy">
                 <ul>
-                  <li><strong>作業主題：</strong>＿＿＿＿＿＿＿＿</li>
-                  <li><strong>作業目的：</strong>＿＿＿＿＿＿＿＿</li>
-                  <li><strong>使用技術：</strong><span class="inline-chip">HTML</span><span class="inline-chip">CSS</span><span class="inline-chip">JavaScript</span><span class="inline-chip">＿＿＿＿</span></li>
-                  <li><strong>作業內容：</strong>＿＿＿＿＿＿＿＿</li>
-                  <li><strong>操作方式：</strong>＿＿＿＿＿＿＿＿</li>
-                  <li><strong>學習重點：</strong>＿＿＿＿＿＿＿＿</li>
-                  <li><strong>遇到問題：</strong>＿＿＿＿＿＿＿＿</li>
-                  <li><strong>解決方式：</strong>＿＿＿＿＿＿＿＿</li>
+                  <li><strong>作業主題：</strong>全端部落格系統</li>
+                  <li><strong>作業目的：</strong>學習使用 Node.js + Express + SQLite 建立完整的 Web 應用</li>
+                  <li><strong>使用技術：</strong><span class="inline-chip">Node.js</span><span class="inline-chip">Express</span><span class="inline-chip">SQLite</span><span class="inline-chip">EJS</span><span class="inline-chip">bcrypt</span></li>
+                  <li><strong>作業內容：</strong>使用者註冊/登入、文章 CRUD、Markdown 編輯、分類系統、留言功能、文章歸檔</li>
+                  <li><strong>學習重點：</strong>Express 路由與中介軟體、Session 驗證、SQLite 資料庫 CRUD、EJS 模板引擎、bcrypt 密碼加密</li>
+                  <li><strong>遇到問題：</strong>bcrypt 版本相容性、session 設定、SQL 語法錯誤</li>
+                  <li><strong>解決方式：</strong>鎖定 bcryptjs 版本、正確設定 express-session 的 secret 與 cookie 選項、使用 better-sqlite3 同步查詢</li>
+                  <li><strong>作業連結：</strong><a href="../0327%2005/blog/" target="_blank" class="assignment-link">開啟作業五資料夾</a>（需先 npm start） <a href="https://deana321.github.io/_wp/homework/0327%2005/notes.html" target="_blank" class="assignment-link">線上筆記</a></li>
+                  <li><strong>使用 AI：</strong>opencode 協助完成</li>
                 </ul>
               </div>
-              <div class="screenshot-frame">
-                <span>成果截圖</span>
-                <small>圖片之後補上</small>
+              <div class="screenshot-frame" data-screenshot-key="assignment-5">
+                <div class="screenshot-display">
+                  <span>成果截圖</span>
+                  <small>圖片之後補上</small>
+                </div>
+                <div class="screenshot-actions">
+                  <label for="file-input-5" class="upload-label">選擇圖片</label>
+                  <input type="file" id="file-input-5" accept="image/png,image/jpeg,image/webp,image/gif" class="file-input">
+                  <button type="button" class="screenshot-remove">移除圖片</button>
+                </div>
               </div>
             </div>
           </article>
 
           <article id="assignment-6" class="detail-card">
-            <h3>作業六：＿＿＿＿＿＿＿＿</h3>
+            <h3>作業六：進階 JavaScript 10 題</h3>
             <div class="detail-grid">
               <div class="detail-copy">
                 <ul>
-                  <li><strong>作業主題：</strong>＿＿＿＿＿＿＿＿</li>
-                  <li><strong>作業目的：</strong>＿＿＿＿＿＿＿＿</li>
-                  <li><strong>使用技術：</strong><span class="inline-chip">HTML</span><span class="inline-chip">CSS</span><span class="inline-chip">JavaScript</span><span class="inline-chip">＿＿＿＿</span></li>
-                  <li><strong>作業內容：</strong>＿＿＿＿＿＿＿＿</li>
-                  <li><strong>操作方式：</strong>＿＿＿＿＿＿＿＿</li>
-                  <li><strong>學習重點：</strong>＿＿＿＿＿＿＿＿</li>
-                  <li><strong>遇到問題：</strong>＿＿＿＿＿＿＿＿</li>
-                  <li><strong>解決方式：</strong>＿＿＿＿＿＿＿＿</li>
+                  <li><strong>作業主題：</strong>進階 JavaScript 概念練習</li>
+                  <li><strong>作業目的：</strong>練習 callback、IIFE、closure、map/filter、arrow function、setTimeout 等進階 JS 概念</li>
+                  <li><strong>使用技術：</strong><span class="inline-chip">JavaScript</span><span class="inline-chip">ES6+</span></li>
+                  <li><strong>作業內容：</strong>10 支程式包含 callback 函式、IIFE、map 折扣計算、pop/unshift、closure、自製 filter、物件篩選、傳址/傳值、setTimeout 非同步、購物車折扣</li>
+                  <li><strong>學習重點：</strong>回呼函式模式、IIFE 立即執行函式、closure 閉包、map/filter 陣列方法、箭頭函式、傳值 vs 傳址</li>
+                  <li><strong>遇到問題：</strong>closure 變數捕捉機制容易混淆；傳址與傳值的差異難理解</li>
+                  <li><strong>解決方式：</strong>透過 console.log 逐步觀察變數變化；使用 Chrome DevTools 逐步執行</li>
+                  <li><strong>作業連結：</strong><a href="../0417%2006/" target="_blank" class="assignment-link">開啟作業六資料夾</a> <a href="https://deana321.github.io/_wp/homework/0417%2006/index.html" target="_blank" class="assignment-link">線上筆記</a></li>
+                  <li><strong>使用 AI：</strong>opencode 協助完成</li>
                 </ul>
               </div>
-              <div class="screenshot-frame">
-                <span>成果截圖</span>
-                <small>圖片之後補上</small>
+              <div class="screenshot-frame" data-screenshot-key="assignment-6">
+                <div class="screenshot-display">
+                  <span>成果截圖</span>
+                  <small>圖片之後補上</small>
+                </div>
+                <div class="screenshot-actions">
+                  <label for="file-input-6" class="upload-label">選擇圖片</label>
+                  <input type="file" id="file-input-6" accept="image/png,image/jpeg,image/webp,image/gif" class="file-input">
+                  <button type="button" class="screenshot-remove">移除圖片</button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article id="assignment-7" class="detail-card">
+            <h3>作業七：JavaScript 後端模式 10 題</h3>
+            <div class="detail-grid">
+              <div class="detail-copy">
+                <ul>
+                  <li><strong>作業主題：</strong>JavaScript 後端開發模式練習</li>
+                  <li><strong>作業目的：</strong>練習物件解構、模板字串、error-first callback、JSON 處理等 Express.js 常用模式</li>
+                  <li><strong>使用技術：</strong><span class="inline-chip">JavaScript</span><span class="inline-chip">ES6+</span></li>
+                  <li><strong>作業內容：</strong>10 支程式包含物件屬性存取、解構賦值、forEach 模板字串、動態參數、error-first callback、JSON 解析、模擬 SQL 查詢、模板字串邏輯、字串裁切、管理員權限檢查</li>
+                  <li><strong>學習重點：</strong>物件 dot/bracket 存取、解構賦值（const { title, content } = req.body）、模板字串（`${}`）、error-first callback 模式 callback(err, data)</li>
+                  <li><strong>遇到問題：</strong>error-first callback 的錯誤處理流程不熟悉；模板字串內嵌邏輯易出錯</li>
+                  <li><strong>解決方式：</strong>使用 if (err) return callback(err) 提前返回模式；模板字串中只用單純三元運算子</li>
+                  <li><strong>作業連結：</strong><a href="../0417%2007/" target="_blank" class="assignment-link">開啟作業七資料夾</a> <a href="https://deana321.github.io/_wp/homework/0417%2007/index.html" target="_blank" class="assignment-link">線上筆記</a></li>
+                  <li><strong>使用 AI：</strong>opencode 協助完成（<a href="https://chatgpt.com/share/6a018fbb-3c2c-83e9-9962-3a4f8bd589b1" target="_blank" class="assignment-link">對話紀錄</a>）</li>
+                </ul>
+              </div>
+              <div class="screenshot-frame" data-screenshot-key="assignment-7">
+                <div class="screenshot-display">
+                  <span>成果截圖</span>
+                  <small>圖片之後補上</small>
+                </div>
+                <div class="screenshot-actions">
+                  <label for="file-input-7" class="upload-label">選擇圖片</label>
+                  <input type="file" id="file-input-7" accept="image/png,image/jpeg,image/webp,image/gif" class="file-input">
+                  <button type="button" class="screenshot-remove">移除圖片</button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article id="assignment-midterm" class="detail-card">
+            <h3>期中專案：CampusHub 校園筆記本</h3>
+            <div class="detail-grid">
+              <div class="detail-copy">
+                <ul>
+                  <li><strong>作業主題：</strong>CampusHub 校園整合平台</li>
+                  <li><strong>作業目的：</strong>學習使用 Next.js 16 + React 19 建立完整的前後端 Web 應用</li>
+                  <li><strong>使用技術：</strong><span class="inline-chip">Next.js 16</span><span class="inline-chip">React 19</span><span class="inline-chip">CSS</span><span class="inline-chip">JSON DB</span></li>
+                  <li><strong>作業內容：</strong>8 大功能模組（首頁儀表板、社交動態、商城購物、信箱郵件、教務查詢、全域搜尋、專案管理、排行榜遊戲）</li>
+                  <li><strong>學習重點：</strong>Next.js App Router、React hooks（useState/useEffect/useRef）、API Routes、CSS 主題設計、JSON 資料庫讀寫</li>
+                  <li><strong>遇到問題：</strong>Next.js 16 的 breaking changes、Vercel 部署的 /tmp 目錄限制</li>
+                  <li><strong>解決方式：</strong>查閱官方文件適應新 API；使用 fs 操作 /tmp 暫存檔案</li>
+                  <li><strong>作業連結：</strong><a href="../Midterm/Midterm%20web/" target="_blank" class="assignment-link">開啟期中專案資料夾</a>（需先 npm run dev）</li>
+                  <li><strong>使用 AI：</strong>opencode (Claude) 協助完成</li>
+                </ul>
+              </div>
+              <div class="screenshot-frame" data-screenshot-key="assignment-midterm">
+                <div class="screenshot-display">
+                  <span>成果截圖</span>
+                  <small>圖片之後補上</small>
+                </div>
+                <div class="screenshot-actions">
+                  <label for="file-input-midterm" class="upload-label">選擇圖片</label>
+                  <input type="file" id="file-input-midterm" accept="image/png,image/jpeg,image/webp,image/gif" class="file-input">
+                  <button type="button" class="screenshot-remove">移除圖片</button>
+                </div>
               </div>
             </div>
           </article>
@@ -324,15 +452,15 @@
         <div class="reflection-grid">
           <article class="reflection-card">
             <h3>我學到了什麼</h3>
-            <p>透過網頁設計課，我學習到如何使用 HTML 建立網頁架構，使用 CSS 設計版面與視覺風格，並透過 JavaScript 增加互動效果。</p>
+            <p>從 HTML/CSS 靜態頁面開始，逐步學習 JavaScript 程式設計、Node.js 後端開發，再到 Next.js 框架應用。這學期我學會了如何獨立開發一個完整的 Web 應用，從前端版面到後端資料庫，涵蓋全端開發流程。</p>
           </article>
           <article class="reflection-card">
             <h3>遇到的困難</h3>
-            <p>在製作作業的過程中，我遇到版面排列、圖片路徑、語法錯誤與互動功能設定等問題。</p>
+            <p>最大的挑戰是期中專案的 Next.js 版本差異（v16 的 breaking changes），以及部落格系統的 bcrypt 與 session 設定。JavaScript 的 closure 和傳值傳址概念也花了不少時間理解。</p>
           </article>
           <article class="reflection-card">
             <h3>未來想改進</h3>
-            <p>未來希望能讓網頁版面更加美觀，並提升響應式網頁設計與 JavaScript 功能應用能力。</p>
+            <p>希望未來能學習 TypeScript 增加程式碼可靠性，並深入 React 生態系（Next.js、Tailwind CSS）。也想嘗試串接真實 API 與資料庫，讓專案更具實用性。</p>
           </article>
         </div>
       </div>
@@ -342,11 +470,35 @@
   <footer class="site-footer">
     <p class="footer-brand">Web Design Portfolio</p>
     <p>網頁設計課平時作業彙整</p>
-    <p>Designed by ＿＿＿＿＿＿</p>
+    <p>Designed by 張睿蓁</p>
     <p>&copy; 2026</p>
   </footer>
 
   <button class="back-to-top" type="button" aria-label="回到頂部" title="回到頂部">↑</button>
+
+  <div class="editor-toolbar" id="editor-toolbar" aria-hidden="true">
+    <span class="editor-status">編輯模式</span>
+    <div class="editor-actions">
+      <button type="button" class="editor-save" id="save-edit-button">儲存</button>
+      <button type="button" class="editor-cancel" id="cancel-edit-button">取消修改</button>
+    </div>
+  </div>
+
+  <dialog class="password-dialog" id="edit-password-dialog">
+    <form class="password-dialog-form" id="edit-password-form">
+      <button class="dialog-close" id="close-edit-dialog" type="button" aria-label="關閉">×</button>
+      <h2>進入編輯模式</h2>
+      <label for="edit-password-input">密碼</label>
+      <input type="password" id="edit-password-input" autocomplete="current-password" required>
+      <p class="dialog-error" id="edit-password-error" aria-live="polite"></p>
+      <div class="dialog-actions">
+        <button type="button" class="dialog-secondary" id="cancel-password-button">取消</button>
+        <button type="submit" class="dialog-primary">解鎖</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div class="save-toast" id="save-toast" role="status" aria-live="polite"></div>
 
   <script src="script.js"></script>
 </body>

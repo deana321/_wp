@@ -1,0 +1,741 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="網頁設計期中專案學習報告：CampusHub 校園筆記本"
+    />
+    <title>網頁設計期中專案學習報告｜CampusHub 校園筆記本</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#report-content">跳到報告內容</a>
+    <div class="reading-progress" aria-hidden="true">
+      <span id="reading-progress-bar"></span>
+    </div>
+
+    <div class="background-decor decor-pink" aria-hidden="true"></div>
+    <div class="background-decor decor-purple" aria-hidden="true"></div>
+    <div class="background-decor decor-blue" aria-hidden="true"></div>
+    <div class="dot-cluster dots-one" aria-hidden="true"></div>
+    <div class="dot-cluster dots-two" aria-hidden="true"></div>
+
+    <section class="editor-toolbar" id="editor-toolbar" aria-label="頁面編輯工具">
+      <div class="editor-toolbar-copy">
+        <p class="editor-toolbar-kicker">Editor Lock</p>
+        <strong>頁面編輯工具</strong>
+        <p id="editor-status">
+          目前是閱讀模式。按下按鈕並輸入密碼後，才可以直接修改頁面文字。
+        </p>
+      </div>
+      <div class="editor-toolbar-actions">
+        <button class="editor-btn primary-editor-btn" id="enter-edit-mode" type="button">
+          進入編輯
+        </button>
+        <button class="editor-btn" id="add-card" type="button" disabled>
+          新增卡片
+        </button>
+        <button class="editor-btn" id="save-edits" type="button" disabled>
+          儲存變更
+        </button>
+        <button class="editor-btn" id="cancel-edits" type="button" disabled>
+          取消編輯
+        </button>
+        <button class="editor-btn danger-editor-btn" id="reset-edits" type="button">
+          還原預設
+        </button>
+      </div>
+    </section>
+
+    <div class="editor-auth" id="editor-auth" hidden>
+      <div
+        class="editor-auth-card"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="editor-auth-title"
+      >
+        <div class="editor-auth-heading">
+          <p>Editor Lock</p>
+          <h2 id="editor-auth-title">輸入編輯密碼</h2>
+        </div>
+        <form id="editor-auth-form">
+          <label class="editor-field" for="editor-password-input">
+            <span>編輯密碼</span>
+            <input
+              id="editor-password-input"
+              name="editor-password"
+              type="password"
+              autocomplete="current-password"
+              placeholder="請輸入密碼"
+              required
+            />
+          </label>
+          <p class="editor-auth-message" id="editor-auth-message" aria-live="polite"></p>
+          <div class="editor-auth-actions">
+            <button class="editor-btn" id="editor-auth-cancel" type="button">取消</button>
+            <button class="editor-btn primary-editor-btn" type="submit">確認進入</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="page-shell">
+      <header class="cover-card" id="top">
+        <span class="paper-tape tape-left" aria-hidden="true"></span>
+        <span class="paper-tape tape-right" aria-hidden="true"></span>
+        <div class="cover-copy">
+          <p class="cover-eyebrow">Web Design Midterm Project Notes</p>
+          <div class="cover-icons" aria-hidden="true">
+            <span>📒</span>
+            <span>💻</span>
+            <span>🌸</span>
+            <span>✨</span>
+          </div>
+          <h1>網頁設計期中專案<br />學習報告</h1>
+          <p class="cover-title">CampusHub 校園筆記本</p>
+          <p class="cover-summary">
+            一份以校園生活資訊整合為主題，記錄網站規劃、設計、製作與學習反思的線上筆記。
+          </p>
+          <div class="cover-actions">
+            <a class="report-btn" href="#preface">開始閱讀</a>
+            <button class="report-btn secondary-btn" id="print-report" type="button">
+              列印報告
+            </button>
+          </div>
+        </div>
+
+        <div class="cover-info" aria-label="報告基本資料">
+          <div class="info-card-title">
+            <span aria-hidden="true">✦</span>
+            <strong>Project Profile</strong>
+          </div>
+          <dl>
+            <div>
+              <dt>課程名稱</dt>
+              <dd>網頁設計</dd>
+            </div>
+            <div>
+              <dt>姓名</dt>
+              <dd>＿＿＿＿＿＿</dd>
+            </div>
+            <div>
+              <dt>班級</dt>
+              <dd>＿＿＿＿＿＿</dd>
+            </div>
+            <div>
+              <dt>日期</dt>
+              <dd>2026 年 6 月 3 日</dd>
+            </div>
+            <div>
+              <dt>專案名稱</dt>
+              <dd>CampusHub.test Notes</dd>
+            </div>
+            <div>
+              <dt>專案連結</dt>
+              <dd>
+                <a href="#" title="請將此連結替換成實際專案網址">CampusHub.test Notes</a>
+              </dd>
+            </div>
+          </dl>
+          <p class="info-reminder">請在繳交前補上姓名、班級與實際專案網址。</p>
+        </div>
+      </header>
+
+      <div class="mobile-toc" aria-label="手機版章節目錄">
+        <span>章節目錄</span>
+        <nav class="mobile-toc-links"></nav>
+      </div>
+
+      <div class="report-layout">
+        <aside class="chapter-sidebar">
+          <div class="sidebar-card">
+            <div class="sidebar-heading">
+              <span class="sidebar-icon" aria-hidden="true">📑</span>
+              <div>
+                <p>Notebook Index</p>
+                <h2>章節目錄</h2>
+              </div>
+            </div>
+            <nav class="chapter-nav" aria-label="報告章節目錄"></nav>
+            <div class="sidebar-note">
+              <strong>閱讀提示</strong>
+              <p>點選章節名稱可以快速跳到對應內容。</p>
+            </div>
+          </div>
+        </aside>
+
+        <main class="report-content" id="report-content">
+          <article class="chapter-card accent-pink" id="preface" data-chapter>
+            <header class="chapter-heading">
+              <span class="chapter-label">Chapter 01</span>
+              <div>
+                <p class="chapter-kicker">Opening Note</p>
+                <h2>前言</h2>
+              </div>
+            </header>
+            <p>
+              這次專案是網頁設計課程的期中專案，我想製作一個和校園生活有關的整合式筆記網站，因此將網站命名為
+              <strong>CampusHub.test Notes</strong>，並把它定位成一個「校園筆記本」。我希望把學生平常可能會使用到的功能集中在同一個平台，讓使用者可以快速查看社群、商店、信箱、校務、搜尋、輔助系統與排行榜等不同內容。
+            </p>
+            <p>
+              透過這次製作，我除了練習使用 HTML 建立網頁結構、使用 CSS 設計版面，也希望運用 JavaScript
+              增加互動效果，並學習如何在開始寫程式之前先整理網站架構。對我來說，這不只是做出一個畫面，而是練習把一個想法逐步整理成可以實際瀏覽的網站。
+            </p>
+            <div class="note-box">
+              <strong>重點整理：</strong>
+              CampusHub 的核心概念是把校園生活常用功能集中在同一個平台，讓學生能像翻閱校園手帳一樣找到需要的資訊。
+            </div>
+          </article>
+
+          <article class="chapter-card accent-purple" id="introduction" data-chapter>
+            <header class="chapter-heading">
+              <span class="chapter-label">Chapter 03</span>
+              <div>
+                <p class="chapter-kicker">Project Overview</p>
+                <h2>專案簡介</h2>
+              </div>
+            </header>
+            <p>
+              <strong>CampusHub.test Notes</strong>
+              是一個以校園生活為核心的筆記與資訊整合平台。網站希望用簡單、清楚的方式呈現不同校園功能，讓使用者進入首頁後，就能依照自己的需求前往對應的模組。
+            </p>
+            <p>
+              網站名稱中的 <strong>CampusHub</strong> 代表校園中心與校園資訊集合點，<strong>Notes</strong>
+              則代表筆記本，強調學習紀錄與資訊整理。網站不是只處理單一功能，而是以「學生常用功能集合」為核心，讓使用者可以像翻校園手帳一樣找到不同區塊。
+            </p>
+            <div class="note-box purple-note">
+              <strong>設計理念：</strong>
+              版面要清楚、導覽要明顯、功能入口要容易理解，讓資訊多但不顯得混亂。
+            </div>
+          </article>
+
+          <article class="chapter-card accent-blue" id="architecture" data-chapter>
+            <header class="chapter-heading">
+              <span class="chapter-label">Chapter 04</span>
+              <div>
+                <p class="chapter-kicker">System Structure</p>
+                <h2>網站架構</h2>
+              </div>
+            </header>
+            <p>
+              本專案目前以 HTML、CSS 與 JavaScript 作為前端主要技術，並規劃使用 Vercel
+              將網站部署到線上。不同功能可以對應不同頁面或路徑，讓網站架構更清楚。資料部分目前可以先使用假資料或 JSON，未來如果功能更完整，再串接正式資料庫。
+            </p>
+            <div class="table-wrap" tabindex="0" aria-label="系統架構表格，可左右滑動">
+              <table>
+                <thead>
+                  <tr>
+                    <th>類型</th>
+                    <th>技術或工具</th>
+                    <th>用途</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>前端</td>
+                    <td>HTML</td>
+                    <td>建立網頁結構與內容層次</td>
+                  </tr>
+                  <tr>
+                    <td>樣式</td>
+                    <td>CSS</td>
+                    <td>設計版面、配色與視覺效果</td>
+                  </tr>
+                  <tr>
+                    <td>互動</td>
+                    <td>JavaScript</td>
+                    <td>製作按鈕、切換與資料渲染</td>
+                  </tr>
+                  <tr>
+                    <td>部署</td>
+                    <td>Vercel</td>
+                    <td>將網站發布到線上供他人瀏覽</td>
+                  </tr>
+                  <tr>
+                    <td>資料</td>
+                    <td>假資料 / JSON / 未來資料庫</td>
+                    <td>儲存筆記、文章與功能內容</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p>
+              後端功能目前仍屬於未來規劃，可擴充登入、發文、留言、訊息通知與管理員後台等功能。這樣的安排可以先把前端架構做好，再依照需求增加資料處理能力。
+            </p>
+          </article>
+
+          <article class="chapter-card accent-green" id="features" data-chapter>
+            <header class="chapter-heading">
+              <span class="chapter-label">Chapter 05</span>
+              <div>
+                <p class="chapter-kicker">Pages &amp; Features</p>
+                <h2>功能說明</h2>
+              </div>
+            </header>
+            <p>
+              CampusHub.test Notes 目前規劃八個主要模組。每個模組名稱直接對應功能，希望降低使用者理解網站的時間，也讓未來擴充時能維持清楚的分類。
+            </p>
+            <div class="feature-grid">
+              <section class="feature-card">
+                <span class="feature-icon" aria-hidden="true">🏠</span>
+                <h3>首頁</h3>
+                <p>作為整個網站的入口，呈現網站名稱、簡介與主要功能導覽。</p>
+              </section>
+              <section class="feature-card">
+                <span class="feature-icon" aria-hidden="true">💬</span>
+                <h3>社群</h3>
+                <p>放置校園討論、班級交流、公告或學生之間的互動內容。</p>
+              </section>
+              <section class="feature-card">
+                <span class="feature-icon" aria-hidden="true">🛍️</span>
+                <h3>商店</h3>
+                <p>規劃校園二手交易、物品交換、教材販售與生活用品交流。</p>
+              </section>
+              <section class="feature-card">
+                <span class="feature-icon" aria-hidden="true">✉️</span>
+                <h3>信箱</h3>
+                <p>作為站內通知、私人訊息、課程提醒或系統訊息中心。</p>
+              </section>
+              <section class="feature-card">
+                <span class="feature-icon" aria-hidden="true">🎓</span>
+                <h3>校務</h3>
+                <p>整理課程、作業、考試、公告與行政資訊等校園內容。</p>
+              </section>
+              <section class="feature-card">
+                <span class="feature-icon" aria-hidden="true">🔎</span>
+                <h3>搜尋</h3>
+                <p>讓使用者快速查找筆記、公告、社群文章或其他校園資訊。</p>
+              </section>
+              <section class="feature-card">
+                <span class="feature-icon" aria-hidden="true">🧰</span>
+                <h3>輔助系統</h3>
+                <p>放置學習工具、提醒工具、快速連結與使用說明。</p>
+              </section>
+              <section class="feature-card">
+                <span class="feature-icon" aria-hidden="true">🏆</span>
+                <h3>排行榜</h3>
+                <p>呈現活躍使用者、熱門筆記、熱門文章或任務完成度。</p>
+              </section>
+            </div>
+
+            <h3 class="subheading">頁面與功能架構整理</h3>
+            <div class="table-wrap" tabindex="0" aria-label="頁面與功能架構表格，可左右滑動">
+              <table>
+                <thead>
+                  <tr>
+                    <th>頁面 / 模組</th>
+                    <th>功能說明</th>
+                    <th>是否需要登入</th>
+                    <th>未來可擴充功能</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>首頁</td>
+                    <td>網站入口與功能導覽</td>
+                    <td>否</td>
+                    <td>個人化首頁</td>
+                  </tr>
+                  <tr>
+                    <td>社群</td>
+                    <td>校園討論與互動</td>
+                    <td>視功能而定</td>
+                    <td>發文、留言、按讚</td>
+                  </tr>
+                  <tr>
+                    <td>商店</td>
+                    <td>二手交易與物品交換</td>
+                    <td>視功能而定</td>
+                    <td>商品上架、搜尋、收藏</td>
+                  </tr>
+                  <tr>
+                    <td>信箱</td>
+                    <td>訊息與通知中心</td>
+                    <td>是</td>
+                    <td>私訊、未讀通知</td>
+                  </tr>
+                  <tr>
+                    <td>校務</td>
+                    <td>課程與行政資訊整理</td>
+                    <td>否</td>
+                    <td>課表、作業提醒</td>
+                  </tr>
+                  <tr>
+                    <td>搜尋</td>
+                    <td>快速查找資料</td>
+                    <td>否</td>
+                    <td>關鍵字搜尋、分類篩選</td>
+                  </tr>
+                  <tr>
+                    <td>輔助系統</td>
+                    <td>學習或使用工具</td>
+                    <td>否</td>
+                    <td>任務清單、提醒功能</td>
+                  </tr>
+                  <tr>
+                    <td>排行榜</td>
+                    <td>顯示熱門內容或活躍度</td>
+                    <td>否</td>
+                    <td>積分、徽章、排名</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </article>
+
+          <article class="chapter-card accent-pink" id="frontend" data-chapter>
+            <header class="chapter-heading">
+              <span class="chapter-label">Chapter 06</span>
+              <div>
+                <p class="chapter-kicker">Front-end Design</p>
+                <h2>前端設計</h2>
+              </div>
+            </header>
+
+            <section class="content-section">
+              <h3>6.1 版面設計</h3>
+              <p>
+                網站採用清楚的導覽列，並將導覽放在明顯的位置，讓使用者可以快速進入不同功能頁面。功能分區使用卡片式或區塊式設計，讓每一個模組彼此有區隔，頁面閱讀動線也更簡單，適合學生快速查找資料。
+              </p>
+            </section>
+
+            <section class="content-section">
+              <h3>6.2 視覺風格</h3>
+              <p>
+                網站風格偏向校園筆記本與資訊整理平台，色彩以簡潔、柔和、清楚為主，避免太複雜的裝飾。設計重點放在資訊辨識度，希望讓網站看起來像一個學生專用的線上筆記空間。
+              </p>
+            </section>
+
+            <section class="content-section">
+              <h3>6.3 使用者體驗</h3>
+              <p>
+                使用者不需要一開始就理解所有功能，可以透過導覽列慢慢探索。每個模組名稱都直接對應功能，搭配簡短說明，能降低使用者迷路的可能，也讓第一次進入網站的人比較容易理解整體架構。
+              </p>
+            </section>
+
+            <div class="note-box">
+              <strong>設計重點：</strong>
+              先讓資訊容易找到，再加入視覺裝飾；清楚的導覽比複雜效果更重要。
+            </div>
+          </article>
+
+          <article class="chapter-card accent-purple" id="javascript" data-chapter>
+            <header class="chapter-heading">
+              <span class="chapter-label">Chapter 07</span>
+              <div>
+                <p class="chapter-kicker">Interaction Plan</p>
+                <h2>JavaScript 規劃</h2>
+              </div>
+            </header>
+            <p>
+              JavaScript 可以負責網站中的互動功能，讓頁面不只是靜態內容。以 CampusHub.test Notes
+              來說，可以先從簡單的切換與資料顯示開始，再逐步增加更完整的功能。
+            </p>
+            <ul class="check-list">
+              <li>切換頁面或不同功能區塊。</li>
+              <li>載入假資料，將資料顯示在畫面上。</li>
+              <li>顯示社群文章、商店商品與信箱通知。</li>
+              <li>依照使用者輸入的關鍵字搜尋資料。</li>
+              <li>將排行榜內容依積分或活躍度排序。</li>
+              <li>點擊按鈕後顯示詳細內容或提示訊息。</li>
+            </ul>
+            <p>
+              這些功能可以讓我練習如何把資料與畫面連接起來，也能理解使用者操作網站時，程式需要如何回應。
+            </p>
+          </article>
+
+          <article class="chapter-card accent-blue" id="data" data-chapter>
+            <header class="chapter-heading">
+              <span class="chapter-label">Chapter 08</span>
+              <div>
+                <p class="chapter-kicker">Data Format</p>
+                <h2>資料格式</h2>
+              </div>
+            </header>
+            <p>
+              網站中的文章、公告或筆記可以先使用 JavaScript 物件陣列保存。以下是一筆校務公告的 JSON
+              結構範例：
+            </p>
+            <pre><code>const posts = [
+  {
+    id: 1,
+    title: "期中考提醒",
+    category: "校務",
+    content: "記得查看考試時間與地點",
+    author: "系統公告",
+    createdAt: "2026-06-03"
+  }
+];</code></pre>
+            <p>使用固定欄位整理資料有以下好處：</p>
+            <ul class="check-list">
+              <li>資料結構清楚，每筆內容都有相同的格式。</li>
+              <li>方便使用 JavaScript 將資料渲染到畫面上。</li>
+              <li>之後增加搜尋、分類或排序時比較容易處理。</li>
+              <li>未來如果串接資料庫，也比較容易轉換與管理。</li>
+            </ul>
+          </article>
+
+          <article class="chapter-card accent-green" id="deployment" data-chapter>
+            <header class="chapter-heading">
+              <span class="chapter-label">Chapter 09</span>
+              <div>
+                <p class="chapter-kicker">Online Publishing</p>
+                <h2>部署說明</h2>
+              </div>
+            </header>
+            <p>
+              本專案規劃部署在 Vercel。Vercel
+              可以讓前端網站快速發布到網路上，每次更新專案後，也能重新部署最新版本。使用線上網址後，老師或同學可以直接打開瀏覽，不需要先下載檔案或設定本機環境。
+            </p>
+            <p>
+              對學生專案來說，Vercel 的優點是操作方式相對簡單，也很適合用來展示作品。不過部署後仍需要檢查圖片、CSS、JavaScript
+              等檔案路徑是否正確，確保線上畫面和本機測試結果一致。
+            </p>
+            <div class="note-box blue-note">
+              <strong>部署檢查：</strong>
+              上線後要重新測試頁面連結、檔案路徑、手機版顯示與互動功能。
+            </div>
+          </article>
+
+          <article class="chapter-card accent-yellow" id="process" data-chapter>
+            <header class="chapter-heading">
+              <span class="chapter-label">Chapter 10</span>
+              <div>
+                <p class="chapter-kicker">Learning Record</p>
+                <h2>製作過程</h2>
+              </div>
+            </header>
+            <div class="timeline">
+              <section class="timeline-item">
+                <span>10.1</span>
+                <div>
+                  <h3>一開始的規劃</h3>
+                  <p>
+                    我先思考學生在校園中常需要哪些資訊，例如公告、筆記、交易、訊息與搜尋功能，因此決定把這些功能集中在同一個網站。
+                  </p>
+                </div>
+              </section>
+              <section class="timeline-item">
+                <span>10.2</span>
+                <div>
+                  <h3>製作畫面</h3>
+                  <p>
+                    我先建立網站首頁與導覽列，再依照不同功能建立頁面或區塊，讓整體架構更清楚，也方便之後逐步增加內容。
+                  </p>
+                </div>
+              </section>
+              <section class="timeline-item">
+                <span>10.3</span>
+                <div>
+                  <h3>調整功能</h3>
+                  <p>
+                    在製作過程中，我會不斷檢查功能名稱是否清楚、按鈕是否容易理解、頁面排版是否適合閱讀，並依照測試結果調整。
+                  </p>
+                </div>
+              </section>
+              <section class="timeline-item">
+                <span>10.4</span>
+                <div>
+                  <h3>學到的內容</h3>
+                  <p>
+                    這次製作讓我練習網站架構規劃、導覽列設計、頁面分區、前端資料呈現、部署到線上，以及如何將一個想法變成實際網站。
+                  </p>
+                </div>
+              </section>
+            </div>
+          </article>
+
+          <article class="chapter-card accent-pink" id="problems" data-chapter>
+            <header class="chapter-heading">
+              <span class="chapter-label">Chapter 11</span>
+              <div>
+                <p class="chapter-kicker">Problems &amp; Solutions</p>
+                <h2>問題與解決</h2>
+              </div>
+            </header>
+            <p>
+              在規劃與製作網站時，我遇到的問題不只有程式語法，也包含功能分類、版面整理與部署測試。以下整理出幾個主要問題與處理方式。
+            </p>
+            <div class="table-wrap" tabindex="0" aria-label="問題與解決方式表格，可左右滑動">
+              <table>
+                <thead>
+                  <tr>
+                    <th>遇到的問題</th>
+                    <th>原因</th>
+                    <th>解決方式</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>功能太多，不知道怎麼分類</td>
+                    <td>一開始想放很多校園功能</td>
+                    <td>先把功能分成社群、商店、信箱、校務等模組</td>
+                  </tr>
+                  <tr>
+                    <td>頁面內容容易雜亂</td>
+                    <td>每個區塊資訊量不同</td>
+                    <td>使用導覽列與卡片式排版整理</td>
+                  </tr>
+                  <tr>
+                    <td>不確定資料要怎麼放</td>
+                    <td>還沒有正式資料庫</td>
+                    <td>先使用假資料或 JSON 結構</td>
+                  </tr>
+                  <tr>
+                    <td>部署後畫面可能和本機不同</td>
+                    <td>線上環境與本機路徑不同</td>
+                    <td>檢查路徑、重新部署並測試網址</td>
+                  </tr>
+                  <tr>
+                    <td>使用者可能不理解功能</td>
+                    <td>模組名稱不夠明確</td>
+                    <td>使用清楚的標題與說明文字</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </article>
+
+          <article class="chapter-card accent-purple" id="ai" data-chapter>
+            <header class="chapter-heading">
+              <span class="chapter-label">Chapter 12</span>
+              <div>
+                <p class="chapter-kicker">AI Assistance</p>
+                <h2>AI 使用說明</h2>
+              </div>
+            </header>
+            <p>
+              本專案在規劃與撰寫過程中有使用 AI 輔助。AI
+              主要協助我整理網站架構、規劃功能模組、修飾報告內容，以及協助理解部分程式邏輯。不過網站主題、功能方向與最終內容仍由我自己決定與調整。
+            </p>
+            <p>
+              在使用 AI
+              的過程中，我也需要判斷建議是否符合自己的專案，而不是直接使用所有內容。這讓我學到，AI
+              可以成為整理想法與解決問題的工具，但最後仍需要自己檢查、修改與理解。
+            </p>
+          </article>
+
+          <article class="chapter-card accent-blue" id="reflection" data-chapter>
+            <header class="chapter-heading">
+              <span class="chapter-label">Chapter 13</span>
+              <div>
+                <p class="chapter-kicker">Reflection</p>
+                <h2>心得反思</h2>
+              </div>
+            </header>
+            <p>
+              透過這次專案，我發現做網站不只是把畫面做出來，還需要先思考使用者需求、功能分類、頁面動線與資料結構。CampusHub
+              這個專案讓我練習把校園生活中的不同資訊整理成一個平台，也讓我更理解網頁設計中的架構規劃與使用者體驗。
+            </p>
+            <p>
+              雖然目前功能還可以繼續擴充，但這次製作讓我對網站從無到有的過程有更清楚的認識。我也發現，先整理好功能與內容，再開始設計畫面，能讓後續製作更有方向。
+            </p>
+            <blockquote>
+              「一個好用的網站，不只是功能很多，而是讓使用者知道自己現在在哪裡，也知道下一步可以去哪裡。」
+            </blockquote>
+          </article>
+
+          <article class="chapter-card accent-green" id="future" data-chapter>
+            <header class="chapter-heading">
+              <span class="chapter-label">Chapter 14</span>
+              <div>
+                <p class="chapter-kicker">Next Steps</p>
+                <h2>未來改進</h2>
+              </div>
+            </header>
+            <p>
+              CampusHub.test Notes
+              已經建立基本方向，未來可以依照使用者需求加入更完整的功能，讓網站從資訊展示逐步發展成可實際使用的校園服務平台。
+            </p>
+            <div class="future-grid">
+              <section>
+                <h3>登入與註冊系統</h3>
+                <p>建立帳號後，使用者才能使用個人化功能。</p>
+              </section>
+              <section>
+                <h3>使用者個人頁面</h3>
+                <p>整理個人資料、收藏內容與活動紀錄。</p>
+              </section>
+              <section>
+                <h3>社群發文與留言</h3>
+                <p>讓學生可以分享資訊並進行交流。</p>
+              </section>
+              <section>
+                <h3>商店商品上架</h3>
+                <p>讓使用者刊登二手商品或交換物品。</p>
+              </section>
+              <section>
+                <h3>信箱私人訊息</h3>
+                <p>增加站內訊息與未讀通知功能。</p>
+              </section>
+              <section>
+                <h3>校務公告分類</h3>
+                <p>依課程、行政或活動分類公告內容。</p>
+              </section>
+              <section>
+                <h3>筆記收藏功能</h3>
+                <p>方便使用者保存之後想再次查看的內容。</p>
+              </section>
+              <section>
+                <h3>關鍵字搜尋</h3>
+                <p>快速查找文章、公告、商品與筆記。</p>
+              </section>
+              <section>
+                <h3>排行榜積分機制</h3>
+                <p>依照參與度或任務完成度計算積分。</p>
+              </section>
+              <section>
+                <h3>手機版介面優化</h3>
+                <p>讓小螢幕上的操作更順暢、更容易點擊。</p>
+              </section>
+              <section>
+                <h3>資料庫串接</h3>
+                <p>將假資料改為可以新增、修改與保存的正式資料。</p>
+              </section>
+              <section>
+                <h3>管理員後台</h3>
+                <p>提供公告、內容與使用者管理功能。</p>
+              </section>
+            </div>
+          </article>
+
+          <article class="chapter-card accent-pink conclusion-card" id="conclusion" data-chapter>
+            <header class="chapter-heading">
+              <span class="chapter-label">Chapter 15</span>
+              <div>
+                <p class="chapter-kicker">Conclusion</p>
+                <h2>結論</h2>
+              </div>
+            </header>
+            <p>
+              CampusHub 是一個以校園生活為主題的整合式筆記網站。這次專案讓我練習網頁設計、架構規劃、功能分類與部署，也讓我了解一個網站需要同時考慮內容、操作方式與使用者需求。
+            </p>
+            <p>
+              雖然目前仍有可以改進的地方，但我已經建立出網站的基本方向。未來如果繼續加入登入、資料庫、互動與管理功能，CampusHub
+              就能逐步發展成更完整的校園服務平台。
+            </p>
+            <div class="closing-note">
+              <span aria-hidden="true">🌸</span>
+              <div>
+                <strong>CampusHub.test Notes</strong>
+                <p>把校園資訊整理成一本更好閱讀的線上筆記。</p>
+              </div>
+            </div>
+          </article>
+
+          <footer class="report-footer">
+            <p>網頁設計期中專案學習報告</p>
+            <p>CampusHub 校園筆記本 · 2026</p>
+          </footer>
+        </main>
+      </div>
+    </div>
+
+    <button class="back-to-top" id="back-to-top" type="button" aria-label="回到頂部" title="回到頂部">
+      ↑
+    </button>
+    <script src="script.js"></script>
+  </body>
+</html>

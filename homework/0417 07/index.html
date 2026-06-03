@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>0417 筆記 — JavaScript 基礎概念</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      background: #f5f7fa;
+      color: #1e293b;
+      line-height: 1.7;
+      padding: 2rem 1rem;
+    }
+    .container { max-width: 880px; margin: 0 auto; }
+
+    header { text-align: center; margin-bottom: 3rem; }
+    header h1 { font-size: 2rem; font-weight: 700; letter-spacing: -0.02em; }
+    header p { color: #64748b; margin-top: 0.4rem; font-size: 0.95rem; }
+    header a { color: #3b82f6; }
+
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 1px 3px rgba(0,0,0,.08);
+      margin-bottom: 1.8rem;
+      overflow: hidden;
+    }
+    .card-header {
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid #e9edf2;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .card-header .num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px; height: 28px;
+      background: #eef2ff;
+      color: #4f46e5;
+      font-weight: 700;
+      font-size: 0.85rem;
+      border-radius: 8px;
+      flex-shrink: 0;
+    }
+    .card-header .tag {
+      font-size: 0.75rem;
+      background: #e2e8f0;
+      color: #475569;
+      padding: 2px 10px;
+      border-radius: 99px;
+      font-weight: 500;
+    }
+    .card-header h2 { font-size: 1.05rem; font-weight: 600; }
+
+    .card-body { padding: 1.25rem 1.5rem; }
+    .card-body p { margin-bottom: 0.75rem; color: #334155; }
+    .card-body p:last-child { margin-bottom: 0; }
+
+    pre {
+      background: #0f172a;
+      color: #e2e8f0;
+      padding: 1rem 1.25rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      overflow-x: auto;
+      tab-size: 2;
+      font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+      margin-top: 0.75rem;
+    }
+    pre .kw { color: #c084fc; }
+    pre .fn { color: #60a5fa; }
+    pre .str { color: #34d399; }
+    pre .cm { color: #64748b; font-style: italic; }
+    pre .num { color: #fbbf24; }
+    pre .obj { color: #f472b6; }
+
+    footer {
+      text-align: center;
+      color: #94a3b8;
+      font-size: 0.85rem;
+      margin-top: 3rem;
+      padding-bottom: 2rem;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <h1>📘 JavaScript 基礎概念筆記</h1>
+  <p>0417 作業整理 — 10 個 JS 核心主題</p>
+  <p><a href="https://chatgpt.com/share/6a018fbb-3c2c-83e9-9962-3a4f8bd589b1" target="_blank">ChatGPT 對話紀錄</a> · 使用 opencode 與 ChatGPT 協助完成</p>
+</header>
+
+<div class="card">
+  <div class="card-header">
+    <span class="num">1</span>
+    <h2>物件屬性存取</h2>
+    <span class="tag">Object Property Access</span>
+  </div>
+  <div class="card-body">
+    <p>從物件中取得屬性值，有兩種寫法：<strong>點符號</strong>（<code>obj.key</code>）與<strong>中括號</strong>（<code>obj["key"]</code>）。</p>
+<pre><span class="kw">let</span> post = { <span class="obj">id</span>: <span class="num">1</span>, <span class="obj">title</span>: <span class="str">"Hello World"</span> };
+<span class="fn">console.log</span>(post.title);      <span class="cm">// "Hello World"</span>
+<span class="fn">console.log</span>(post[<span class="str">"title"</span>]);  <span class="cm">// "Hello World"</span></pre>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="num">2</span>
+    <h2>物件解構賦值</h2>
+    <span class="tag">Object Destructuring</span>
+  </div>
+  <div class="card-body">
+    <p>從 <code>req.body</code> 中直接取出 <code>title</code> 與 <code>content</code>，不必一個個寫 <code>req.body.title</code>。</p>
+<pre><span class="kw">const</span> req = { body: { <span class="obj">title</span>: <span class="str">"JS教學"</span>, <span class="obj">content</span>: <span class="str">"內容在此"</span> } };
+<span class="kw">const</span> { title, content } = req.body;
+<span class="fn">console.log</span>(title);   <span class="cm">// "JS教學"</span></pre>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="num">3</span>
+    <h2>陣列遍歷 &amp; 字串拼接</h2>
+    <span class="tag">forEach / Template Literals</span>
+  </div>
+  <div class="card-body">
+    <p>用 <code>forEach</code> 跑過文章陣列，把每一筆資料拼成 HTML 字串，這是動態產生網頁列表的核心技巧。</p>
+<pre><span class="kw">const</span> posts = [{ <span class="obj">id</span>: <span class="num">1</span>, <span class="obj">t</span>: <span class="str">"A"</span> }, { <span class="obj">id</span>: <span class="num">2</span>, <span class="obj">t</span>: <span class="str">"B"</span> }];
+<span class="kw">let</span> html = <span class="str">""</span>;
+posts.<span class="fn">forEach</span>(post => {
+  html += <span class="str">`&lt;div&gt;${post.t}&lt;/div&gt;`</span>;
+});
+<span class="fn">console.log</span>(html);  <span class="cm">// "&lt;div&gt;A&lt;/div&gt;&lt;div&gt;B&lt;/div&gt;"</span></pre>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="num">4</span>
+    <h2>動態參數 / 字典</h2>
+    <span class="tag">URL Params</span>
+  </div>
+  <div class="card-body">
+    <p>模擬 Express 的 <code>req.params</code>——先建立空物件，再用中括號動態新增屬性，對應 URL 中的 <code>:id</code> 參數。</p>
+<pre><span class="kw">let</span> params = {};
+params[<span class="str">"id"</span>] = <span class="num">99</span>;
+<span class="fn">console.log</span>(params);     <span class="cm">// { id: 99 }</span>
+<span class="fn">console.log</span>(params.id); <span class="cm">// 99</span></pre>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="num">5</span>
+    <h2>錯誤優先回呼</h2>
+    <span class="tag">Error-First Callback</span>
+  </div>
+  <div class="card-body">
+    <p>非同步函數的第一個參數保留給錯誤（<code>err</code>），第二個參數才是真正的資料。呼叫端用 <code>if (err)</code> 判斷是否成功。</p>
+<pre><span class="kw">function</span> <span class="fn">fetchData</span>(id, callback) {
+  <span class="kw">const</span> fakeData = { <span class="obj">id</span>: id, <span class="obj">status</span>: <span class="str">"success"</span> };
+  callback(<span class="kw">null</span>, fakeData);
+}
+
+<span class="fn">fetchData</span>(<span class="num">101</span>, (err, data) => {
+  <span class="kw">if</span> (err) <span class="fn">console.log</span>(<span class="str">"錯誤："</span> + err);
+  <span class="kw">else</span>    <span class="fn">console.log</span>(<span class="str">"成功："</span>, data);
+});</pre>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="num">6</span>
+    <h2>JSON 解析</h2>
+    <span class="tag">Parsing JSON</span>
+  </div>
+  <div class="card-body">
+    <p><code>JSON.parse()</code> 把後端收到的 JSON 字串變成真正的 JavaScript 物件，才能存取裡面的屬性。</p>
+<pre><span class="kw">const</span> jsonStr = <span class="str">'{"title": "Post 1", "tags": ["js", "node"]}'</span>;
+<span class="kw">let</span> obj = <span class="fn">JSON.parse</span>(jsonStr);
+<span class="fn">console.log</span>(obj);        <span class="cm">// { title: "Post 1", tags: ["js","node"] }</span>
+<span class="fn">console.log</span>(obj.tags[<span class="num">1</span>]); <span class="cm">// "node"</span></pre>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="num">7</span>
+    <h2>模擬資料庫查詢</h2>
+    <span class="tag">Simulating DB Query</span>
+  </div>
+  <div class="card-body">
+    <p>模擬 <code>db.get(sql, params, callback)</code> 的流程——傳入 SQL 與參數，透過回呼拿到查詢結果（<code>row</code>）。</p>
+<pre><span class="kw">function</span> <span class="fn">fakeGet</span>(sql, params, callback) {
+  callback(<span class="kw">null</span>, { <span class="obj">id</span>: <span class="num">1</span>, <span class="obj">title</span>: <span class="str">"掌握 JS 函數"</span> });
+}
+
+fakeGet(<span class="str">"SELECT * FROM posts WHERE id = ?"</span>, [<span class="num">1</span>], (err, row) => {
+  <span class="kw">if</span> (err) <span class="fn">console.error</span>(<span class="str">"查詢失敗"</span>);
+  <span class="kw">else</span>    <span class="fn">console.log</span>(<span class="str">"標題："</span>, row.title);
+});</pre>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="num">8</span>
+    <h2>樣板字串邏輯運算</h2>
+    <span class="tag">Template Literals with Logic</span>
+  </div>
+  <div class="card-body">
+    <p>在反引號 <code>`...`</code> 的 <code>${}</code> 裡可以直接寫條件判斷，決定輸出的內容。</p>
+<pre><span class="kw">let</span> user = <span class="str">"Guest"</span>;
+<span class="kw">let</span> html = <span class="str">`&lt;h1&gt;Welcome, ${user ? user : "Stranger"}&lt;/h1&gt;`</span>;
+<span class="fn">console.log</span>(html);  <span class="cm">// "&lt;h1&gt;Welcome, Guest&lt;/h1&gt;"</span></pre>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="num">9</span>
+    <h2>字串截短 / 切片</h2>
+    <span class="tag">substring</span>
+  </div>
+  <div class="card-body">
+    <p>用 <code>substring(0, n)</code> 擷取前 n 個字元，再加上 <code>...</code> 做出「閱讀更多」的效果，常見於文章列表。</p>
+<pre><span class="kw">const</span> contents = [<span class="str">"Very long content here"</span>, <span class="str">"Another long content"</span>];
+contents.<span class="fn">forEach</span>(c => {
+  <span class="fn">console.log</span>(c.<span class="fn">substring</span>(<span class="num">0</span>, <span class="num">10</span>) + <span class="str">"..."</span>);
+});
+<span class="cm">// "Very long ..."</span>
+<span class="cm">// "Another Ve..."</span></pre>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="num">10</span>
+    <h2>錯誤優先回呼模式</h2>
+    <span class="tag">if (err) return</span>
+  </div>
+  <div class="card-body">
+    <p>若發生錯誤，<code>callback(err)</code> 後加上 <code>return</code> 中斷後續執行，確保成功邏輯不會在錯誤時被誤觸。</p>
+<pre><span class="kw">function</span> <span class="fn">checkAdmin</span>(role, callback) {
+  <span class="kw">if</span> (role !== <span class="str">"admin"</span>) { callback(<span class="str">"Access Denied"</span>); <span class="kw">return</span>; }
+  callback(<span class="kw">null</span>, <span class="str">"Welcome"</span>);
+}
+
+<span class="fn">checkAdmin</span>(<span class="str">"user"</span>, (err, msg) => {
+  <span class="kw">if</span> (err) { <span class="fn">console.log</span>(<span class="str">"錯誤："</span>, err); <span class="kw">return</span>; }
+  <span class="fn">console.log</span>(<span class="str">"成功："</span>, msg);
+});</pre>
+  </div>
+</div>
+
+<footer>
+  <p>0417 作業 · JavaScript 基礎概念整理</p>
+</footer>
+
+</div>
+</body>
+</html>

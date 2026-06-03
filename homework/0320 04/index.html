@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript 綜合練習 — 筆記</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: #f4f6f9;
+            color: #1e293b;
+            line-height: 1.7;
+            padding: 2rem;
+        }
+        .container { max-width: 900px; margin: 0 auto; }
+        h1 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 0.25rem;
+            color: #0f172a;
+        }
+        .subtitle {
+            text-align: center;
+            color: #64748b;
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+        }
+        .topic {
+            background: #fff;
+            border-radius: 12px;
+            padding: 1.5rem 2rem;
+            margin-bottom: 1.25rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,.08);
+            border-left: 5px solid #3b82f6;
+        }
+        .topic h2 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: #0f172a;
+        }
+        .topic .desc {
+            color: #475569;
+            margin-bottom: 0.75rem;
+        }
+        .topic .file {
+            display: inline-block;
+            font-size: 0.75rem;
+            background: #e2e8f0;
+            color: #475569;
+            padding: 0.1rem 0.6rem;
+            border-radius: 20px;
+            margin-bottom: 0.5rem;
+        }
+        pre {
+            background: #0f172a;
+            color: #e2e8f0;
+            padding: 1rem 1.25rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+        .tag {
+            display: inline-block;
+            font-size: 0.7rem;
+            background: #dbeafe;
+            color: #1d4ed8;
+            padding: 0.15rem 0.6rem;
+            border-radius: 20px;
+            margin-right: 0.3rem;
+            margin-bottom: 0.3rem;
+        }
+        .keywords { margin-bottom: 0.75rem; }
+        hr {
+            border: none;
+            border-top: 1px solid #e2e8f0;
+            margin: 2rem 0;
+        }
+        .nav {
+            position: sticky;
+            top: 1rem;
+            background: #fff;
+            border-radius: 12px;
+            padding: 1rem 1.5rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,.08);
+            margin-bottom: 1.5rem;
+        }
+        .nav h3 { font-size: 0.9rem; color: #64748b; margin-bottom: 0.5rem; }
+        .nav a {
+            display: inline-block;
+            font-size: 0.8rem;
+            color: #3b82f6;
+            text-decoration: none;
+            margin-right: 0.8rem;
+            margin-bottom: 0.3rem;
+        }
+        .nav a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <h1>📘 JavaScript 綜合練習</h1>
+    <p class="subtitle">0320 作業 — if / for / while / function / JSON / array / object</p>
+
+    <div class="nav">
+        <h3>目錄</h3>
+        <a href="#t01">01 if — 及格判斷</a>
+        <a href="#t02">02 if else if — 等第判斷</a>
+        <a href="#t03">03 for — 印出 1~10</a>
+        <a href="#t04">04 for — 1~100 總和</a>
+        <a href="#t05">05 while — 印出 1~5</a>
+        <a href="#t06">06 function — 加法</a>
+        <a href="#t07">07 array — 成績陣列</a>
+        <a href="#t08">08 for + array — 水果</a>
+        <a href="#t09">09 object — 學生資料</a>
+        <a href="#t10">10 JSON 綜合</a>
+    </div>
+
+    <!-- 01 -->
+    <div class="topic" id="t01">
+        <span class="file">01test.js</span>
+        <h2>if — 判斷成績是否及格</h2>
+        <div class="keywords">
+            <span class="tag">if</span>
+            <span class="tag">條件判斷</span>
+        </div>
+        <p class="desc">使用 <code>if</code> 判斷分數是否 ≥ 60，輸出及格或不及格。</p>
+        <pre>let score = 75;
+
+if (score >= 60) {
+    console.log("及格");
+} else {
+    console.log("不及格");
+}</pre>
+    </div>
+
+    <!-- 02 -->
+    <div class="topic" id="t02">
+        <span class="file">02test.js</span>
+        <h2>if else if — 判斷成績等第</h2>
+        <div class="keywords">
+            <span class="tag">if else if</span>
+            <span class="tag">多條件判斷</span>
+        </div>
+        <p class="desc">依照分數範圍輸出 A / B / C / D / F 等第。</p>
+        <pre>let score = 85;
+
+if (score >= 90) {
+    console.log("A");
+} else if (score >= 80) {
+    console.log("B");
+} else if (score >= 70) {
+    console.log("C");
+} else if (score >= 60) {
+    console.log("D");
+} else {
+    console.log("F");
+}</pre>
+    </div>
+
+    <!-- 03 -->
+    <div class="topic" id="t03">
+        <span class="file">03test.js</span>
+        <h2>for — 印出 1 到 10</h2>
+        <div class="keywords">
+            <span class="tag">for</span>
+            <span class="tag">迴圈</span>
+        </div>
+        <p class="desc"><code>for</code> 迴圈從 1 跑到 10，依序輸出數字。</p>
+        <pre>for (let i = 1; i <= 10; i++) {
+    console.log(i);
+}</pre>
+    </div>
+
+    <!-- 04 -->
+    <div class="topic" id="t04">
+        <span class="file">04test.js</span>
+        <h2>for — 計算 1 到 100 的總和</h2>
+        <div class="keywords">
+            <span class="tag">for</span>
+            <span class="tag">累加</span>
+        </div>
+        <p class="desc">用 <code>for</code> 迴圈累加 1~100，最後輸出總和。</p>
+        <pre>let sum = 0;
+
+for (let i = 1; i <= 100; i++) {
+    sum = sum + i;
+}
+
+console.log("總和是：" + sum);</pre>
+    </div>
+
+    <!-- 05 -->
+    <div class="topic" id="t05">
+        <span class="file">05test.js</span>
+        <h2>while — 印出 1 到 5</h2>
+        <div class="keywords">
+            <span class="tag">while</span>
+            <span class="tag">迴圈</span>
+        </div>
+        <p class="desc">用 <code>while</code> 在條件成立時重複執行程式碼。</p>
+        <pre>let i = 1;
+while (i <= 5) {
+    console.log(i);
+    i++;
+}</pre>
+    </div>
+
+    <!-- 06 -->
+    <div class="topic" id="t06">
+        <span class="file">06test.js</span>
+        <h2>function — 加法函式</h2>
+        <div class="keywords">
+            <span class="tag">function</span>
+            <span class="tag">函式</span>
+        </div>
+        <p class="desc">建立一個可重複使用的 <code>add</code> 函式，計算兩數相加。</p>
+        <pre>function add(a, b) {
+    return a + b;
+}
+
+let result = add(10, 20);
+console.log("答案是：" + result);</pre>
+    </div>
+
+    <!-- 07 -->
+    <div class="topic" id="t07">
+        <span class="file">07test.js</span>
+        <h2>array — 儲存多筆成績</h2>
+        <div class="keywords">
+            <span class="tag">array</span>
+            <span class="tag">索引</span>
+        </div>
+        <p class="desc">用陣列儲存多個成績，並透過索引取值。</p>
+        <pre>let scores = [80, 90, 70, 60, 100];
+
+console.log("第一個成績：" + scores[0]);
+console.log("第二個成績：" + scores[1]);
+console.log("陣列長度：" + scores.length);</pre>
+    </div>
+
+    <!-- 08 -->
+    <div class="topic" id="t08">
+        <span class="file">08test.js</span>
+        <h2>for + array — 遍歷水果陣列</h2>
+        <div class="keywords">
+            <span class="tag">for</span>
+            <span class="tag">array</span>
+        </div>
+        <p class="desc">用 <code>for</code> 迴圈逐一讀取陣列中的水果名稱。</p>
+        <pre>let fruits = ["蘋果", "香蕉", "芭樂", "西瓜"];
+
+for (let i = 0; i < fruits.length; i++) {
+    console.log("水果：" + fruits[i]);
+}</pre>
+    </div>
+
+    <!-- 09 -->
+    <div class="topic" id="t09">
+        <span class="file">09test.js</span>
+        <h2>object — 學生物件</h2>
+        <div class="keywords">
+            <span class="tag">object</span>
+            <span class="tag">屬性</span>
+        </div>
+        <p class="desc">用物件來表示一位學生的完整資料（姓名、年齡、科系）。</p>
+        <pre>let student = {
+    name: "小美",
+    age: 20,
+    department: "資工系"
+};
+
+console.log("姓名：" + student.name);
+console.log("年齡：" + student.age);
+console.log("科系：" + student.department);</pre>
+    </div>
+
+    <!-- 10 -->
+    <div class="topic" id="t10">
+        <span class="file">10test.js</span>
+        <h2>JSON + object + array 綜合練習</h2>
+        <div class="keywords">
+            <span class="tag">JSON</span>
+            <span class="tag">JSON.parse</span>
+            <span class="tag">for</span>
+            <span class="tag">if</span>
+        </div>
+        <p class="desc">用 <code>JSON.parse</code> 解析 JSON 字串，再用 <code>for</code> + <code>if</code> 判斷每位學生是否及格。</p>
+        <pre>let jsonText = `
+[
+    {"name":"小明","score":85},
+    {"name":"小華","score":58},
+    {"name":"小美","score":92}
+]
+`;
+
+let students = JSON.parse(jsonText);
+
+for (let i = 0; i < students.length; i++) {
+    if (students[i].score >= 60) {
+        console.log(students[i].name + " 及格");
+    } else {
+        console.log(students[i].name + " 不及格");
+    }
+}</pre>
+    </div>
+
+    <hr>
+
+    <div class="topic" style="border-left-color:#10b981;">
+        <h2>📄 完整程式整合</h2>
+        <p class="desc"><code>0320 04.md</code> 將以上 10 個練習整合成一份完整的 JavaScript 程式，涵蓋所有語法。</p>
+        <pre>// 01: if — 判斷是否及格
+// 02: if else if — 等第判斷
+// 03: for — 印出 1~10
+// 04: for — 1~100 總和
+// 05: while — 印出 1~5
+// 06: function — 加法
+// 07: array — 成績陣列
+// 08: for + array — 遍歷水果
+// 09: object — 學生物件
+// 10: JSON.parse — JSON 資料處理</pre>
+    </div>
+
+</div>
+</body>
+</html>

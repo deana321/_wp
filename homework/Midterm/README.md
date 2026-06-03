@@ -30,6 +30,10 @@ npm run dev
 
 開啟瀏覽器至 http://localhost:3000
 
+## 線上部署
+
+🌐 **https://campushub-notes.vercel.app**
+
 ```bash
 npm run build
 npm start

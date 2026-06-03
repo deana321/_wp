@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>網易網誌系統 — 作業筆記</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans TC", sans-serif;
+    background: #f5f5f5; color: #333; line-height: 1.8;
+    padding: 20px;
+  }
+  .container { max-width: 960px; margin: 0 auto; }
+
+  header {
+    background: linear-gradient(135deg, #d43c33, #b71c1c);
+    color: #fff; padding: 40px 30px; border-radius: 12px; margin-bottom: 24px;
+  }
+  header h1 { font-size: 28px; font-weight: 700; margin-bottom: 6px; }
+  header p { opacity: .85; font-size: 15px; }
+  header .badge {
+    display: inline-block; background: rgba(255,255,255,.2); padding: 2px 12px;
+    border-radius: 20px; font-size: 13px; margin-top: 10px;
+  }
+
+  .meta-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px; margin-bottom: 24px;
+  }
+  .meta-card {
+    background: #fff; padding: 16px; border-radius: 8px; box-shadow: 0 1px 4px rgba(0,0,0,.06);
+    font-size: 14px;
+  }
+  .meta-card .label { color: #999; font-size: 12px; }
+  .meta-card .value { color: #d43c33; font-weight: 600; margin-top: 2px; }
+
+  section {
+    background: #fff; border-radius: 10px; box-shadow: 0 1px 6px rgba(0,0,0,.06);
+    padding: 24px 28px; margin-bottom: 20px;
+  }
+  section h2 {
+    font-size: 20px; color: #d43c33; margin-bottom: 16px;
+    padding-bottom: 8px; border-bottom: 2px solid #f0f0f0;
+  }
+  section h3 { font-size: 16px; color: #555; margin: 16px 0 8px; }
+  section h4 { font-size: 14px; color: #666; margin: 12px 0 6px; }
+
+  .struct-tree {
+    font-family: "Cascadia Code", "Fira Code", monospace;
+    background: #fafafa; padding: 16px 20px; border-radius: 8px;
+    font-size: 13px; line-height: 1.9; border: 1px solid #eee;
+    overflow-x: auto;
+  }
+  .struct-tree .dir { color: #d43c33; }
+  .struct-tree .file { color: #333; }
+
+  table {
+    width: 100%; border-collapse: collapse; font-size: 14px;
+    margin: 12px 0;
+  }
+  table th {
+    background: #fafafa; text-align: left; padding: 8px 12px;
+    border-bottom: 2px solid #e0e0e0; font-weight: 600; color: #555;
+  }
+  table td {
+    padding: 8px 12px; border-bottom: 1px solid #f0f0f0;
+  }
+  table tr:hover td { background: #fef5f4; }
+
+  code {
+    font-family: "Cascadia Code", "Fira Code", monospace;
+    background: #f5f2f0; padding: 2px 6px; border-radius: 4px; font-size: 13px;
+  }
+  pre code {
+    display: block; padding: 14px 16px; overflow-x: auto; background: #fafafa;
+    border: 1px solid #eee; border-radius: 8px; margin: 8px 0;
+  }
+
+  .tag { 
+    display: inline-block; background: #fef0ef; color: #d43c33;
+    padding: 1px 10px; border-radius: 12px; font-size: 12px; font-weight: 500;
+  }
+  .tag.green { background: #e8f5e9; color: #2e7d32; }
+
+  .feature-list { list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 10px; }
+  .feature-list li {
+    background: #fafafa; padding: 12px 16px; border-radius: 8px;
+    border-left: 3px solid #d43c33; font-size: 14px;
+  }
+  .feature-list li .sub { display: block; color: #999; font-size: 12px; margin-top: 2px; }
+
+  .flow-diagram {
+    font-family: monospace;
+    background: #fafafa; border: 1px solid #eee; border-radius: 8px;
+    padding: 16px; font-size: 13px; line-height: 1.7;
+    text-align: center; overflow-x: auto;
+  }
+  .flow-diagram .arrow { color: #d43c33; }
+
+  @media (max-width: 600px) {
+    body { padding: 12px; }
+    header { padding: 24px 18px; }
+    header h1 { font-size: 22px; }
+    section { padding: 18px 16px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <h1>網易網誌系統</h1>
+  <p>Node.js + Express + SQLite 簡易部落格 — 完整作業筆記</p>
+  <span class="badge">使用 opencode + ChatGPT 協助完成</span>
+</header>
+
+<div class="meta-grid">
+  <div class="meta-card">
+    <div class="label">專案名稱</div>
+    <div class="value">netease-blog</div>
+  </div>
+  <div class="meta-card">
+    <div class="label">技術架構</div>
+    <div class="value">Express + EJS + SQLite</div>
+  </div>
+  <div class="meta-card">
+    <div class="label">主色調</div>
+    <div class="value" style="color:#d43c33;">網易紅 #d43c33</div>
+  </div>
+  <div class="meta-card">
+    <div class="label">啟動方式</div>
+    <div class="value"><code>npm start</code></div>
+  </div>
+  <div class="meta-card">
+    <div class="label">預設埠口</div>
+    <div class="value">3000</div>
+  </div>
+  <div class="meta-card">
+    <div class="label">測試帳號</div>
+    <div class="value"><code>tester / test1234</code></div>
+  </div>
+</div>
+
+<!-- 目錄結構 -->
+<section>
+  <h2>目錄結構</h2>
+  <div class="struct-tree">
+<span class="dir">blog/</span>
+├── <span class="file">app.js</span>            <span style="color:#999"># Express 主程式（路由 &amp; 中介層）</span>
+├── <span class="file">db.js</span>             <span style="color:#999"># SQLite 資料庫操作模組</span>
+├── <span class="file">package.json</span>      <span style="color:#999"># 專案設定與依賴</span>
+├── <span class="file">blog.db</span>           <span style="color:#999"># SQLite 資料庫檔案</span>
+├── <span class="dir">public/</span>
+│   └── <span class="file">style.css</span>       <span style="color:#999"># 全站樣式表（網易紅主題）</span>
+└── <span class="dir">views/</span>
+    ├── <span class="file">index.ejs</span>      <span style="color:#999"># 首頁（文章列表 + 側邊欄）</span>
+    ├── <span class="file">post.ejs</span>       <span style="color:#999"># 文章詳情 + 留言</span>
+    ├── <span class="file">new.ejs</span>        <span style="color:#999"># 寫新文章</span>
+    ├── <span class="file">edit.ejs</span>       <span style="color:#999"># 編輯文章</span>
+    ├── <span class="file">login.ejs</span>      <span style="color:#999"># 登入頁面</span>
+    └── <span class="file">register.ejs</span>   <span style="color:#999"># 註冊頁面</span>
+  </div>
+</section>
+
+<!-- 技術架構 -->
+<section>
+  <h2>技術架構</h2>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;">
+    <div><span class="tag">Express ^4.18.2</span><br><span style="font-size:13px;color:#888;">Web 框架</span></div>
+    <div><span class="tag">EJS ^3.1.9</span><br><span style="font-size:13px;color:#888;">模板引擎</span></div>
+    <div><span class="tag">better-sqlite3 ^11.0.0</span><br><span style="font-size:13px;color:#888;">資料庫</span></div>
+    <div><span class="tag">bcryptjs ^2.4.3</span><br><span style="font-size:13px;color:#888;">密碼雜湊</span></div>
+    <div><span class="tag">express-session ^1.18.0</span><br><span style="font-size:13px;color:#888;">Session 管理</span></div>
+    <div><span class="tag">marked ^12.0.0</span><br><span style="font-size:13px;color:#888;">Markdown 解析</span></div>
+    <div><span class="tag green">純 CSS RWD</span><br><span style="font-size:13px;color:#888;">響應式設計</span></div>
+    <div><span class="tag green">SQLite</span><br><span style="font-size:13px;color:#888;">無需外部資料庫</span></div>
+  </div>
+</section>
+
+<!-- 資料庫結構 -->
+<section>
+  <h2>資料庫結構</h2>
+
+  <h3>users 表</h3>
+  <table>
+    <tr><th>欄位</th><th>類型</th><th>說明</th></tr>
+    <tr><td>id</td><td>INTEGER</td><td>主鍵，自增</td></tr>
+    <tr><td>username</td><td>TEXT</td><td>使用者帳號（唯一）</td></tr>
+    <tr><td>password</td><td>TEXT</td><td>bcrypt 雜湊密碼</td></tr>
+    <tr><td>nickname</td><td>TEXT</td><td>暱稱</td></tr>
+    <tr><td>bio</td><td>TEXT</td><td>個人簡介</td></tr>
+    <tr><td>created_at</td><td>DATETIME</td><td>建立時間</td></tr>
+  </table>
+
+  <h3>posts 表</h3>
+  <table>
+    <tr><th>欄位</th><th>類型</th><th>說明</th></tr>
+    <tr><td>id</td><td>INTEGER</td><td>主鍵，自增</td></tr>
+    <tr><td>user_id</td><td>INTEGER</td><td>作者 ID（外鍵 → users）</td></tr>
+    <tr><td>title</td><td>TEXT</td><td>文章標題</td></tr>
+    <tr><td>content</td><td>TEXT</td><td>文章內容（Markdown）</td></tr>
+    <tr><td>summary</td><td>TEXT</td><td>文章摘要</td></tr>
+    <tr><td>category</td><td>TEXT</td><td>分類（預設「未分類」）</td></tr>
+    <tr><td>created_at</td><td>DATETIME</td><td>發布時間</td></tr>
+    <tr><td>updated_at</td><td>DATETIME</td><td>最後更新時間</td></tr>
+  </table>
+
+  <h3>comments 表</h3>
+  <table>
+    <tr><th>欄位</th><th>類型</th><th>說明</th></tr>
+    <tr><td>id</td><td>INTEGER</td><td>主鍵，自增</td></tr>
+    <tr><td>post_id</td><td>INTEGER</td><td>所屬文章 ID（外鍵，級聯刪除）</td></tr>
+    <tr><td>author</td><td>TEXT</td><td>留言者暱稱</td></tr>
+    <tr><td>content</td><td>TEXT</td><td>留言內容</td></tr>
+    <tr><td>created_at</td><td>DATETIME</td><td>留言時間</td></tr>
+  </table>
+</section>
+
+<!-- 功能特色 -->
+<section>
+  <h2>功能特色</h2>
+  <ul class="feature-list">
+    <li>文章 CRUD<span class="sub">支援 Markdown 語法</span></li>
+    <li>文章分類<span class="sub">自訂分類、側邊欄顯示</span></li>
+    <li>月份封存<span class="sub">按月份篩選文章</span></li>
+    <li>留言系統<span class="sub">訪客可留言</span></li>
+    <li>用戶註冊 / 登入<span class="sub">bcrypt 加密 + Session</span></li>
+    <li>權限控制<span class="sub">僅作者可編輯/刪除</span></li>
+    <li>側邊欄<span class="sub">分類、封存、最新留言</span></li>
+    <li>響應式設計<span class="sub">手機／平板／桌機</span></li>
+  </ul>
+</section>
+
+<!-- 路由一覽 -->
+<section>
+  <h2>路由一覽</h2>
+  <table>
+    <tr><th>方法</th><th>路徑</th><th>功能</th><th>權限</th></tr>
+    <tr><td><span class="tag green" style="background:#e3f2fd;color:#1565c0;">GET</span></td><td><code>/</code></td><td>首頁 — 文章列表 + 側邊欄</td><td>公開</td></tr>
+    <tr><td><span class="tag green" style="background:#e3f2fd;color:#1565c0;">GET</span></td><td><code>/login</code></td><td>登入頁面</td><td>公開</td></tr>
+    <tr><td><span class="tag" style="background:#fff3e0;color:#e65100;">POST</span></td><td><code>/login</code></td><td>登入驗證</td><td>公開</td></tr>
+    <tr><td><span class="tag green" style="background:#e3f2fd;color:#1565c0;">GET</span></td><td><code>/register</code></td><td>註冊頁面</td><td>公開</td></tr>
+    <tr><td><span class="tag" style="background:#fff3e0;color:#e65100;">POST</span></td><td><code>/register</code></td><td>註冊新用戶</td><td>公開</td></tr>
+    <tr><td><span class="tag green" style="background:#e3f2fd;color:#1565c0;">GET</span></td><td><code>/logout</code></td><td>登出</td><td><span class="tag">需登入</span></td></tr>
+    <tr><td><span class="tag green" style="background:#e3f2fd;color:#1565c0;">GET</span></td><td><code>/post/new</code></td><td>寫文章頁面</td><td><span class="tag">需登入</span></td></tr>
+    <tr><td><span class="tag" style="background:#fff3e0;color:#e65100;">POST</span></td><td><code>/post/new</code></td><td>儲存新文章</td><td><span class="tag">需登入</span></td></tr>
+    <tr><td><span class="tag green" style="background:#e3f2fd;color:#1565c0;">GET</span></td><td><code>/post/:id</code></td><td>顯示文章詳情</td><td>公開</td></tr>
+    <tr><td><span class="tag" style="background:#fff3e0;color:#e65100;">POST</span></td><td><code>/post/:id/comment</code></td><td>發表留言</td><td>公開</td></tr>
+    <tr><td><span class="tag green" style="background:#e3f2fd;color:#1565c0;">GET</span></td><td><code>/post/:id/edit</code></td><td>編輯文章頁面</td><td><span class="tag">需登入</span></td></tr>
+    <tr><td><span class="tag" style="background:#fff3e0;color:#e65100;">POST</span></td><td><code>/post/:id/edit</code></td><td>更新文章</td><td><span class="tag">需登入</span></td></tr>
+    <tr><td><span class="tag" style="background:#fff3e0;color:#e65100;">POST</span></td><td><code>/post/:id/delete</code></td><td>刪除文章</td><td><span class="tag">需登入</span></td></tr>
+  </table>
+</section>
+
+<!-- 資料流 -->
+<section>
+  <h2>資料流示意</h2>
+  <div class="flow-diagram">
+    使用者瀏覽器<br>
+    <span class="arrow">│</span><br>
+    <span class="arrow">▼</span><br>
+    Express 伺服器 (app.js)<br>
+    <span class="arrow">├────┬────┬────┬────┐</span><br>
+    <span class="arrow">▼    ▼    ▼    ▼    ▼</span><br>
+    EJS 視圖 &nbsp; 路由邏輯 &nbsp; Session &nbsp; db.js &nbsp; 靜態檔案<br>
+    <span class="arrow">│           │</span><br>
+    <span class="arrow">▼           ▼</span><br>
+    blog.db (SQLite)<br>
+    <span class="arrow">├────┬────┐</span><br>
+    users &nbsp; posts &nbsp; comments
+  </div>
+</section>
+
+<!-- app.js 重點 -->
+<section>
+  <h2>app.js 重點</h2>
+  <table>
+    <tr><th>區塊</th><th>說明</th></tr>
+    <tr><td>引入模組</td><td>express, path, session, bcrypt, db, marked</td></tr>
+    <tr><td>伺服器初始化</td><td>EJS 引擎、靜態目錄 <code>public/</code>、Session 中介層</td></tr>
+    <tr><td>共用中介層</td><td>將 <code>marked</code>、登入用戶、分類、封存、最新留言注入所有視圖</td></tr>
+    <tr><td>requireAuth</td><td>檢查 session.user，無則重導向 /login</td></tr>
+    <tr><td>路由處理</td><td>13 條路由（GET/POST）涵蓋所有功能</td></tr>
+    <tr><td>伺服器啟動</td><td>監聽 <code>PORT</code> 環境變數或 3000</td></tr>
+  </table>
+</section>
+
+<!-- db.js 重點 -->
+<section>
+  <h2>db.js 匯出函式</h2>
+  <table>
+    <tr><th>類別</th><th>函式</th></tr>
+    <tr><td>用戶</td><td><code>createUser()</code>、<code>getUser()</code>、<code>getUserById()</code></td></tr>
+    <tr><td>文章 CRUD</td><td><code>create()</code>、<code>getAll()</code>、<code>getById()</code>、<code>update()</code>、<code>delete()</code></td></tr>
+    <tr><td>留言</td><td><code>addComment()</code>、<code>getComments()</code>、<code>getRecentComments()</code></td></tr>
+    <tr><td>統計篩選</td><td><code>getCategories()</code>、<code>getArchiveMonths()</code>、<code>getByCategory()</code>、<code>getByMonth()</code></td></tr>
+    <tr><td>工具</td><td><code>close()</code> — 關閉資料庫</td></tr>
+  </table>
+</section>
+
+<!-- style.css 重點 -->
+<section>
+  <h2>CSS 樣式主題</h2>
+  <table>
+    <tr><th>項目</th><th>設定值</th></tr>
+    <tr><td>主色</td><td><code style="background:#d43c33;color:#fff;">#d43c33</code> 網易紅</td></tr>
+    <tr><td>背景</td><td><code>#f5f5f5</code> 淡灰</td></tr>
+    <tr><td>文字</td><td><code>#333</code> 深灰</td></tr>
+    <tr><td>區塊</td><td>白色卡片式版面，圓角陰影</td></tr>
+    <tr><td>響應式</td><td>@media 斷點支援手機／平板</td></tr>
+  </table>
+</section>
+
+<!-- 啟動方式 -->
+<section>
+  <h2>啟動方式</h2>
+  <pre><code>cd blog
+npm install    # 安裝依賴（首次）
+npm start      # 啟動伺服器 → http://localhost:3000</code></pre>
+</section>
+
+<footer style="text-align:center;padding:20px 0 10px;font-size:13px;color:#aaa;">
+  網易網誌系統作業筆記 &nbsp;·&nbsp; 使用 opencode + ChatGPT 協助完成
+</footer>
+
+</div>
+</body>
+</html>

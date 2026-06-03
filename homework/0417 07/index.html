@@ -6,92 +6,352 @@
   <title>0417 筆記 — JavaScript 基礎概念</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
+
     body {
-      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-      background: #f5f7fa;
-      color: #1e293b;
-      line-height: 1.7;
+      font-family: 'Segoe UI', 'Noto Sans TC', system-ui, -apple-system, sans-serif;
+      background-color: #FFF8EF;
+      color: #5A5552;
+      line-height: 1.8;
       padding: 2rem 1rem;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
     }
-    .container { max-width: 880px; margin: 0 auto; }
 
-    header { text-align: center; margin-bottom: 3rem; }
-    header h1 { font-size: 2rem; font-weight: 700; letter-spacing: -0.02em; }
-    header p { color: #64748b; margin-top: 0.4rem; font-size: 0.95rem; }
-    header a { color: #3b82f6; }
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background-image:
+        radial-gradient(circle at 20% 50%, rgba(248,200,220,0.10) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(220,199,242,0.10) 0%, transparent 50%),
+        radial-gradient(circle at 50% 80%, rgba(184,230,209,0.08) 0%, transparent 50%);
+    }
 
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background-image:
+        radial-gradient(2px 2px at 15% 22%, rgba(184,230,209,0.25) 50%, transparent 50%),
+        radial-gradient(2px 2px at 38% 10%, rgba(248,200,220,0.20) 50%, transparent 50%),
+        radial-gradient(2px 2px at 55% 35%, rgba(220,199,242,0.20) 50%, transparent 50%),
+        radial-gradient(2px 2px at 72% 18%, rgba(184,230,209,0.20) 50%, transparent 50%),
+        radial-gradient(2px 2px at 85% 42%, rgba(248,200,220,0.20) 50%, transparent 50%),
+        radial-gradient(2px 2px at 10% 65%, rgba(220,199,242,0.20) 50%, transparent 50%),
+        radial-gradient(2px 2px at 45% 75%, rgba(184,230,209,0.20) 50%, transparent 50%),
+        radial-gradient(2px 2px at 30% 88%, rgba(248,200,220,0.20) 50%, transparent 50%),
+        radial-gradient(2px 2px at 65% 92%, rgba(220,199,242,0.20) 50%, transparent 50%),
+        radial-gradient(2px 2px at 90% 70%, rgba(184,230,209,0.20) 50%, transparent 50%),
+        radial-gradient(2px 2px at 5% 40%, rgba(255,233,167,0.20) 50%, transparent 50%),
+        radial-gradient(2px 2px at 92% 5%, rgba(255,233,167,0.20) 50%, transparent 50%),
+        radial-gradient(3px 3px at 48% 50%, rgba(255,233,167,0.12) 50%, transparent 50%);
+      background-size: 60px 60px;
+    }
+
+    /* 星星裝飾 */
+    .deco-star {
+      position: fixed;
+      z-index: 0;
+      pointer-events: none;
+      color: rgba(248,200,220,0.20);
+      font-size: 1.2rem;
+      user-select: none;
+    }
+    .deco-star:nth-child(1) { top: 8%; left: 5%; }
+    .deco-star:nth-child(2) { top: 15%; right: 8%; font-size: 0.9rem; color: rgba(220,199,242,0.18); }
+    .deco-star:nth-child(3) { bottom: 12%; left: 10%; font-size: 1rem; color: rgba(184,230,209,0.18); }
+    .deco-star:nth-child(4) { top: 45%; right: 4%; font-size: 0.8rem; color: rgba(255,233,167,0.18); }
+    .deco-star:nth-child(5) { bottom: 30%; left: 3%; font-size: 1.1rem; color: rgba(248,200,220,0.15); }
+
+    /* 雲朵裝飾 */
+    .deco-cloud {
+      position: fixed;
+      z-index: 0;
+      pointer-events: none;
+      font-size: 2.5rem;
+      opacity: 0.07;
+      user-select: none;
+    }
+    .deco-cloud:nth-child(6) { top: 5%; right: 12%; }
+    .deco-cloud:nth-child(7) { bottom: 8%; left: 5%; font-size: 2rem; }
+
+    /* 便利貼裝飾 */
+    .deco-note {
+      position: fixed;
+      z-index: 0;
+      pointer-events: none;
+      font-size: 1.6rem;
+      opacity: 0.06;
+      user-select: none;
+      transform: rotate(-8deg);
+    }
+    .deco-note:nth-child(8) { top: 30%; right: 3%; }
+    .deco-note:nth-child(9) { bottom: 20%; left: 2%; transform: rotate(5deg); }
+
+    /* 愛心裝飾 */
+    .deco-heart {
+      position: fixed;
+      z-index: 0;
+      pointer-events: none;
+      font-size: 1rem;
+      opacity: 0.12;
+      user-select: none;
+    }
+    .deco-heart:nth-child(10) { top: 22%; left: 12%; color: rgba(248,200,220,0.30); }
+    .deco-heart:nth-child(11) { bottom: 40%; right: 6%; font-size: 0.8rem; color: rgba(220,199,242,0.25); }
+
+    .container {
+      max-width: 880px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ===== Header ===== */
+    header {
+      text-align: center;
+      margin-bottom: 3rem;
+      padding: 2.5rem 2rem 2rem;
+      position: relative;
+    }
+    header::after {
+      content: '✎';
+      position: absolute;
+      right: 10%;
+      top: 10%;
+      font-size: 1.8rem;
+      color: rgba(220,199,242,0.15);
+      transform: rotate(10deg);
+    }
+    header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: #4A3F3A;
+    }
+    header h1::before {
+      content: '📘 ';
+    }
+    header p {
+      margin-top: 0.5rem;
+      font-size: 0.95rem;
+      color: #8A8582;
+    }
+    header a {
+      color: #DCC7F2;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    header a:hover {
+      color: #F8C8DC;
+      text-decoration: underline;
+    }
+
+    /* ===== Notebook paper lines ===== */
+    .paper-bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background-image:
+        repeating-linear-gradient(
+          transparent,
+          transparent 27px,
+          rgba(220,199,242,0.06) 27px,
+          rgba(220,199,242,0.06) 28px
+        );
+    }
+
+    /* ===== Cards ===== */
     .card {
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 1px 3px rgba(0,0,0,.08);
+      background: rgba(255,255,255,0.80);
+      backdrop-filter: blur(2px);
+      border-radius: 20px;
+      border: 1.5px solid #EBD7F5;
+      box-shadow:
+        0 4px 16px rgba(235,215,245,0.20),
+        0 2px 6px rgba(235,215,245,0.10);
       margin-bottom: 1.8rem;
       overflow: hidden;
+      position: relative;
+      transition: transform 0.28s cubic-bezier(.22,.61,.36,1), box-shadow 0.28s cubic-bezier(.22,.61,.36,1);
     }
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #F8C8DC, #DCC7F2, #B8E6D1);
+      border-radius: 20px 20px 0 0;
+      opacity: 0.6;
+    }
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow:
+        0 12px 32px rgba(235,215,245,0.30),
+        0 4px 12px rgba(235,215,245,0.15);
+    }
+
+    /* 便利貼角標 */
+    .card::after {
+      content: '';
+      position: absolute;
+      top: -1px;
+      right: 20px;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 0 18px 18px 0;
+      border-color: transparent #FFF8EF transparent transparent;
+      opacity: 0.5;
+    }
+
     .card-header {
-      padding: 1rem 1.5rem;
-      border-bottom: 1px solid #e9edf2;
+      padding: 1.1rem 1.5rem 0.9rem;
       display: flex;
       align-items: center;
       gap: 0.75rem;
+      position: relative;
     }
     .card-header .num {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 28px; height: 28px;
-      background: #eef2ff;
-      color: #4f46e5;
+      width: 30px; height: 30px;
+      background: linear-gradient(135deg, #F8C8DC, #DCC7F2);
+      color: #fff;
       font-weight: 700;
-      font-size: 0.85rem;
-      border-radius: 8px;
+      font-size: 0.82rem;
+      border-radius: 10px;
       flex-shrink: 0;
+      box-shadow: 0 2px 6px rgba(248,200,220,0.30);
     }
     .card-header .tag {
-      font-size: 0.75rem;
-      background: #e2e8f0;
-      color: #475569;
-      padding: 2px 10px;
+      font-size: 0.72rem;
+      background: rgba(220,199,242,0.20);
+      color: #9A87B0;
+      padding: 3px 12px;
       border-radius: 99px;
       font-weight: 500;
+      margin-left: auto;
+      border: 1px solid rgba(220,199,242,0.25);
+      white-space: nowrap;
     }
-    .card-header h2 { font-size: 1.05rem; font-weight: 600; }
+    .card-header h2 {
+      font-size: 1.08rem;
+      font-weight: 600;
+      color: #4A3F3A;
+    }
 
-    .card-body { padding: 1.25rem 1.5rem; }
-    .card-body p { margin-bottom: 0.75rem; color: #334155; }
-    .card-body p:last-child { margin-bottom: 0; }
+    .card-body {
+      padding: 0.25rem 1.5rem 1.25rem;
+    }
+    .card-body p {
+      margin-bottom: 0.75rem;
+      color: #5A5552;
+    }
+    .card-body p:last-child {
+      margin-bottom: 0;
+    }
+    .card-body code {
+      background: rgba(220,199,242,0.15);
+      color: #8A75A8;
+      padding: 1px 6px;
+      border-radius: 6px;
+      font-size: 0.88em;
+    }
 
+    /* ===== Code blocks ===== */
     pre {
-      background: #0f172a;
-      color: #e2e8f0;
+      background: rgba(74,63,58,0.06);
+      border: 1px solid rgba(220,199,242,0.20);
+      border-left: 3px solid #DCC7F2;
+      color: #4A3F3A;
       padding: 1rem 1.25rem;
-      border-radius: 8px;
-      font-size: 0.85rem;
+      border-radius: 12px;
+      font-size: 0.84rem;
       overflow-x: auto;
       tab-size: 2;
       font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
       margin-top: 0.75rem;
+      position: relative;
     }
-    pre .kw { color: #c084fc; }
-    pre .fn { color: #60a5fa; }
-    pre .str { color: #34d399; }
-    pre .cm { color: #64748b; font-style: italic; }
-    pre .num { color: #fbbf24; }
-    pre .obj { color: #f472b6; }
+    pre::before {
+      content: '✏️';
+      position: absolute;
+      top: 6px;
+      right: 10px;
+      font-size: 0.75rem;
+      opacity: 0.3;
+    }
+    pre .kw { color: #B8A0D0; font-weight: 600; }
+    pre .fn { color: #88B8D8; }
+    pre .str { color: #6EC8A8; }
+    pre .cm { color: #A8A4A0; font-style: italic; }
+    pre .num { color: #E8C56A; }
+    pre .obj { color: #E89AB8; }
 
+    /* ===== Footer ===== */
     footer {
       text-align: center;
-      color: #94a3b8;
+      color: #B0AAA6;
       font-size: 0.85rem;
       margin-top: 3rem;
-      padding-bottom: 2rem;
+      padding: 2rem 0;
+      position: relative;
+    }
+    footer::before {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, #F8C8DC, #DCC7F2, #B8E6D1);
+      border-radius: 99px;
+      margin: 0 auto 1.2rem;
+      opacity: 0.5;
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 600px) {
+      body { padding: 1.2rem 0.8rem; }
+      header h1 { font-size: 1.5rem; }
+      .card-header { flex-wrap: wrap; }
+      .card-header .tag { margin-left: 0; }
+      .card-body { padding: 0.25rem 1rem 1rem; }
+      pre { font-size: 0.78rem; padding: 0.8rem 1rem; }
     }
   </style>
 </head>
 <body>
+
+<div class="paper-bg"></div>
+
+<!-- 裝飾元素 -->
+<span class="deco-star">✦</span>
+<span class="deco-star">✧</span>
+<span class="deco-star">✦</span>
+<span class="deco-star">✧</span>
+<span class="deco-star">✦</span>
+
+<span class="deco-cloud">☁</span>
+<span class="deco-cloud">☁</span>
+
+<span class="deco-note">📋</span>
+<span class="deco-note">📌</span>
+
+<span class="deco-heart">♥</span>
+<span class="deco-heart">♥</span>
+
 <div class="container">
 
 <header>
-  <h1>📘 JavaScript 基礎概念筆記</h1>
+  <h1>JavaScript 基礎概念筆記</h1>
   <p>0417 作業整理 — 10 個 JS 核心主題</p>
   <p><a href="https://chatgpt.com/share/6a018fbb-3c2c-83e9-9962-3a4f8bd589b1" target="_blank">ChatGPT 對話紀錄</a> · 使用 opencode 與 ChatGPT 協助完成</p>
 </header>

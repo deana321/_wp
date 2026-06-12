@@ -1,296 +1,297 @@
-<!DOCTYPE html> <!-- 宣告這是一份 HTML5 文件 -->
-<html lang="zh-Hant"> <!-- 網頁根元素，語言設定為繁體中文 -->
-<head>
-    <meta charset="UTF-8"> <!-- 設定字元編碼為 UTF-8，避免中文亂碼 -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- 讓手機、平板也能正常顯示 -->
-    <title>個人自我介紹表單</title> <!-- 瀏覽器分頁上顯示的標題 -->
+<!DOCTYPE html> <!-- 宣告這是一份 HTML5 文件，讓瀏覽器用標準模式解析網頁 -->
+<html lang="zh-Hant"> <!-- HTML 根標籤，lang 設定為繁體中文 -->
+<head> <!-- head 區域，放網頁設定、標題、CSS 樣式等，不會直接顯示在畫面上 -->
+    <meta charset="UTF-8"> <!-- 設定字元編碼為 UTF-8，避免中文出現亂碼 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- 設定響應式版面，讓手機和平板能正常縮放顯示 -->
+    <title>個人自我介紹表單</title> <!-- 設定瀏覽器分頁上顯示的標題 -->
 
-    <style>
-        body {
-            font-family: "Microsoft JhengHei", sans-serif; /* 設定整體字型，優先使用微軟正黑體 */
-            background: #f4f8fb; /* 設定頁面背景顏色 */
-            margin: 0; /* 移除瀏覽器預設外距 */
-            padding: 30px; /* 內部四周留白 30px */
-        }
+    <style> <!-- CSS 樣式開始，用來美化網頁畫面 -->
+        body { <!-- 設定整個網頁 body 的樣式 -->
+            font-family: "Microsoft JhengHei", sans-serif; /* 設定整體字型，優先使用微軟正黑體，沒有就用無襯線字體 */
+            background: #f4f8fb; /* 設定整個網頁背景顏色為淡藍灰色 */
+            margin: 0; /* 移除瀏覽器預設外距，讓畫面從邊界開始計算 */
+            padding: 30px; /* 設定 body 內部四周留白 30px */
+        } /* body 樣式結束 */
 
-        .container {
-            max-width: 850px; /* 容器最大寬度 850px */
-            margin: auto; /* 讓容器水平置中 */
-            background: white; /* 容器背景白色 */
-            padding: 30px; /* 容器內距 */
-            border-radius: 15px; /* 圓角 */
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* 陰影效果 */
-        }
+        .container { <!-- 設定 class 名稱為 container 的區塊樣式 -->
+            max-width: 850px; /* 設定容器最大寬度為 850px，避免畫面太寬不好閱讀 */
+            margin: auto; /* 讓容器自動水平置中 */
+            background: white; /* 設定容器背景為白色 */
+            padding: 30px; /* 設定容器內部留白 30px */
+            border-radius: 15px; /* 設定容器圓角為 15px */
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* 設定陰影，讓容器有浮起來的效果 */
+        } /* container 樣式結束 */
 
-        h1 {
-            text-align: center; /* 標題置中 */
-            color: #2c3e50; /* 標題文字顏色 */
-        }
+        h1 { <!-- 設定 h1 主標題樣式 -->
+            text-align: center; /* 讓主標題文字置中 */
+            color: #2c3e50; /* 設定主標題文字顏色為深藍灰色 */
+        } /* h1 樣式結束 */
 
-        p {
-            text-align: center; /* 段落文字置中 */
-            color: #666; /* 文字灰色 */
-        }
+        p { <!-- 設定 p 段落文字樣式 -->
+            text-align: center; /* 讓段落文字置中 */
+            color: #666; /* 設定段落文字顏色為灰色 */
+        } /* p 樣式結束 */
 
-        fieldset {
-            border: 2px solid #dbe6f0; /* 區塊邊框 */
-            border-radius: 10px; /* 區塊圓角 */
-            margin-bottom: 20px; /* 每個區塊下方間距 */
-            padding: 20px; /* 區塊內距 */
-        }
+        fieldset { <!-- 設定 fieldset 表單分區樣式 -->
+            border: 2px solid #dbe6f0; /* 設定表單區塊邊框為淡藍灰色 */
+            border-radius: 10px; /* 設定表單區塊圓角為 10px */
+            margin-bottom: 20px; /* 設定每個表單區塊下方間距為 20px */
+            padding: 20px; /* 設定表單區塊內部留白 20px */
+        } /* fieldset 樣式結束 */
 
-        legend {
-            font-weight: bold; /* 標題加粗 */
-            color: #34495e; /* 標題文字顏色 */
-            padding: 0 10px; /* 左右留白 */
-        }
+        legend { <!-- 設定 legend 區塊標題樣式 -->
+            font-weight: bold; /* 讓區塊標題文字變粗 */
+            color: #34495e; /* 設定區塊標題文字顏色為深灰藍色 */
+            padding: 0 10px; /* 設定區塊標題左右留白 10px，上下不留白 */
+        } /* legend 樣式結束 */
 
-        .form-group {
-            margin-bottom: 15px; /* 每個表單項目底部間距 */
-        }
+        .form-group { <!-- 設定每個表單項目的外層區塊樣式 -->
+            margin-bottom: 15px; /* 設定每個表單項目下方間距 15px */
+        } /* form-group 樣式結束 */
 
-        label {
-            display: inline-block; /* 讓 label 可設定 margin */
-            margin-bottom: 6px; /* 與下方輸入框保持距離 */
-            font-weight: bold; /* 文字加粗 */
-            color: #333; /* 深灰色 */
-        }
+        label { <!-- 設定所有 label 欄位標題樣式 -->
+            display: inline-block; /* 讓 label 可以設定寬高與 margin */
+            margin-bottom: 6px; /* 讓 label 和下方輸入框有 6px 距離 */
+            font-weight: bold; /* 讓 label 文字加粗 */
+            color: #333; /* 設定 label 文字顏色為深灰色 */
+        } /* label 樣式結束 */
 
-        input, select, textarea {
-            width: 100%; /* 寬度填滿父容器 */
-            padding: 10px; /* 內距 */
-            border: 1px solid #bbb; /* 邊框 */
-            border-radius: 8px; /* 圓角 */
-            box-sizing: border-box; /* 讓 padding 不會把寬度撐爆 */
-            font-size: 15px; /* 字體大小 */
-        }
+        input, select, textarea { <!-- 同時設定 input、select、textarea 三種表單元件樣式 -->
+            width: 100%; /* 讓輸入框、下拉選單、文字區塊寬度填滿父容器 */
+            padding: 10px; /* 設定表單元件內距 10px，讓文字不貼邊 */
+            border: 1px solid #bbb; /* 設定表單元件邊框為灰色 */
+            border-radius: 8px; /* 設定表單元件圓角為 8px */
+            box-sizing: border-box; /* 讓寬度包含 padding 和 border，避免超出容器 */
+            font-size: 15px; /* 設定表單文字大小為 15px */
+        } /* input、select、textarea 樣式結束 */
 
-        textarea {
-            resize: vertical; /* 只能上下調整大小 */
-        }
+        textarea { <!-- 單獨設定 textarea 多行文字框樣式 -->
+            resize: vertical; /* 讓使用者只能上下調整 textarea 高度，不能左右拉寬 */
+        } /* textarea 樣式結束 */
 
-        .inline-group {
-            display: flex; /* 使用彈性排版 */
-            flex-wrap: wrap; /* 放不下時自動換行 */
-            gap: 15px; /* 每個選項之間的距離 */
-            margin-top: 8px; /* 和上方標題保持距離 */
-        }
+        .inline-group { <!-- 設定橫向排列選項的群組樣式 -->
+            display: flex; /* 使用 flex 彈性排版，讓選項可以橫向排列 */
+            flex-wrap: wrap; /* 當寬度不夠時，選項會自動換行 */
+            gap: 15px; /* 設定每個選項之間的距離為 15px */
+            margin-top: 8px; /* 設定選項群組與上方文字的距離為 8px */
+        } /* inline-group 樣式結束 */
 
-        .inline-group label {
-            font-weight: normal; /* 這裡的 label 不加粗 */
-        }
+        .inline-group label { <!-- 設定 inline-group 裡面的 label 樣式 -->
+            font-weight: normal; /* 讓橫向選項文字不要加粗，避免看起來太重 */
+        } /* inline-group 裡的 label 樣式結束 */
 
-        .small-input {
-            width: auto; /* checkbox / radio 不要撐滿整行 */
-            margin-right: 5px; /* 選項按鈕和文字間隔 */
-        }
+        .small-input { <!-- 設定 checkbox 和 radio 這類小型輸入元件樣式 -->
+            width: auto; /* 讓 checkbox 和 radio 保持原本大小，不要被撐滿整行 */
+            margin-right: 5px; /* 讓按鈕和後方文字保持 5px 距離 */
+        } /* small-input 樣式結束 */
 
-        .btn-group {
-            text-align: center; /* 按鈕置中 */
-            margin-top: 20px; /* 與上方內容保持距離 */
-        }
+        .btn-group { <!-- 設定按鈕群組外層樣式 -->
+            text-align: center; /* 讓按鈕群組置中 */
+            margin-top: 20px; /* 設定按鈕群組與上方內容距離 20px */
+        } /* btn-group 樣式結束 */
 
-        button {
-            padding: 12px 25px; /* 按鈕內距 */
-            margin: 5px; /* 按鈕與按鈕之間留距離 */
-            border: none; /* 移除預設邊框 */
-            border-radius: 8px; /* 圓角 */
-            font-size: 16px; /* 字體大小 */
-            cursor: pointer; /* 滑鼠移上去變手指 */
-        }
+        button { <!-- 設定所有 button 按鈕樣式 -->
+            padding: 12px 25px; /* 設定按鈕上下內距 12px，左右內距 25px */
+            margin: 5px; /* 設定按鈕外距 5px，避免按鈕靠太近 */
+            border: none; /* 移除按鈕預設邊框 */
+            border-radius: 8px; /* 設定按鈕圓角為 8px */
+            font-size: 16px; /* 設定按鈕文字大小為 16px */
+            cursor: pointer; /* 滑鼠移到按鈕上時變成手指圖示 */
+        } /* button 樣式結束 */
 
-        .submit-btn {
-            background-color: #4CAF50; /* 送出按鈕背景色：綠色 */
-            color: white; /* 文字白色 */
-        }
+        .submit-btn { <!-- 設定送出按鈕樣式 -->
+            background-color: #4CAF50; /* 設定送出按鈕背景顏色為綠色 */
+            color: white; /* 設定送出按鈕文字顏色為白色 */
+        } /* submit-btn 樣式結束 */
 
-        .reset-btn {
-            background-color: #e67e22; /* 重設按鈕背景色：橘色 */
-            color: white; /* 文字白色 */
-        }
+        .reset-btn { <!-- 設定重設按鈕樣式 -->
+            background-color: #e67e22; /* 設定重設按鈕背景顏色為橘色 */
+            color: white; /* 設定重設按鈕文字顏色為白色 */
+        } /* reset-btn 樣式結束 */
 
-        button:hover {
-            opacity: 0.9; /* 滑鼠移上去時稍微透明 */
-        }
-    </style>
-</head>
-<body>
-    <div class="container"> <!-- 主要內容容器 -->
-        <h1>個人自我介紹表單</h1> <!-- 主標題 -->
-        <p>請填寫以下資料，讓大家更認識你！</p> <!-- 說明文字 -->
+        button:hover { <!-- 設定滑鼠移到按鈕上時的效果 -->
+            opacity: 0.9; /* 滑鼠移到按鈕上時，讓按鈕稍微透明 */
+        } /* button:hover 樣式結束 */
+    </style> <!-- CSS 樣式結束 -->
+</head> <!-- head 區域結束 -->
 
-        <form> <!-- 表單開始 -->
-            <fieldset> <!-- 基本資料區塊 -->
-                <legend>基本資料</legend> <!-- 區塊標題 -->
+<body> <!-- body 區域開始，這裡的內容會顯示在網頁畫面上 -->
+    <div class="container"> <!-- 建立主要內容容器，套用 container 樣式 -->
+        <h1>個人自我介紹表單</h1> <!-- 顯示網頁主標題 -->
+        <p>請填寫以下資料，讓大家更認識你！</p> <!-- 顯示表單說明文字 -->
 
-                <div class="form-group">
-                    <label for="name">姓名：</label> <!-- 欄位標題 -->
-                    <input type="text" id="name" name="name" placeholder="請輸入你的姓名" required> <!-- 文字輸入框，必填 -->
-                </div>
+        <form> <!-- 建立表單，使用者填寫的資料都放在這裡 -->
+            <fieldset> <!-- 建立第一個表單區塊：基本資料 -->
+                <legend>基本資料</legend> <!-- 顯示第一個表單區塊標題 -->
 
-                <div class="form-group">
-                    <label for="nickname">暱稱：</label>
-                    <input type="text" id="nickname" name="nickname" placeholder="例如：小雨、小安"> <!-- 一般文字輸入 -->
-                </div>
+                <div class="form-group"> <!-- 建立姓名欄位的外層區塊 -->
+                    <label for="name">姓名：</label> <!-- 建立姓名欄位標題，for 對應到 id="name" -->
+                    <input type="text" id="name" name="name" placeholder="請輸入你的姓名" required> <!-- 建立姓名文字輸入框，required 表示必填 -->
+                </div> <!-- 姓名欄位區塊結束 -->
 
-                <div class="form-group">
-                    <label for="password">密碼：</label>
-                    <input type="password" id="password" name="password" placeholder="請輸入密碼"> <!-- 密碼欄位，輸入內容會隱藏 -->
-                </div>
+                <div class="form-group"> <!-- 建立暱稱欄位的外層區塊 -->
+                    <label for="nickname">暱稱：</label> <!-- 建立暱稱欄位標題，for 對應到 id="nickname" -->
+                    <input type="text" id="nickname" name="nickname" placeholder="例如：小雨、小安"> <!-- 建立暱稱文字輸入框，placeholder 是提示文字 -->
+                </div> <!-- 暱稱欄位區塊結束 -->
 
-                <div class="form-group">
-                    <label for="email">電子郵件：</label>
-                    <input type="email" id="email" name="email" placeholder="example@gmail.com"> <!-- Email 格式輸入框 -->
-                </div>
+                <div class="form-group"> <!-- 建立密碼欄位的外層區塊 -->
+                    <label for="password">密碼：</label> <!-- 建立密碼欄位標題，for 對應到 id="password" -->
+                    <input type="password" id="password" name="password" placeholder="請輸入密碼"> <!-- 建立密碼輸入框，輸入內容會被隱藏 -->
+                </div> <!-- 密碼欄位區塊結束 -->
 
-                <div class="form-group">
-                    <label for="phone">電話：</label>
-                    <input type="tel" id="phone" name="phone" placeholder="09xxxxxxxx"> <!-- 電話輸入框 -->
-                </div>
+                <div class="form-group"> <!-- 建立電子郵件欄位的外層區塊 -->
+                    <label for="email">電子郵件：</label> <!-- 建立電子郵件欄位標題，for 對應到 id="email" -->
+                    <input type="email" id="email" name="email" placeholder="example@gmail.com"> <!-- 建立 email 輸入框，瀏覽器會檢查是否符合 Email 格式 -->
+                </div> <!-- 電子郵件欄位區塊結束 -->
 
-                <div class="form-group">
-                    <label for="birthday">生日：</label>
-                    <input type="date" id="birthday" name="birthday"> <!-- 日期選擇器 -->
-                </div>
+                <div class="form-group"> <!-- 建立電話欄位的外層區塊 -->
+                    <label for="phone">電話：</label> <!-- 建立電話欄位標題，for 對應到 id="phone" -->
+                    <input type="tel" id="phone" name="phone" placeholder="09xxxxxxxx"> <!-- 建立電話輸入框，用來輸入電話號碼 -->
+                </div> <!-- 電話欄位區塊結束 -->
 
-                <div class="form-group">
-                    <label for="age">年齡：</label>
-                    <input type="number" id="age" name="age" min="1" max="120" placeholder="請輸入年齡"> <!-- 數字輸入框，限制 1~120 -->
-                </div>
-            </fieldset>
+                <div class="form-group"> <!-- 建立生日欄位的外層區塊 -->
+                    <label for="birthday">生日：</label> <!-- 建立生日欄位標題，for 對應到 id="birthday" -->
+                    <input type="date" id="birthday" name="birthday"> <!-- 建立日期選擇器，讓使用者選擇生日 -->
+                </div> <!-- 生日欄位區塊結束 -->
 
-            <fieldset> <!-- 個人選項區塊 -->
-                <legend>個人選項</legend>
+                <div class="form-group"> <!-- 建立年齡欄位的外層區塊 -->
+                    <label for="age">年齡：</label> <!-- 建立年齡欄位標題，for 對應到 id="age" -->
+                    <input type="number" id="age" name="age" min="1" max="120" placeholder="請輸入年齡"> <!-- 建立數字輸入框，限制最小 1、最大 120 -->
+                </div> <!-- 年齡欄位區塊結束 -->
+            </fieldset> <!-- 基本資料區塊結束 -->
 
-                <div class="form-group">
-                    <label>性別：</label>
-                    <div class="inline-group"> <!-- 讓選項橫向排列 -->
-                        <label><input class="small-input" type="radio" name="gender" value="male"> 男</label> <!-- 單選按鈕 -->
-                        <label><input class="small-input" type="radio" name="gender" value="female"> 女</label>
-                        <label><input class="small-input" type="radio" name="gender" value="other"> 其他</label>
-                    </div>
-                </div>
+            <fieldset> <!-- 建立第二個表單區塊：個人選項 -->
+                <legend>個人選項</legend> <!-- 顯示第二個表單區塊標題 -->
 
-                <div class="form-group">
-                    <label for="blood">血型：</label>
-                    <select id="blood" name="blood"> <!-- 下拉式選單 -->
-                        <option value="">請選擇血型</option> <!-- 預設提示 -->
-                        <option value="A">A 型</option>
-                        <option value="B">B 型</option>
-                        <option value="O">O 型</option>
-                        <option value="AB">AB 型</option>
-                    </select>
-                </div>
+                <div class="form-group"> <!-- 建立性別欄位的外層區塊 -->
+                    <label>性別：</label> <!-- 建立性別欄位標題，這裡不需要 for，因為下面有多個 radio -->
+                    <div class="inline-group"> <!-- 建立橫向排列群組，讓性別選項排在同一列 -->
+                        <label><input class="small-input" type="radio" name="gender" value="male"> 男</label> <!-- 建立男的單選按鈕，name 相同代表同一組只能選一個 -->
+                        <label><input class="small-input" type="radio" name="gender" value="female"> 女</label> <!-- 建立女的單選按鈕 -->
+                        <label><input class="small-input" type="radio" name="gender" value="other"> 其他</label> <!-- 建立其他的單選按鈕 -->
+                    </div> <!-- 性別選項橫向群組結束 -->
+                </div> <!-- 性別欄位區塊結束 -->
 
-                <div class="form-group">
-                    <label for="zodiac">星座：</label>
-                    <select id="zodiac" name="zodiac">
-                        <option value="">請選擇星座</option>
-                        <option>牡羊座</option>
-                        <option>金牛座</option>
-                        <option>雙子座</option>
-                        <option>巨蟹座</option>
-                        <option>獅子座</option>
-                        <option>處女座</option>
-                        <option>天秤座</option>
-                        <option>天蠍座</option>
-                        <option>射手座</option>
-                        <option>摩羯座</option>
-                        <option>水瓶座</option>
-                        <option>雙魚座</option>
-                    </select>
-                </div>
+                <div class="form-group"> <!-- 建立血型欄位的外層區塊 -->
+                    <label for="blood">血型：</label> <!-- 建立血型欄位標題，for 對應到 id="blood" -->
+                    <select id="blood" name="blood"> <!-- 建立血型下拉式選單 -->
+                        <option value="">請選擇血型</option> <!-- 建立預設提示選項，value 空白表示尚未選擇 -->
+                        <option value="A">A 型</option> <!-- 建立 A 型選項 -->
+                        <option value="B">B 型</option> <!-- 建立 B 型選項 -->
+                        <option value="O">O 型</option> <!-- 建立 O 型選項 -->
+                        <option value="AB">AB 型</option> <!-- 建立 AB 型選項 -->
+                    </select> <!-- 血型下拉式選單結束 -->
+                </div> <!-- 血型欄位區塊結束 -->
 
-                <div class="form-group">
-                    <label for="department">科系：</label>
-                    <input type="text" id="department" name="department" placeholder="例如：資訊工程學系"> <!-- 科系輸入框 -->
-                </div>
+                <div class="form-group"> <!-- 建立星座欄位的外層區塊 -->
+                    <label for="zodiac">星座：</label> <!-- 建立星座欄位標題，for 對應到 id="zodiac" -->
+                    <select id="zodiac" name="zodiac"> <!-- 建立星座下拉式選單 -->
+                        <option value="">請選擇星座</option> <!-- 建立預設提示選項 -->
+                        <option>牡羊座</option> <!-- 建立牡羊座選項 -->
+                        <option>金牛座</option> <!-- 建立金牛座選項 -->
+                        <option>雙子座</option> <!-- 建立雙子座選項 -->
+                        <option>巨蟹座</option> <!-- 建立巨蟹座選項 -->
+                        <option>獅子座</option> <!-- 建立獅子座選項 -->
+                        <option>處女座</option> <!-- 建立處女座選項 -->
+                        <option>天秤座</option> <!-- 建立天秤座選項 -->
+                        <option>天蠍座</option> <!-- 建立天蠍座選項 -->
+                        <option>射手座</option> <!-- 建立射手座選項 -->
+                        <option>摩羯座</option> <!-- 建立摩羯座選項 -->
+                        <option>水瓶座</option> <!-- 建立水瓶座選項 -->
+                        <option>雙魚座</option> <!-- 建立雙魚座選項 -->
+                    </select> <!-- 星座下拉式選單結束 -->
+                </div> <!-- 星座欄位區塊結束 -->
 
-                <div class="form-group">
-                    <label for="grade">年級：</label>
-                    <select id="grade" name="grade">
-                        <option value="">請選擇年級</option>
-                        <option>大一</option>
-                        <option>大二</option>
-                        <option>大三</option>
-                        <option>大四</option>
-                        <option>研究所</option>
-                    </select>
-                </div>
-            </fieldset>
+                <div class="form-group"> <!-- 建立科系欄位的外層區塊 -->
+                    <label for="department">科系：</label> <!-- 建立科系欄位標題，for 對應到 id="department" -->
+                    <input type="text" id="department" name="department" placeholder="例如：資訊工程學系"> <!-- 建立科系文字輸入框 -->
+                </div> <!-- 科系欄位區塊結束 -->
 
-            <fieldset> <!-- 興趣與偏好區塊 -->
-                <legend>興趣與偏好</legend>
+                <div class="form-group"> <!-- 建立年級欄位的外層區塊 -->
+                    <label for="grade">年級：</label> <!-- 建立年級欄位標題，for 對應到 id="grade" -->
+                    <select id="grade" name="grade"> <!-- 建立年級下拉式選單 -->
+                        <option value="">請選擇年級</option> <!-- 建立預設提示選項 -->
+                        <option>大一</option> <!-- 建立大一選項 -->
+                        <option>大二</option> <!-- 建立大二選項 -->
+                        <option>大三</option> <!-- 建立大三選項 -->
+                        <option>大四</option> <!-- 建立大四選項 -->
+                        <option>研究所</option> <!-- 建立研究所選項 -->
+                    </select> <!-- 年級下拉式選單結束 -->
+                </div> <!-- 年級欄位區塊結束 -->
+            </fieldset> <!-- 個人選項區塊結束 -->
 
-                <div class="form-group">
-                    <label>興趣：</label>
-                    <div class="inline-group">
-                        <label><input class="small-input" type="checkbox" name="hobby" value="music"> 音樂</label> <!-- 複選框，可多選 -->
-                        <label><input class="small-input" type="checkbox" name="hobby" value="sports"> 運動</label>
-                        <label><input class="small-input" type="checkbox" name="hobby" value="reading"> 閱讀</label>
-                        <label><input class="small-input" type="checkbox" name="hobby" value="travel"> 旅遊</label>
-                        <label><input class="small-input" type="checkbox" name="hobby" value="game"> 遊戲</label>
-                        <label><input class="small-input" type="checkbox" name="hobby" value="art"> 畫畫</label>
-                    </div>
-                </div>
+            <fieldset> <!-- 建立第三個表單區塊：興趣與偏好 -->
+                <legend>興趣與偏好</legend> <!-- 顯示第三個表單區塊標題 -->
 
-                <div class="form-group">
-                    <label>擅長項目（可多選）：</label>
-                    <div class="inline-group">
-                        <label><input class="small-input" type="checkbox" name="skills" value="寫程式"> 寫程式</label> <!-- 複選框 -->
-                        <label><input class="small-input" type="checkbox" name="skills" value="設計"> 設計</label>
-                        <label><input class="small-input" type="checkbox" name="skills" value="唱歌"> 唱歌</label>
-                        <label><input class="small-input" type="checkbox" name="skills" value="跳舞"> 跳舞</label>
-                        <label><input class="small-input" type="checkbox" name="skills" value="攝影"> 攝影</label>
-                        <label><input class="small-input" type="checkbox" name="skills" value="語言學習"> 語言學習</label>
-                    </div>
-                </div>
+                <div class="form-group"> <!-- 建立興趣欄位的外層區塊 -->
+                    <label>興趣：</label> <!-- 建立興趣欄位標題 -->
+                    <div class="inline-group"> <!-- 建立興趣選項橫向排列群組 -->
+                        <label><input class="small-input" type="checkbox" name="hobby" value="music"> 音樂</label> <!-- 建立音樂複選框，checkbox 可以多選 -->
+                        <label><input class="small-input" type="checkbox" name="hobby" value="sports"> 運動</label> <!-- 建立運動複選框 -->
+                        <label><input class="small-input" type="checkbox" name="hobby" value="reading"> 閱讀</label> <!-- 建立閱讀複選框 -->
+                        <label><input class="small-input" type="checkbox" name="hobby" value="travel"> 旅遊</label> <!-- 建立旅遊複選框 -->
+                        <label><input class="small-input" type="checkbox" name="hobby" value="game"> 遊戲</label> <!-- 建立遊戲複選框 -->
+                        <label><input class="small-input" type="checkbox" name="hobby" value="art"> 畫畫</label> <!-- 建立畫畫複選框 -->
+                    </div> <!-- 興趣選項橫向群組結束 -->
+                </div> <!-- 興趣欄位區塊結束 -->
 
-                <div class="form-group">
-                    <label for="favcolor">喜歡的顏色：</label>
-                    <input type="color" id="favcolor" name="favcolor"> <!-- 顏色選擇器 -->
-                </div>
+                <div class="form-group"> <!-- 建立擅長項目欄位的外層區塊 -->
+                    <label>擅長項目（可多選）：</label> <!-- 建立擅長項目欄位標題 -->
+                    <div class="inline-group"> <!-- 建立擅長項目選項橫向排列群組 -->
+                        <label><input class="small-input" type="checkbox" name="skills" value="寫程式"> 寫程式</label> <!-- 建立寫程式複選框 -->
+                        <label><input class="small-input" type="checkbox" name="skills" value="設計"> 設計</label> <!-- 建立設計複選框 -->
+                        <label><input class="small-input" type="checkbox" name="skills" value="唱歌"> 唱歌</label> <!-- 建立唱歌複選框 -->
+                        <label><input class="small-input" type="checkbox" name="skills" value="跳舞"> 跳舞</label> <!-- 建立跳舞複選框 -->
+                        <label><input class="small-input" type="checkbox" name="skills" value="攝影"> 攝影</label> <!-- 建立攝影複選框 -->
+                        <label><input class="small-input" type="checkbox" name="skills" value="語言學習"> 語言學習</label> <!-- 建立語言學習複選框 -->
+                    </div> <!-- 擅長項目選項橫向群組結束 -->
+                </div> <!-- 擅長項目欄位區塊結束 -->
 
-                <div class="form-group">
-                    <label for="personality">活潑程度：</label>
-                    <input type="range" id="personality" name="personality" min="0" max="10"> <!-- 滑桿，範圍 0~10 -->
-                </div>
-            </fieldset>
+                <div class="form-group"> <!-- 建立喜歡顏色欄位的外層區塊 -->
+                    <label for="favcolor">喜歡的顏色：</label> <!-- 建立喜歡顏色欄位標題，for 對應到 id="favcolor" -->
+                    <input type="color" id="favcolor" name="favcolor"> <!-- 建立顏色選擇器，讓使用者選擇顏色 -->
+                </div> <!-- 喜歡顏色欄位區塊結束 -->
 
-            <fieldset> <!-- 自我介紹區塊 -->
-                <legend>自我介紹內容</legend>
+                <div class="form-group"> <!-- 建立活潑程度欄位的外層區塊 -->
+                    <label for="personality">活潑程度：</label> <!-- 建立活潑程度欄位標題，for 對應到 id="personality" -->
+                    <input type="range" id="personality" name="personality" min="0" max="10"> <!-- 建立滑桿，數值範圍從 0 到 10 -->
+                </div> <!-- 活潑程度欄位區塊結束 -->
+            </fieldset> <!-- 興趣與偏好區塊結束 -->
 
-                <div class="form-group">
-                    <label for="motto">座右銘：</label>
-                    <input type="text" id="motto" name="motto" placeholder="輸入一句最能代表你的話"> <!-- 座右銘輸入框 -->
-                </div>
+            <fieldset> <!-- 建立第四個表單區塊：自我介紹內容 -->
+                <legend>自我介紹內容</legend> <!-- 顯示第四個表單區塊標題 -->
 
-                <div class="form-group">
-                    <label for="website">個人網站 / 社群連結：</label>
-                    <input type="url" id="website" name="website" placeholder="https://example.com"> <!-- 網址輸入框 -->
-                </div>
+                <div class="form-group"> <!-- 建立座右銘欄位的外層區塊 -->
+                    <label for="motto">座右銘：</label> <!-- 建立座右銘欄位標題，for 對應到 id="motto" -->
+                    <input type="text" id="motto" name="motto" placeholder="輸入一句最能代表你的話"> <!-- 建立座右銘文字輸入框 -->
+                </div> <!-- 座右銘欄位區塊結束 -->
 
-                <div class="form-group">
-                    <label for="time">平常起床時間：</label>
-                    <input type="time" id="time" name="time"> <!-- 時間選擇器 -->
-                </div>
+                <div class="form-group"> <!-- 建立個人網站欄位的外層區塊 -->
+                    <label for="website">個人網站 / 社群連結：</label> <!-- 建立個人網站欄位標題，for 對應到 id="website" -->
+                    <input type="url" id="website" name="website" placeholder="https://example.com"> <!-- 建立網址輸入框，瀏覽器會檢查網址格式 -->
+                </div> <!-- 個人網站欄位區塊結束 -->
 
-                <div class="form-group">
-                    <label for="photo">上傳個人照片：</label>
-                    <input type="file" id="photo" name="photo" accept="image/*"> <!-- 上傳圖片檔案 -->
-                </div>
+                <div class="form-group"> <!-- 建立起床時間欄位的外層區塊 -->
+                    <label for="time">平常起床時間：</label> <!-- 建立起床時間欄位標題，for 對應到 id="time" -->
+                    <input type="time" id="time" name="time"> <!-- 建立時間選擇器，讓使用者選擇時間 -->
+                </div> <!-- 起床時間欄位區塊結束 -->
 
-                <div class="form-group">
-                    <label for="intro">自我介紹：</label>
-                    <textarea id="intro" name="intro" rows="6" placeholder="請輸入你的自我介紹內容"></textarea> <!-- 多行文字輸入框 -->
-                </div>
-            </fieldset>
+                <div class="form-group"> <!-- 建立上傳照片欄位的外層區塊 -->
+                    <label for="photo">上傳個人照片：</label> <!-- 建立上傳照片欄位標題，for 對應到 id="photo" -->
+                    <input type="file" id="photo" name="photo" accept="image/*"> <!-- 建立檔案上傳欄位，accept="image/*" 表示只接受圖片類型 -->
+                </div> <!-- 上傳照片欄位區塊結束 -->
 
-            <div class="btn-group"> <!-- 按鈕群組 -->
-                <button type="submit" class="submit-btn">送出表單</button> <!-- 送出按鈕 -->
-                <button type="reset" class="reset-btn">重新填寫</button> <!-- 重設按鈕 -->
-            </div>
+                <div class="form-group"> <!-- 建立自我介紹欄位的外層區塊 -->
+                    <label for="intro">自我介紹：</label> <!-- 建立自我介紹欄位標題，for 對應到 id="intro" -->
+                    <textarea id="intro" name="intro" rows="6" placeholder="請輸入你的自我介紹內容"></textarea> <!-- 建立多行文字輸入框，rows="6" 表示預設高度約 6 行 -->
+                </div> <!-- 自我介紹欄位區塊結束 -->
+            </fieldset> <!-- 自我介紹內容區塊結束 -->
+
+            <div class="btn-group"> <!-- 建立按鈕群組區塊 -->
+                <button type="submit" class="submit-btn">送出表單</button> <!-- 建立送出按鈕，按下後會送出表單資料 -->
+                <button type="reset" class="reset-btn">重新填寫</button> <!-- 建立重設按鈕，按下後會清空或還原表單內容 -->
+            </div> <!-- 按鈕群組區塊結束 -->
         </form> <!-- 表單結束 -->
-    </div> <!-- 容器結束 -->
-</body>
-</html>
+    </div> <!-- 主要內容容器結束 -->
+</body> <!-- body 區域結束 -->
+</html> <!-- HTML 文件結束 -->

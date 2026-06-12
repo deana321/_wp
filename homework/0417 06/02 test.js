@@ -1,6 +1,8 @@
-//寫出一個立即執行函數 (IIFE)，該函數內部定義一個區域變數 count = 100，並在執行時直接在控制台印出 "Count is: 100"。
+// 建立一個「立即執行函數」，意思是這個函數寫完後會馬上執行
+(function () { // function () 是一個沒有名字的函數，外面的 () 是為了把它包成一個可以立刻執行的函數
 
-(function () {
-  let count = 100;
-  console.log("Count is: " + count);
-})();
+  let count = 100; // 在函數裡面建立一個區域變數 count，並把數值設定為 100
+
+  console.log("Count is: " + count); // 在控制台印出文字 "Count is: "，再加上 count 的值，也就是 100
+
+})(); // 最後面的 () 代表「立刻執行這個函數」

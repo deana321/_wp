@@ -1,541 +1,318 @@
-<!DOCTYPE html>
-<html lang="zh-Hant">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>嗨我是Wz</title>
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: "Microsoft JhengHei", "Noto Sans TC", Arial, sans-serif;
-            min-height: 100vh;
-            background:
-                radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.9) 0 8px, transparent 9px),
-                radial-gradient(circle at 85% 15%, rgba(255, 255, 255, 0.8) 0 6px, transparent 7px),
-                radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.7) 0 10px, transparent 11px),
-                linear-gradient(135deg, #ffd6f3 0%, #e4ccff 45%, #fff0fb 100%);
-            color: #5b426a;
-            overflow-x: hidden;
-        }
-
-        .stars {
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .star {
-            position: absolute;
-            color: #ffffff;
-            font-size: 20px;
-            animation: twinkle 2.5s infinite ease-in-out;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.9);
-        }
-
-        .star:nth-child(1) { top: 8%; left: 8%; animation-delay: 0s; }
-        .star:nth-child(2) { top: 18%; right: 12%; animation-delay: .4s; }
-        .star:nth-child(3) { top: 55%; left: 5%; animation-delay: .8s; }
-        .star:nth-child(4) { bottom: 12%; right: 8%; animation-delay: 1.2s; }
-        .star:nth-child(5) { bottom: 25%; left: 18%; animation-delay: 1.6s; }
-        .star:nth-child(6) { top: 42%; right: 20%; animation-delay: 2s; }
-
-        @keyframes twinkle {
-            0%, 100% {
-                transform: scale(1) rotate(0deg);
-                opacity: .55;
-            }
-            50% {
-                transform: scale(1.35) rotate(15deg);
-                opacity: 1;
-            }
-        }
-
-        .page {
-            position: relative;
-            z-index: 1;
-            width: min(1100px, 92%);
-            margin: 0 auto;
-            padding: 48px 0 70px;
-        }
-
-        header {
-            display: grid;
-            grid-template-columns: 1.1fr .9fr;
-            gap: 28px;
-            align-items: center;
-            margin-bottom: 32px;
-        }
-
-        .hero {
-            background: rgba(255, 255, 255, .62);
-            border: 2px solid rgba(255, 255, 255, .85);
-            border-radius: 36px;
-            padding: 42px;
-            box-shadow: 0 20px 45px rgba(150, 92, 180, .22);
-            backdrop-filter: blur(10px);
-        }
-
-        .tag {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: #fff4fb;
-            color: #9b5ab8;
-            border: 1px solid #f1caff;
-            border-radius: 999px;
-            padding: 9px 16px;
-            font-size: 14px;
-            font-weight: 700;
-            margin-bottom: 18px;
-        }
-
-        h1 {
-            font-size: clamp(42px, 7vw, 76px);
-            color: #8e4fb0;
-            line-height: 1;
-            letter-spacing: 1px;
-            margin-bottom: 16px;
-        }
-
-        .subtitle {
-            font-size: 20px;
-            color: #6a4d78;
-            line-height: 1.8;
-            max-width: 620px;
-        }
-
-        .highlight {
-            color: #2f9b73;
-            font-weight: 800;
-        }
-
-        .profile-card {
-            background: linear-gradient(160deg, #fff7fd, #f5e7ff);
-            border: 3px solid #ffffff;
-            border-radius: 36px;
-            padding: 30px;
-            box-shadow: 0 20px 45px rgba(150, 92, 180, .24);
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .profile-card::before,
-        .profile-card::after {
-            content: "";
-            position: absolute;
-            border-radius: 999px;
-            background: rgba(255, 196, 231, .55);
-        }
-
-        .profile-card::before {
-            width: 130px;
-            height: 130px;
-            top: -45px;
-            right: -38px;
-        }
-
-        .profile-card::after {
-            width: 100px;
-            height: 100px;
-            bottom: -38px;
-            left: -28px;
-        }
-
-        .avatar {
-            position: relative;
-            z-index: 1;
-            width: 150px;
-            height: 150px;
-            margin: 0 auto 20px;
-            border-radius: 42px;
-            background:
-                radial-gradient(circle at 38% 38%, #ffffff 0 7px, transparent 8px),
-                radial-gradient(circle at 64% 38%, #ffffff 0 7px, transparent 8px),
-                linear-gradient(135deg, #d9b2ff, #ffafd7);
-            display: grid;
-            place-items: center;
-            font-size: 58px;
-            box-shadow: inset 0 -10px 25px rgba(139, 80, 170, .18), 0 15px 35px rgba(139, 80, 170, .25);
-        }
-
-        .profile-card h2 {
-            position: relative;
-            z-index: 1;
-            font-size: 30px;
-            color: #7f45a1;
-            margin-bottom: 8px;
-        }
-
-        .profile-card p {
-            position: relative;
-            z-index: 1;
-            line-height: 1.8;
-            color: #6b4b79;
-        }
-
-        .section-title {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 28px;
-            color: #7f45a1;
-            margin: 36px 0 18px;
-        }
-
-        .section-title span {
-            background: #ffffffb5;
-            border-radius: 16px;
-            padding: 6px 12px;
-            box-shadow: 0 8px 20px rgba(150, 92, 180, .12);
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 18px;
-        }
-
-        .card {
-            background: rgba(255, 255, 255, .74);
-            border: 2px solid rgba(255, 255, 255, .92);
-            border-radius: 26px;
-            padding: 24px;
-            box-shadow: 0 14px 30px rgba(150, 92, 180, .16);
-            transition: .25s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 42px rgba(150, 92, 180, .25);
-        }
-
-        .icon {
-            width: 48px;
-            height: 48px;
-            border-radius: 17px;
-            display: grid;
-            place-items: center;
-            background: linear-gradient(135deg, #f7c6ff, #c9b6ff);
-            font-size: 24px;
-            margin-bottom: 16px;
-        }
-
-        .card h3 {
-            font-size: 18px;
-            color: #8350a1;
-            margin-bottom: 8px;
-        }
-
-        .card p {
-            font-size: 15px;
-            line-height: 1.8;
-            color: #694a75;
-        }
-
-        .about {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 18px;
-        }
-
-        .info-list {
-            list-style: none;
-            display: grid;
-            gap: 13px;
-        }
-
-        .info-list li {
-            background: #fff7fc;
-            border: 1px solid #f1d8ff;
-            padding: 14px 16px;
-            border-radius: 18px;
-            display: flex;
-            justify-content: space-between;
-            gap: 12px;
-            line-height: 1.5;
-        }
-
-        .info-list b {
-            color: #8f55ad;
-            white-space: nowrap;
-        }
-
-        .timeline {
-            position: relative;
-            background: rgba(255, 255, 255, .74);
-            border: 2px solid rgba(255, 255, 255, .92);
-            border-radius: 30px;
-            padding: 28px;
-            box-shadow: 0 14px 30px rgba(150, 92, 180, .16);
-        }
-
-        .timeline-item {
-            display: grid;
-            grid-template-columns: 90px 1fr;
-            gap: 18px;
-            padding: 18px 0;
-            border-bottom: 1px dashed #d9b9ea;
-        }
-
-        .timeline-item:last-child {
-            border-bottom: none;
-        }
-
-        .time {
-            color: #ffffff;
-            background: linear-gradient(135deg, #bc7ee0, #ff9ecf);
-            border-radius: 999px;
-            padding: 8px 12px;
-            text-align: center;
-            font-weight: 800;
-            height: fit-content;
-        }
-
-        .timeline-item h3 {
-            color: #80509d;
-            margin-bottom: 6px;
-        }
-
-        .timeline-item p {
-            color: #6b4b79;
-            line-height: 1.75;
-        }
-
-        .contact {
-            margin-top: 36px;
-            background: linear-gradient(135deg, rgba(255, 255, 255, .85), rgba(255, 238, 250, .82));
-            border: 2px solid #ffffff;
-            border-radius: 34px;
-            padding: 34px;
-            text-align: center;
-            box-shadow: 0 18px 38px rgba(150, 92, 180, .18);
-        }
-
-        .contact h2 {
-            color: #7f45a1;
-            font-size: 30px;
-            margin-bottom: 12px;
-        }
-
-        .contact p {
-            color: #694a75;
-            line-height: 1.8;
-            margin-bottom: 20px;
-        }
-
-        .ig-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            text-decoration: none;
-            background: linear-gradient(135deg, #b972db, #ff93c7);
-            color: #ffffff;
-            font-weight: 800;
-            padding: 14px 24px;
-            border-radius: 999px;
-            box-shadow: 0 12px 24px rgba(185, 114, 219, .28);
-            transition: .25s ease;
-        }
-
-        .ig-button:hover {
-            transform: scale(1.06);
-            box-shadow: 0 16px 32px rgba(185, 114, 219, .36);
-        }
-
-        footer {
-            text-align: center;
-            margin-top: 30px;
-            color: #8c6b9b;
-            font-size: 14px;
-        }
-
-        @media (max-width: 900px) {
-            header,
-            .about {
-                grid-template-columns: 1fr;
-            }
-
-            .grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 560px) {
-            .page {
-                width: 92%;
-                padding-top: 28px;
-            }
-
-            .hero,
-            .profile-card,
-            .contact {
-                padding: 26px;
-                border-radius: 28px;
-            }
-
-            .grid {
-                grid-template-columns: 1fr;
-            }
-
-            .timeline-item {
-                grid-template-columns: 1fr;
-            }
-
-            .info-list li {
-                flex-direction: column;
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="stars">
-        <div class="star">✦</div>
-        <div class="star">✧</div>
-        <div class="star">✦</div>
-        <div class="star">✧</div>
-        <div class="star">✦</div>
-        <div class="star">✧</div>
-    </div>
-
-    <main class="page">
-        <header>
-            <section class="hero">
-                <div class="tag">🍬 Candy Profile Page</div>
-                <h1>嗨，我是 Wz</h1>
-                <p class="subtitle">
-                    一個正在資訊工程裡累積技能、也努力把生活做得可愛又有條理的人。
-                    喜歡音樂、手作小物，也喜歡帶一點<span class="highlight">綠色</span>的溫柔日常。
-                </p>
-            </section>
-
-            <aside class="profile-card">
-                <div class="avatar">🌷</div>
-                <h2>張睿蓁</h2>
-                <p>金門大學資訊工程學系一年級</p>
-                <p>ENTJ｜雙子座｜2007.05.24</p>
-            </aside>
-        </header>
-
-        <section>
-            <h2 class="section-title"><span>🍭</span> 關於我</h2>
-            <div class="about">
-                <div class="card">
-                    <div class="icon">💜</div>
-                    <h3>自介小卡</h3>
-                    <ul class="info-list">
-                        <li><b>姓名</b><span>張睿蓁</span></li>
-                        <li><b>暱稱</b><span>Wz</span></li>
-                        <li><b>學校科系</b><span>金門大學資訊工程學系</span></li>
-                        <li><b>年級</b><span>一年級</span></li>
-                        <li><b>生日</b><span>2007 / 05 / 24</span></li>
-                        <li><b>星座</b><span>雙子座</span></li>
-                        <li><b>MBTI</b><span>INTJ</span></li>
-                    </ul>
-                </div>
-
-                <div class="card">
-                    <div class="icon">✨</div>
-                    <h3>我的關鍵字</h3>
-                    <p>
-                        我喜歡把想法整理成清楚的架構，也喜歡漂亮、可愛、有設計感的東西。
-                        對我來說，學習不只是把事情做完，而是慢慢把作品變成有自己風格的樣子。
-                    </p>
-                    <br>
-                    <p>
-                        適合我的標語是：
-                        <b>「用理性規劃方向，也用可愛收藏生活。」</b>
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <section>
-            <h2 class="section-title"><span>🧁</span> 我的興趣</h2>
-            <div class="grid">
-                <div class="card">
-                    <div class="icon">🎵</div>
-                    <h3>玩音樂</h3>
-                    <p>用旋律記錄心情，也讓生活多一點節奏感。</p>
-                </div>
-
-                <div class="card">
-                    <div class="icon">🧸</div>
-                    <h3>手作小物</h3>
-                    <p>喜歡親手做出有溫度的小東西，細節越可愛越好。</p>
-                </div>
-
-                <div class="card">
-                    <div class="icon">🌿</div>
-                    <h3>喜歡綠色</h3>
-                    <p>綠色給人舒服、自然、安定的感覺，是我很喜歡的顏色。</p>
-                </div>
-
-                <div class="card">
-                    <div class="icon">💻</div>
-                    <h3>資訊工程</h3>
-                    <p>正在學習程式與邏輯，把想法一步一步做成作品。</p>
-                </div>
-            </div>
-        </section>
-
-        <section>
-            <h2 class="section-title"><span>🌟</span> 我的時間軸</h2>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="time">2007</div>
-                    <div>
-                        <h3>開始我的故事</h3>
-                        <p>出生於 2007 年 5 月 24 日，是充滿好奇心與行動力的雙子座。</p>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="time">現在</div>
-                    <div>
-                        <h3>金門大學資工系一年級</h3>
-                        <p>開始累積程式、設計與解決問題的能力，慢慢建立自己的學習節奏。</p>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="time">日常</div>
-                    <div>
-                        <h3>音樂、手作與可愛小細節</h3>
-                        <p>在學習之外，也會用興趣讓生活變得更有色彩。</p>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="time">未來</div>
-                    <div>
-                        <h3>做出更有自己風格的作品</h3>
-                        <p>希望把資訊工程的能力，和自己的美感、創意結合起來。</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="contact">
-            <h2>想認識我嗎？</h2>
-            <p>
-                可以到 Instagram 找我。
-                這裡會記錄生活、喜歡的事物，以及慢慢成長中的自己。
-            </p>
-            <a class="ig-button" href="https://www.instagram.com/weizzz0524" target="_blank">
-                📷 IG：weizzz0524
-            </a>
-        </section>
-
-        <footer>
-            © 2026 Wz Profile Page ｜ made with candy purple style 🍬
-        </footer>
-    </main>
-</body>
-</html>
+<!DOCTYPE html> <!-- 宣告文件使用 HTML5 -->
+<html lang="zh-Hant"> <!-- 設定網頁語言為繁體中文 -->
+<head> <!-- 網頁設定區開始 -->
+    <meta charset="UTF-8"> <!-- 設定文字編碼，避免中文亂碼 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- 讓網頁支援手機版面 -->
+    <title>嗨我是Wz</title> <!-- 設定瀏覽器分頁標題 -->
+    <style> /* CSS 樣式設定開始 */
+        * { /* 選取網頁中的所有元素 */
+            box-sizing: border-box; /* 將邊框與內距計算在元素尺寸內 */
+            margin: 0; /* 清除預設外距 */
+            padding: 0; /* 清除預設內距 */
+        } /* 全域樣式結束 */
+        body { /* 設定整個網頁主體 */
+            font-family: "Microsoft JhengHei", "Noto Sans TC", Arial, sans-serif; /* 設定字型 */
+            min-height: 100vh; /* 最小高度為一個螢幕高度 */
+            background: /* 設定多層漸層背景 */
+                radial-gradient(circle at 10% 20%, rgba(255,255,255,.9) 0 8px, transparent 9px), /* 左上白色圓點 */
+                radial-gradient(circle at 85% 15%, rgba(255,255,255,.8) 0 6px, transparent 7px), /* 右上白色圓點 */
+                radial-gradient(circle at 75% 75%, rgba(255,255,255,.7) 0 10px, transparent 11px), /* 右下白色圓點 */
+                linear-gradient(135deg, #ffd6f3 0%, #e4ccff 45%, #fff0fb 100%); /* 粉紫色漸層背景 */
+            color: #5b426a; /* 設定預設文字顏色 */
+            overflow-x: hidden; /* 隱藏水平捲軸 */
+        } /* body 樣式結束 */
+        .stars { /* 星星裝飾容器 */
+            position: fixed; /* 固定在瀏覽器畫面上 */
+            inset: 0; /* 上下左右距離都設為零 */
+            pointer-events: none; /* 避免星星阻擋滑鼠操作 */
+            z-index: 0; /* 將星星放在內容下方 */
+        } /* 星星容器樣式結束 */
+        .star { /* 設定每一顆星星 */
+            position: absolute; /* 使用絕對定位 */
+            color: #ffffff; /* 設定星星為白色 */
+            font-size: 20px; /* 設定星星大小 */
+            animation: twinkle 2.5s infinite ease-in-out; /* 套用閃爍動畫 */
+            text-shadow: 0 0 10px rgba(255,255,255,.9); /* 加入白色光暈 */
+        } /* 星星樣式結束 */
+        .star:nth-child(1) { top: 8%; left: 8%; animation-delay: 0s; } /* 第一顆星星的位置與延遲 */
+        .star:nth-child(2) { top: 18%; right: 12%; animation-delay: .4s; } /* 第二顆星星的位置與延遲 */
+        .star:nth-child(3) { top: 55%; left: 5%; animation-delay: .8s; } /* 第三顆星星的位置與延遲 */
+        .star:nth-child(4) { bottom: 12%; right: 8%; animation-delay: 1.2s; } /* 第四顆星星的位置與延遲 */
+        .star:nth-child(5) { bottom: 25%; left: 18%; animation-delay: 1.6s; } /* 第五顆星星的位置與延遲 */
+        .star:nth-child(6) { top: 42%; right: 20%; animation-delay: 2s; } /* 第六顆星星的位置與延遲 */
+        @keyframes twinkle { /* 建立星星閃爍動畫 */
+            0%, 100% { /* 動畫開始與結束狀態 */
+                transform: scale(1) rotate(0deg); /* 使用原始大小與角度 */
+                opacity: .55; /* 設定半透明效果 */
+            } /* 開始與結束狀態設定完成 */
+            50% { /* 動畫進行到一半時 */
+                transform: scale(1.35) rotate(15deg); /* 放大並旋轉星星 */
+                opacity: 1; /* 顯示為完全不透明 */
+            } /* 中間狀態設定完成 */
+        } /* 星星動畫設定結束 */
+        .page { /* 網頁主要內容容器 */
+            position: relative; /* 作為定位參考 */
+            z-index: 1; /* 將主要內容放在星星上方 */
+            width: min(1100px, 92%); /* 限制最大寬度並保留兩側空間 */
+            margin: 0 auto; /* 將內容水平置中 */
+            padding: 48px 0 70px; /* 設定上下內距 */
+        } /* 主要容器樣式結束 */
+        header { /* 頁首區域 */
+            display: grid; /* 使用網格排版 */
+            grid-template-columns: 1.1fr .9fr; /* 設定左右欄寬度比例 */
+            gap: 28px; /* 設定欄位間距 */
+            align-items: center; /* 垂直置中內容 */
+            margin-bottom: 32px; /* 設定頁首下方外距 */
+        } /* 頁首樣式結束 */
+        .hero { /* 首頁介紹卡片 */
+            background: rgba(255,255,255,.62); /* 設定半透明白色背景 */
+            border: 2px solid rgba(255,255,255,.85); /* 設定白色邊框 */
+            border-radius: 36px; /* 設定圓角 */
+            padding: 42px; /* 設定內距 */
+            box-shadow: 0 20px 45px rgba(150,92,180,.22); /* 加入陰影 */
+            backdrop-filter: blur(10px); /* 模糊卡片後方背景 */
+        } /* 介紹卡片樣式結束 */
+        .tag { /* 頁面標籤 */
+            display: inline-flex; /* 使用行內彈性排版 */
+            align-items: center; /* 垂直置中 */
+            gap: 8px; /* 設定內容間距 */
+            background: #fff4fb; /* 設定淡粉色背景 */
+            color: #9b5ab8; /* 設定紫色文字 */
+            border: 1px solid #f1caff; /* 設定淡紫色邊框 */
+            border-radius: 999px; /* 製作膠囊形狀 */
+            padding: 9px 16px; /* 設定內距 */
+            font-size: 14px; /* 設定文字大小 */
+            font-weight: 700; /* 設定粗體 */
+            margin-bottom: 18px; /* 設定下方外距 */
+        } /* 標籤樣式結束 */
+        h1 { /* 主標題 */
+            font-size: clamp(42px, 7vw, 76px); /* 設定可隨螢幕縮放的文字大小 */
+            color: #8e4fb0; /* 設定紫色文字 */
+            line-height: 1; /* 設定行高 */
+            letter-spacing: 1px; /* 設定字距 */
+            margin-bottom: 16px; /* 設定下方外距 */
+        } /* 主標題樣式結束 */
+        .subtitle { /* 副標題文字 */
+            font-size: 20px; /* 設定文字大小 */
+            color: #6a4d78; /* 設定文字顏色 */
+            line-height: 1.8; /* 設定行距 */
+            max-width: 620px; /* 限制最大寬度 */
+        } /* 副標題樣式結束 */
+        .highlight { color: #2f9b73; font-weight: 800; } /* 將重要文字設為綠色粗體 */
+        .profile-card { /* 個人資料卡片 */
+            background: linear-gradient(160deg, #fff7fd, #f5e7ff); /* 設定淡色漸層背景 */
+            border: 3px solid #ffffff; /* 設定白色邊框 */
+            border-radius: 36px; /* 設定圓角 */
+            padding: 30px; /* 設定內距 */
+            box-shadow: 0 20px 45px rgba(150,92,180,.24); /* 加入陰影 */
+            text-align: center; /* 將內容置中 */
+            position: relative; /* 作為裝飾圖形定位參考 */
+            overflow: hidden; /* 隱藏超出卡片的裝飾 */
+        } /* 個人資料卡片樣式結束 */
+        .profile-card::before, .profile-card::after { /* 建立卡片裝飾圓形 */
+            content: ""; /* 產生空白偽元素 */
+            position: absolute; /* 使用絕對定位 */
+            border-radius: 999px; /* 將裝飾變成圓形 */
+            background: rgba(255,196,231,.55); /* 設定半透明粉色 */
+        } /* 裝飾圓形共同樣式結束 */
+        .profile-card::before { width: 130px; height: 130px; top: -45px; right: -38px; } /* 設定右上裝飾圓形 */
+        .profile-card::after { width: 100px; height: 100px; bottom: -38px; left: -28px; } /* 設定左下裝飾圓形 */
+        .avatar { /* 個人頭像區域 */
+            position: relative; /* 啟用相對定位 */
+            z-index: 1; /* 顯示在裝飾圓形上方 */
+            width: 150px; /* 設定寬度 */
+            height: 150px; /* 設定高度 */
+            margin: 0 auto 20px; /* 水平置中並設定下方外距 */
+            border-radius: 42px; /* 設定圓角 */
+            background: linear-gradient(135deg, #d9b2ff, #ffafd7); /* 設定粉紫色漸層 */
+            display: grid; /* 使用網格排版 */
+            place-items: center; /* 水平與垂直置中內容 */
+            font-size: 58px; /* 設定圖示大小 */
+            box-shadow: inset 0 -10px 25px rgba(139,80,170,.18), 0 15px 35px rgba(139,80,170,.25); /* 加入內外陰影 */
+        } /* 頭像樣式結束 */
+        .profile-card h2 { position: relative; z-index: 1; font-size: 30px; color: #7f45a1; margin-bottom: 8px; } /* 設定姓名標題 */
+        .profile-card p { position: relative; z-index: 1; line-height: 1.8; color: #6b4b79; } /* 設定個人資料文字 */
+        .section-title { /* 各區塊標題 */
+            display: flex; /* 使用彈性排版 */
+            align-items: center; /* 垂直置中內容 */
+            gap: 12px; /* 設定圖示與文字間距 */
+            font-size: 28px; /* 設定文字大小 */
+            color: #7f45a1; /* 設定紫色文字 */
+            margin: 36px 0 18px; /* 設定上下外距 */
+        } /* 區塊標題樣式結束 */
+        .section-title span { background: #ffffffb5; border-radius: 16px; padding: 6px 12px; box-shadow: 0 8px 20px rgba(150,92,180,.12); } /* 設定標題圖示背景 */
+        .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; } /* 建立四欄興趣卡片版面 */
+        .card { /* 一般內容卡片 */
+            background: rgba(255,255,255,.74); /* 設定半透明白色背景 */
+            border: 2px solid rgba(255,255,255,.92); /* 設定白色邊框 */
+            border-radius: 26px; /* 設定圓角 */
+            padding: 24px; /* 設定內距 */
+            box-shadow: 0 14px 30px rgba(150,92,180,.16); /* 加入陰影 */
+            transition: .25s ease; /* 設定動畫過渡效果 */
+        } /* 卡片樣式結束 */
+        .card:hover { transform: translateY(-8px); box-shadow: 0 20px 42px rgba(150,92,180,.25); } /* 滑鼠移入時讓卡片向上移動 */
+        .icon { /* 卡片圖示 */
+            width: 48px; /* 設定寬度 */
+            height: 48px; /* 設定高度 */
+            border-radius: 17px; /* 設定圓角 */
+            display: grid; /* 使用網格排版 */
+            place-items: center; /* 將圖示置中 */
+            background: linear-gradient(135deg, #f7c6ff, #c9b6ff); /* 設定漸層背景 */
+            font-size: 24px; /* 設定圖示大小 */
+            margin-bottom: 16px; /* 設定下方外距 */
+        } /* 圖示樣式結束 */
+        .card h3 { font-size: 18px; color: #8350a1; margin-bottom: 8px; } /* 設定卡片標題 */
+        .card p { font-size: 15px; line-height: 1.8; color: #694a75; } /* 設定卡片說明文字 */
+        .about { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; } /* 將關於我區域分成兩欄 */
+        .info-list { list-style: none; display: grid; gap: 13px; } /* 清除清單符號並設定間距 */
+        .info-list li { background: #fff7fc; border: 1px solid #f1d8ff; padding: 14px 16px; border-radius: 18px; display: flex; justify-content: space-between; gap: 12px; line-height: 1.5; } /* 設定每一筆個人資料 */
+        .info-list b { color: #8f55ad; white-space: nowrap; } /* 設定資料名稱並避免換行 */
+        .timeline { position: relative; background: rgba(255,255,255,.74); border: 2px solid rgba(255,255,255,.92); border-radius: 30px; padding: 28px; box-shadow: 0 14px 30px rgba(150,92,180,.16); } /* 設定時間軸容器 */
+        .timeline-item { display: grid; grid-template-columns: 90px 1fr; gap: 18px; padding: 18px 0; border-bottom: 1px dashed #d9b9ea; } /* 設定每一筆時間軸內容 */
+        .timeline-item:last-child { border-bottom: none; } /* 移除最後一筆資料的底線 */
+        .time { color: #ffffff; background: linear-gradient(135deg, #bc7ee0, #ff9ecf); border-radius: 999px; padding: 8px 12px; text-align: center; font-weight: 800; height: fit-content; } /* 設定時間標籤 */
+        .timeline-item h3 { color: #80509d; margin-bottom: 6px; } /* 設定時間軸標題 */
+        .timeline-item p { color: #6b4b79; line-height: 1.75; } /* 設定時間軸說明文字 */
+        .contact { margin-top: 36px; background: linear-gradient(135deg, rgba(255,255,255,.85), rgba(255,238,250,.82)); border: 2px solid #ffffff; border-radius: 34px; padding: 34px; text-align: center; box-shadow: 0 18px 38px rgba(150,92,180,.18); } /* 設定聯絡區域 */
+        .contact h2 { color: #7f45a1; font-size: 30px; margin-bottom: 12px; } /* 設定聯絡區標題 */
+        .contact p { color: #694a75; line-height: 1.8; margin-bottom: 20px; } /* 設定聯絡區說明 */
+        .ig-button { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; background: linear-gradient(135deg, #b972db, #ff93c7); color: #ffffff; font-weight: 800; padding: 14px 24px; border-radius: 999px; box-shadow: 0 12px 24px rgba(185,114,219,.28); transition: .25s ease; } /* 設定 Instagram 按鈕 */
+        .ig-button:hover { transform: scale(1.06); box-shadow: 0 16px 32px rgba(185,114,219,.36); } /* 滑鼠移入時放大按鈕 */
+        footer { text-align: center; margin-top: 30px; color: #8c6b9b; font-size: 14px; } /* 設定頁尾樣式 */
+        @media (max-width: 900px) { /* 螢幕寬度小於 900px 時套用 */
+            header, .about { grid-template-columns: 1fr; } /* 將雙欄內容改成單欄 */
+            .grid { grid-template-columns: repeat(2, 1fr); } /* 將興趣卡片改成兩欄 */
+        } /* 平板版面設定結束 */
+        @media (max-width: 560px) { /* 螢幕寬度小於 560px 時套用 */
+            .page { width: 92%; padding-top: 28px; } /* 調整手機版主要容器 */
+            .hero, .profile-card, .contact { padding: 26px; border-radius: 28px; } /* 縮小卡片內距與圓角 */
+            .grid { grid-template-columns: 1fr; } /* 將興趣卡片改成單欄 */
+            .timeline-item { grid-template-columns: 1fr; } /* 將時間軸改成單欄 */
+            .info-list li { flex-direction: column; } /* 將個人資料改成上下排列 */
+        } /* 手機版面設定結束 */
+    </style> <!-- CSS 樣式設定結束 -->
+</head> <!-- 網頁設定區結束 -->
+<body> <!-- 網頁可見內容開始 -->
+    <div class="stars"> <!-- 星星背景容器開始 -->
+        <div class="star">✦</div> <!-- 第一顆裝飾星星 -->
+        <div class="star">✧</div> <!-- 第二顆裝飾星星 -->
+        <div class="star">✦</div> <!-- 第三顆裝飾星星 -->
+        <div class="star">✧</div> <!-- 第四顆裝飾星星 -->
+        <div class="star">✦</div> <!-- 第五顆裝飾星星 -->
+        <div class="star">✧</div> <!-- 第六顆裝飾星星 -->
+    </div> <!-- 星星背景容器結束 -->
+    <main class="page"> <!-- 網頁主要內容開始 -->
+        <header> <!-- 頁首區域開始 -->
+            <section class="hero"> <!-- 自我介紹區域開始 -->
+                <div class="tag">🍬 Candy Profile Page</div> <!-- 顯示頁面風格標籤 -->
+                <h1>嗨，我是 Wz</h1> <!-- 顯示主要標題 -->
+                <p class="subtitle"> <!-- 自我介紹文字開始 -->
+                    一個正在資訊工程裡累積技能、也努力把生活做得可愛又有條理的人。 <!-- 第一段自我介紹 -->
+                    喜歡音樂、手作小物，也喜歡帶一點<span class="highlight">綠色</span>的溫柔日常。 <!-- 第二段自我介紹並強調綠色 -->
+                </p> <!-- 自我介紹文字結束 -->
+            </section> <!-- 自我介紹區域結束 -->
+            <aside class="profile-card"> <!-- 個人資料卡片開始 -->
+                <div class="avatar">🌷</div> <!-- 顯示個人頭像圖示 -->
+                <h2>張睿蓁</h2> <!-- 顯示姓名 -->
+                <p>金門大學資訊工程學系一年級</p> <!-- 顯示學校科系與年級 -->
+                <p>ENTJ｜雙子座｜2007.05.24</p> <!-- 顯示個人基本資料 -->
+            </aside> <!-- 個人資料卡片結束 -->
+        </header> <!-- 頁首區域結束 -->
+        <section> <!-- 關於我區域開始 -->
+            <h2 class="section-title"><span>🍭</span> 關於我</h2> <!-- 顯示關於我標題 -->
+            <div class="about"> <!-- 關於我雙欄容器開始 -->
+                <div class="card"> <!-- 自介卡片開始 -->
+                    <div class="icon">💜</div> <!-- 顯示愛心圖示 -->
+                    <h3>自介小卡</h3> <!-- 顯示卡片標題 -->
+                    <ul class="info-list"> <!-- 個人資料清單開始 -->
+                        <li><b>姓名</b><span>張睿蓁</span></li> <!-- 顯示姓名 -->
+                        <li><b>暱稱</b><span>Wz</span></li> <!-- 顯示暱稱 -->
+                        <li><b>學校科系</b><span>金門大學資訊工程學系</span></li> <!-- 顯示學校科系 -->
+                        <li><b>年級</b><span>一年級</span></li> <!-- 顯示年級 -->
+                        <li><b>生日</b><span>2007 / 05 / 24</span></li> <!-- 顯示生日 -->
+                        <li><b>星座</b><span>雙子座</span></li> <!-- 顯示星座 -->
+                        <li><b>MBTI</b><span>INTJ</span></li> <!-- 顯示 MBTI -->
+                    </ul> <!-- 個人資料清單結束 -->
+                </div> <!-- 自介卡片結束 -->
+                <div class="card"> <!-- 關鍵字卡片開始 -->
+                    <div class="icon">✨</div> <!-- 顯示閃亮圖示 -->
+                    <h3>我的關鍵字</h3> <!-- 顯示卡片標題 -->
+                    <p> <!-- 第一段介紹開始 -->
+                        我喜歡把想法整理成清楚的架構，也喜歡漂亮、可愛、有設計感的東西。 <!-- 說明個人喜好 -->
+                        對我來說，學習不只是把事情做完，而是慢慢把作品變成有自己風格的樣子。 <!-- 說明學習態度 -->
+                    </p> <!-- 第一段介紹結束 -->
+                    <br> <!-- 插入換行空間 -->
+                    <p> <!-- 個人標語段落開始 -->
+                        適合我的標語是： <!-- 顯示標語提示文字 -->
+                        <b>「用理性規劃方向，也用可愛收藏生活。」</b> <!-- 顯示粗體個人標語 -->
+                    </p> <!-- 個人標語段落結束 -->
+                </div> <!-- 關鍵字卡片結束 -->
+            </div> <!-- 關於我雙欄容器結束 -->
+        </section> <!-- 關於我區域結束 -->
+        <section> <!-- 興趣區域開始 -->
+            <h2 class="section-title"><span>🧁</span> 我的興趣</h2> <!-- 顯示興趣區標題 -->
+            <div class="grid"> <!-- 興趣卡片網格開始 -->
+                <div class="card"> <!-- 音樂興趣卡片開始 -->
+                    <div class="icon">🎵</div> <!-- 顯示音樂圖示 -->
+                    <h3>玩音樂</h3> <!-- 顯示興趣名稱 -->
+                    <p>用旋律記錄心情，也讓生活多一點節奏感。</p> <!-- 顯示興趣說明 -->
+                </div> <!-- 音樂興趣卡片結束 -->
+                <div class="card"> <!-- 手作興趣卡片開始 -->
+                    <div class="icon">🧸</div> <!-- 顯示手作圖示 -->
+                    <h3>手作小物</h3> <!-- 顯示興趣名稱 -->
+                    <p>喜歡親手做出有溫度的小東西，細節越可愛越好。</p> <!-- 顯示興趣說明 -->
+                </div> <!-- 手作興趣卡片結束 -->
+                <div class="card"> <!-- 綠色興趣卡片開始 -->
+                    <div class="icon">🌿</div> <!-- 顯示植物圖示 -->
+                    <h3>喜歡綠色</h3> <!-- 顯示興趣名稱 -->
+                    <p>綠色給人舒服、自然、安定的感覺，是我很喜歡的顏色。</p> <!-- 顯示興趣說明 -->
+                </div> <!-- 綠色興趣卡片結束 -->
+                <div class="card"> <!-- 資工興趣卡片開始 -->
+                    <div class="icon">💻</div> <!-- 顯示電腦圖示 -->
+                    <h3>資訊工程</h3> <!-- 顯示興趣名稱 -->
+                    <p>正在學習程式與邏輯，把想法一步一步做成作品。</p> <!-- 顯示興趣說明 -->
+                </div> <!-- 資工興趣卡片結束 -->
+            </div> <!-- 興趣卡片網格結束 -->
+        </section> <!-- 興趣區域結束 -->
+        <section> <!-- 時間軸區域開始 -->
+            <h2 class="section-title"><span>🌟</span> 我的時間軸</h2> <!-- 顯示時間軸標題 -->
+            <div class="timeline"> <!-- 時間軸容器開始 -->
+                <div class="timeline-item"> <!-- 第一筆時間軸資料開始 -->
+                    <div class="time">2007</div> <!-- 顯示年份 -->
+                    <div> <!-- 時間軸文字容器開始 -->
+                        <h3>開始我的故事</h3> <!-- 顯示事件標題 -->
+                        <p>出生於 2007 年 5 月 24 日，是充滿好奇心與行動力的雙子座。</p> <!-- 顯示事件說明 -->
+                    </div> <!-- 時間軸文字容器結束 -->
+                </div> <!-- 第一筆時間軸資料結束 -->
+                <div class="timeline-item"> <!-- 第二筆時間軸資料開始 -->
+                    <div class="time">現在</div> <!-- 顯示目前時間 -->
+                    <div> <!-- 時間軸文字容器開始 -->
+                        <h3>金門大學資工系一年級</h3> <!-- 顯示目前身分 -->
+                        <p>開始累積程式、設計與解決問題的能力，慢慢建立自己的學習節奏。</p> <!-- 顯示目前學習狀態 -->
+                    </div> <!-- 時間軸文字容器結束 -->
+                </div> <!-- 第二筆時間軸資料結束 -->
+                <div class="timeline-item"> <!-- 第三筆時間軸資料開始 -->
+                    <div class="time">日常</div> <!-- 顯示日常分類 -->
+                    <div> <!-- 時間軸文字容器開始 -->
+                        <h3>音樂、手作與可愛小細節</h3> <!-- 顯示日常活動標題 -->
+                        <p>在學習之外，也會用興趣讓生活變得更有色彩。</p> <!-- 顯示日常活動說明 -->
+                    </div> <!-- 時間軸文字容器結束 -->
+                </div> <!-- 第三筆時間軸資料結束 -->
+                <div class="timeline-item"> <!-- 第四筆時間軸資料開始 -->
+                    <div class="time">未來</div> <!-- 顯示未來分類 -->
+                    <div> <!-- 時間軸文字容器開始 -->
+                        <h3>做出更有自己風格的作品</h3> <!-- 顯示未來目標 -->
+                        <p>希望把資訊工程的能力，和自己的美感、創意結合起來。</p> <!-- 顯示未來目標說明 -->
+                    </div> <!-- 時間軸文字容器結束 -->
+                </div> <!-- 第四筆時間軸資料結束 -->
+            </div> <!-- 時間軸容器結束 -->
+        </section> <!-- 時間軸區域結束 -->
+        <section class="contact"> <!-- 聯絡區域開始 -->
+            <h2>想認識我嗎？</h2> <!-- 顯示聯絡區標題 -->
+            <p> <!-- 聯絡說明開始 -->
+                可以到 Instagram 找我。 <!-- 提供聯絡方式 -->
+                這裡會記錄生活、喜歡的事物，以及慢慢成長中的自己。 <!-- 說明 Instagram 內容 -->
+            </p> <!-- 聯絡說明結束 -->
+            <a class="ig-button" href="https://www.instagram.com/weizzz0524" target="_blank"> <!-- 建立 Instagram 外部連結 -->
+                📷 IG：weizzz0524 <!-- 顯示 Instagram 帳號 -->
+            </a> <!-- Instagram 連結

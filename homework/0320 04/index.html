@@ -1,659 +1,1318 @@
 <!DOCTYPE html>
+<!-- 第 1 行說明：宣告這份文件是 HTML5 格式。 -->
 <html lang="zh-TW">
+<!-- 第 2 行說明：HTML 文件開始，lang='zh-TW' 表示網頁主要語言是繁體中文。 -->
 <head>
+<!-- 第 3 行說明：head 區塊開始，放網頁設定、標題、CSS 樣式等資料。 -->
     <meta charset="UTF-8">
+    <!-- 第 4 行說明：設定網頁文字編碼為 UTF-8，避免中文亂碼。 -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 第 5 行說明：設定手機與平板的顯示比例，讓網頁可以做響應式設計。 -->
     <title>JavaScript 綜合練習 — 筆記</title>
+    <!-- 第 6 行說明：設定瀏覽器分頁上顯示的網頁標題。 -->
     <style>
+    <!-- 第 7 行說明：CSS 樣式區塊開始，用來設計網頁外觀。 -->
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap');
+        /* 第 8 行說明：匯入 Google Fonts 的 Noto Sans TC 字體，讓中文顯示更美觀。 */
 
+/* 第 9 行說明：空行，用來讓程式碼排版更清楚。 */
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        /* 第 10 行說明：設定 CSS 屬性 * { margin 的樣式。 */
 
+/* 第 11 行說明：空行，用來讓程式碼排版更清楚。 */
         body {
+        /* 第 12 行說明：CSS 選擇器開始，接下來會設定這個元素或 class 的樣式。 */
             font-family: 'Noto Sans TC', 'Segoe UI', system-ui, sans-serif;
+            /* 第 13 行說明：設定文字字型。 */
             background-color: #FFF8EF;
+            /* 第 14 行說明：設定背景顏色。 */
             background-image:
+            /* 第 15 行說明：設定背景圖片或漸層效果。 */
                 radial-gradient(circle at 20% 30%, rgba(248,200,220,0.08) 0%, transparent 50%),
+                /* 第 16 行說明：CSS 樣式內容，用來調整網頁外觀。 */
                 radial-gradient(circle at 80% 70%, rgba(220,199,242,0.08) 0%, transparent 50%),
+                /* 第 17 行說明：CSS 樣式內容，用來調整網頁外觀。 */
                 radial-gradient(circle at 50% 50%, rgba(184,230,209,0.05) 0%, transparent 50%);
+                /* 第 18 行說明：CSS 樣式內容，用來調整網頁外觀。 */
             color: #5A5552;
+            /* 第 19 行說明：設定文字顏色。 */
             line-height: 1.8;
+            /* 第 20 行說明：設定行高，讓文字行距更舒服。 */
             padding: 2rem;
+            /* 第 21 行說明：設定內距，也就是內容和邊框之間的距離。 */
             min-height: 100vh;
+            /* 第 22 行說明：設定最小高度。 */
             position: relative;
+            /* 第 23 行說明：設定元素定位方式。 */
             overflow-x: hidden;
+            /* 第 24 行說明：設定超出寬度時是否出現水平捲動。 */
         }
+        /* 第 25 行說明：CSS 樣式區塊結束。 */
 
+/* 第 26 行說明：空行，用來讓程式碼排版更清楚。 */
         /* ── 背景裝飾：紙張紋理 ── */
+        /* 第 27 行說明：CSS 註解，用來標示這段樣式的用途。 */
         body::before {
+        /* 第 28 行說明：CSS 選擇器開始，接下來會設定這個元素或 class 的樣式。 */
             content: '';
+            /* 第 29 行說明：設定偽元素要顯示的內容。 */
             position: fixed;
+            /* 第 30 行說明：設定元素定位方式。 */
             inset: 0;
+            /* 第 31 行說明：同時設定 top、right、bottom、left 的位置。 */
             background-image:
+            /* 第 32 行說明：設定背景圖片或漸層效果。 */
                 repeating-linear-gradient(0deg, transparent, transparent 24px, rgba(235,215,245,0.12) 24px, rgba(235,215,245,0.12) 25px);
+                /* 第 33 行說明：CSS 樣式內容，用來調整網頁外觀。 */
             pointer-events: none;
+            /* 第 34 行說明：設定是否能被滑鼠點擊，none 代表不接收點擊。 */
             z-index: 0;
+            /* 第 35 行說明：設定圖層順序，數字越大越上層。 */
         }
+        /* 第 36 行說明：CSS 樣式區塊結束。 */
 
+/* 第 37 行說明：空行，用來讓程式碼排版更清楚。 */
         /* ── 背景裝飾：淡圓點 ── */
+        /* 第 38 行說明：CSS 註解，用來標示這段樣式的用途。 */
         .bg-dots {
+        /* 第 39 行說明：CSS 選擇器開始，接下來會設定這個元素或 class 的樣式。 */
             position: fixed;
+            /* 第 40 行說明：設定元素定位方式。 */
             inset: 0;
+            /* 第 41 行說明：同時設定 top、right、bottom、left 的位置。 */
             pointer-events: none;
+            /* 第 42 行說明：設定是否能被滑鼠點擊，none 代表不接收點擊。 */
             z-index: 0;
+            /* 第 43 行說明：設定圖層順序，數字越大越上層。 */
             background-image: radial-gradient(circle, #F8C8DC 1.2px, transparent 1.2px);
+            /* 第 44 行說明：設定背景圖片或漸層效果。 */
             background-size: 40px 40px;
+            /* 第 45 行說明：設定背景圖案的大小。 */
             opacity: 0.12;
+            /* 第 46 行說明：設定透明度。 */
         }
+        /* 第 47 行說明：CSS 樣式區塊結束。 */
 
+/* 第 48 行說明：空行，用來讓程式碼排版更清楚。 */
         /* ── 背景裝飾元素容器 ── */
+        /* 第 49 行說明：CSS 註解，用來標示這段樣式的用途。 */
         .bg-deco {
+        /* 第 50 行說明：CSS 選擇器開始，接下來會設定這個元素或 class 的樣式。 */
             position: fixed;
+            /* 第 51 行說明：設定元素定位方式。 */
             inset: 0;
+            /* 第 52 行說明：同時設定 top、right、bottom、left 的位置。 */
             pointer-events: none;
+            /* 第 53 行說明：設定是否能被滑鼠點擊，none 代表不接收點擊。 */
             z-index: 0;
+            /* 第 54 行說明：設定圖層順序，數字越大越上層。 */
             overflow: hidden;
+            /* 第 55 行說明：設定 CSS 屬性 overflow 的樣式。 */
         }
+        /* 第 56 行說明：CSS 樣式區塊結束。 */
         .bg-deco span {
+        /* 第 57 行說明：CSS 選擇器開始，接下來會設定這個元素或 class 的樣式。 */
             position: absolute;
+            /* 第 58 行說明：設定元素定位方式。 */
             font-size: 1.4rem;
+            /* 第 59 行說明：設定文字大小。 */
             opacity: 0.10;
+            /* 第 60 行說明：設定透明度。 */
             animation: floatDeco 8s ease-in-out infinite alternate;
+            /* 第 61 行說明：套用動畫效果。 */
         }
+        /* 第 62 行說明：CSS 樣式區塊結束。 */
         .bg-deco span:nth-child(1) { top: 5%; left: 3%; animation-delay: 0s; }
+        /* 第 63 行說明：設定 CSS 屬性 .bg-deco span 的樣式。 */
         .bg-deco span:nth-child(2) { top: 15%; right: 6%; animation-delay: 1.5s; font-size: 1rem; }
+        /* 第 64 行說明：設定 CSS 屬性 .bg-deco span 的樣式。 */
         .bg-deco span:nth-child(3) { top: 40%; left: 2%; animation-delay: 3s; font-size: 1.8rem; }
+        /* 第 65 行說明：設定 CSS 屬性 .bg-deco span 的樣式。 */
         .bg-deco span:nth-child(4) { top: 65%; right: 4%; animation-delay: 0.8s; }
+        /* 第 66 行說明：設定 CSS 屬性 .bg-deco span 的樣式。 */
         .bg-deco span:nth-child(5) { bottom: 10%; left: 8%; animation-delay: 2.2s; font-size: 1.6rem; }
+        /* 第 67 行說明：設定 CSS 屬性 .bg-deco span 的樣式。 */
         .bg-deco span:nth-child(6) { top: 75%; left: 50%; animation-delay: 4s; font-size: 1.2rem; }
+        /* 第 68 行說明：設定 CSS 屬性 .bg-deco span 的樣式。 */
         .bg-deco span:nth-child(7) { top: 25%; right: 2%; animation-delay: 5s; font-size: 1.1rem; }
+        /* 第 69 行說明：設定 CSS 屬性 .bg-deco span 的樣式。 */
         .bg-deco span:nth-child(8) { bottom: 20%; right: 15%; animation-delay: 3.5s; font-size: 1.3rem; }
+        /* 第 70 行說明：設定 CSS 屬性 .bg-deco span 的樣式。 */
         .bg-deco span:nth-child(9) { top: 55%; left: 6%; animation-delay: 1s; }
+        /* 第 71 行說明：設定 CSS 屬性 .bg-deco span 的樣式。 */
         .bg-deco span:nth-child(10) { top: 8%; right: 25%; animation-delay: 2.8s; }
+        /* 第 72 行說明：設定 CSS 屬性 .bg-deco span 的樣式。 */
 
+/* 第 73 行說明：空行，用來讓程式碼排版更清楚。 */
         @keyframes floatDeco {
+        /* 第 74 行說明：建立 CSS 動畫，讓背景裝飾可以上下浮動。 */
             0%   { transform: translateY(0) rotate(0deg); }
+            /* 第 75 行說明：設定 CSS 屬性 0%   { transform 的樣式。 */
             100% { transform: translateY(-12px) rotate(5deg); }
+            /* 第 76 行說明：設定 CSS 屬性 100% { transform 的樣式。 */
         }
+        /* 第 77 行說明：CSS 樣式區塊結束。 */
 
+/* 第 78 行說明：空行，用來讓程式碼排版更清楚。 */
         /* ── 便利貼背景裝飾 ── */
+        /* 第 79 行說明：CSS 註解，用來標示這段樣式的用途。 */
         .sticky-note {
+        /* 第 80 行說明：CSS 選擇器開始，接下來會設定這個元素或 class 的樣式。 */
             position: fixed;
+            /* 第 81 行說明：設定元素定位方式。 */
             pointer-events: none;
+            /* 第 82 行說明：設定是否能被滑鼠點擊，none 代表不接收點擊。 */
             z-index: 0;
+            /* 第 83 行說明：設定圖層順序，數字越大越上層。 */
             opacity: 0.06;
+            /* 第 84 行說明：設定透明度。 */
             transform: rotate(-3deg);
+            /* 第 85 行說明：設定元素變形，例如移動、旋轉、縮放。 */
         }
+        /* 第 86 行說明：CSS 樣式區塊結束。 */
         .sticky-note::before {
+        /* 第 87 行說明：CSS 選擇器開始，接下來會設定這個元素或 class 的樣式。 */
             content: '✎ 筆記';
+            /* 第 88 行說明：設定偽元素要顯示的內容。 */
             position: absolute;
+            /* 第 89 行說明：設定元素定位方式。 */
             top: 6px; left: 10px;
+            /* 第 90 行說明：設定元素距離上方的位置。 */
             font-size: 0.75rem;
+            /* 第 91 行說明：設定文字大小。 */
             color: #4A3F3A;
+            /* 第 92 行說明：設定文字顏色。 */
             font-weight: 500;
+            /* 第 93 行說明：設定文字粗細。 */
         }
+        /* 第 94 行說明：CSS 樣式區塊結束。 */
         .sticky-note.sn1 {
+        /* 第 95 行說明：CSS 選擇器開始，接下來會設定這個元素或 class 的樣式。 */
             top: 12%; right: 3%;
+            /* 第 96 行說明：設定元素距離上方的位置。 */
             width: 100px; height: 100px;
+            /* 第 97 行說明：設定寬度。 */
             background: #FFE9A7;
+            /* 第 98 行說明：設定背景，可以是顏色或漸層。 */
             border-radius: 2px;
+            /* 第 99 行說明：設定圓角。 */
             box-shadow: 2px 3px 6px rgba(0,0,0,0.04);
+            /* 第 100 行說明：設定陰影效果。 */
         }
+        /* 第 101 行說明：CSS 樣式區塊結束。 */
         .sticky-note.sn2 {
+        /* 第 102 行說明：CSS 選擇器開始，接下來會設定這個元素或 class 的樣式。 */
             bottom: 8%; left: 2%;
+            /* 第 103 行說明：設定元素距離下方的位置。 */
             width: 90px; height: 90px;
+            /* 第 104 行說明：設定寬度。 */
             background: #B8E6D1;
+            /* 第 105 行說明：設定背景，可以是顏色或漸層。 */
             border-radius: 2px;
+            /* 第 106 行說明：設定圓角。 */
             box-shadow: 2px 3px 6px rgba(0,0,0,0.04);
+            /* 第 107 行說明：設定陰影效果。 */
             transform: rotate(4deg);
+            /* 第 108 行說明：設定元素變形，例如移動、旋轉、縮放。 */
         }
+        /* 第 109 行說明：CSS 樣式區塊結束。 */
 
+/* 第 110 行說明：空行，用來讓程式碼排版更清楚。 */
         /* ── 容器 ── */
+        /* 第 111 行說明：CSS 註解，用來標示這段樣式的用途。 */
         .container {
+        /* 第 112 行說明：CSS 選擇器開始，接下來會設定這個元素或 class 的樣式。 */
             max-width: 920px;
+            /* 第 113 行說明：設定最大寬度。 */
             margin: 0 auto;
+            /* 第 114 行說明：設定外距，也就是元素外面和其他元素的距離。 */
             position: relative;
+            /* 第 115 行說明：設定元素定位方式。 */
             z-index: 1;
+            /* 第 116 行說明：設定圖層順序，數字越大越上層。 */
         }
+        /* 第 117 行說明：CSS 樣式區塊結束。 */
 
+/* 第 118 行說明：空行，用來讓程式碼排版更清楚。 */
         /* ── 頁首 ── */
+        /* 第 119 行說明：CSS 註解，用來標示這段樣式的用途。 */
         header {
+        /* 第 120 行說明：CSS 選擇器開始，接下來會設定這個元素或 class 的樣式。 */
             text-align: center;
+            /* 第 121 行說明：設定文字對齊方式。 */
             margin-bottom: 2.5rem;
+            /* 第 122 行說明：設定下方外距。 */
             padding: 2.5rem 1.5rem 1.8rem;
+            /* 第 123 行說明：設定內距，也就是內容和邊框之間的距離。 */
             background: rgba(255,255,255,0.8);
+            /* 第 124 行說明：設定背景，可以是顏色或漸層。 */
             border-radius: 28px;
+            /* 第 125 行說明：設定圓角。 */
             border: 2px solid #EBD7F5;
+            /* 第 126 行說明：設定邊框。 */
             box-shadow: 0 4px 20px rgba(220,199,242,0.15);
+            /* 第 127 行說明：設定陰影效果。 */
             backdrop-filter: blur(6px);
+            /* 第 128 行說明：設定背景模糊效果。 */
             position: relative;
+            /* 第 129 行說明：設定元素定位方式。 */
         }
+        /* 第 130 行說明：CSS 樣式區塊結束。 */
         header::after {
+        /* 第 131 行說明：CSS 選擇器開始，接下來會設定這個元素或 class 的樣式。 */
             content: '✧  ✧  ✧';
+            /* 第 132 行說明：設定偽元素要顯示的內容。 */
             position: absolute;
+            /* 第 133 行說明：設定元素定位方式。 */
             bottom: 0.5rem;
+            /* 第 134 行說明：設定元素距離下方的位置。 */
             left: 50%;
+            /* 第 135 行說明：設定元素距離左方的位置。 */
             transform: translateX(-50%);
+            /* 第 136 行說明：設定元素變形，例如移動、旋轉、縮放。 */
             font-size: 0.7rem;
+            /* 第 137 行說明：設定文字大小。 */
             letter-spacing: 6px;
+            /* 第 138 行說明：設定字距。 */
             color: #DCC7F2;
+            /* 第 139 行說明：設定文字顏色。 */
             opacity: 0.5;
+            /* 第 140 行說明：設定透明度。 */
         }
+        /* 第 141 行說明：CSS 樣式區塊結束。 */
         h1 {
+        /* 第 142 行說明：CSS 選擇器開始，接下來會設定這個元素或 class 的樣式。 */
             font-size: 2.2rem;
+            /* 第 143 行說明：設定文字大小。 */
             font-weight: 700;
+            /* 第 144 行說明：設定文字粗細。 */
             color: #4A3F3A;
+            /* 第 145 行說明：設定文字顏色。 */
             letter-spacing: 1px;
+            /* 第 146 行說明：設定字距。 */
             margin-bottom: 0.3rem;
+            /* 第 147 行說明：設定下方外距。 */
         }
+        /* 第 148 行說明：CSS 樣式區塊結束。 */
         h1 .emoji { font-style: normal; }
+        /* 第 149 行說明：設定 CSS 屬性 h1 .emoji { font-style 的樣式。 */
         .subtitle {
+        /* 第 150 行說明：CSS 選擇器開始，接下來會設定這個元素或 class 的樣式。 */
             font-size: 0.95rem;
+            /* 第 151 行說明：設定文字大小。 */
             color: #7A7572;
+            /* 第 152 行說明：設定文字顏色。 */
             font-weight: 300;
+            /* 第 153 行說明：設定文字粗細。 */
             letter-spacing: 0.5px;
+            /* 第 154 行說明：設定字距。 */
         }
+        /* 第 155 行說明：CSS 樣式區塊結束。 */
 
+/* 第 156 行說明：空行，用來讓程式碼排版更清楚。 */
         /* ── 導覽列 ── */
+        /* 第 157 行說明：CSS 註解，用來標示這段樣式的用途。 */
         .nav {
+        /* 第 158 行說明：CSS 選擇器開始，接下來會設定這個元素或 class 的樣式。 */
             position: sticky;
+            /* 第 159 行說明：設定元素定位方式。 */
             top: 1rem;
+            /* 第 160 行說明：設定元素距離上方的位置。 */
             background: rgba(255,255,255,0.92);
+            /* 第 161 行說明：設定背景，可以是顏色或漸層。 */
             border-radius: 20px;
+            /* 第 162 行說明：設定圓角。 */
             padding: 1rem 1.8rem;
+            /* 第 163 行說明：設定內距，也就是內容和邊框之間的距離。 */
             margin-bottom: 2rem;
+            /* 第 164 行說明：設定下方外距。 */
             border: 1.5px solid #EBD7F5;
+            /* 第 165 行說明：設定邊框。 */
             box-shadow: 0 3px 15px rgba(220,199,242,0.12);
+            /* 第 166 行說明：設定陰影效果。 */
             backdrop-filter: blur(6px);
+            /* 第 167 行說明：設定背景模糊效果。 */
             z-index: 10;
+            /* 第 168 行說明：設定圖層順序，數字越大越上層。 */
             transition: all 0.3s ease;
+            /* 第 169 行說明：設定狀態變化時的動畫速度。 */
         }
+        /* 第 170 行說明：CSS 樣式區塊結束。 */
         .nav:hover {
+        /* 第 171 行說明：CSS 選擇器開始，接下來會設定這個元素或 class 的樣式。 */
             box-shadow: 0 5px 22px rgba(220,199,242,0.2);
+            /* 第 172 行說明：設定陰影效果。 */
         }
+        /* 第 173 行說明：CSS 樣式區塊結束。 */
         .nav h3 {
+        /* 第 174 行說明：CSS 選擇器開始，接下來會設定這個元素或 class 的樣式。 */
             font-size: 0.85rem;
+            /* 第 175 行說明：設定文字大小。 */
             font-weight: 700;
+            /* 第 176 行說明：設定文字粗細。 */
             color: #DCC7F2;
+            /* 第 177 行說明：設定文字顏色。 */
             letter-spacing: 2px;
+            /* 第 178 行說明：設定字距。 */
             text-transform: uppercase;
+            /* 第 179 行說明：設定文字大小寫轉換。 */
             margin-bottom: 0.6rem;
+            /* 第 180 行說明：設定下方外距。 */
         }
+        /* 第 181 行說明：CSS 樣式區塊結束。 */
         .nav h3::before { content: '📌 '; }
+        /* 第 182 行說明：設定 CSS 屬性 .nav h3 的樣式。 */
         .nav a {
+        /* 第 183 行說明：CSS 選擇器開始，接下來會設定這個元素或 class 的樣式。 */
             display: inline-block;
+            /* 第 184 行說明：設定元素的顯示模式。 */
             font-size: 0.82rem;
+            /* 第 185 行說明：設定文字大小。 */
             color: #7A7572;
+            /* 第 186 行說明：設定文字顏色。 */
             text-decoration: none;
+            /* 第 187 行說明：設定文字裝飾，例如底線。 */
             margin-right: 0.6rem;
+            /* 第 188 行說明：設定右方外距。 */
             margin-bottom: 0.3rem;
+            /* 第 189 行說明：設定下方外距。 */
             padding: 0.2rem 0.7rem;
+            /* 第 190 行說明：設定內距，也就是內容和邊框之間的距離。 */
             border-radius: 14px;
+            /* 第 191 行說明：設定圓角。 */
             transition: all 0.25s ease;
+            /* 第 192 行說明：設定狀態變化時的動畫速度。 */
             font-weight: 400;
+            /* 第 193 行說明：設定文字粗細。 */
             border: 1px solid transparent;
+            /* 第 194 行說明：設定邊框。 */
         }
+        /* 第 195 行說明：CSS 樣式區塊結束。 */
         .nav a:hover {
+        /* 第 196 行說明：CSS 選擇器開始，接下來會設定這個元素或 class 的樣式。 */
             color: #4A3F3A;
+            /* 第 197 行說明：設定文字顏色。 */
             background: linear-gradient(135deg, rgba(248,200,220,0.2), rgba(220,199,242,0.2));
+            /* 第 198 行說明：設定背景，可以是顏色或漸層。 */
             border-color: #EBD7F5;
+            /* 第 199 行說明：設定邊框顏色。 */
             transform: translateY(-1px);
+            /* 第 200 行說明：設定元素變形，例如移動、旋轉、縮放。 */
         }
+        /* 第 201 行說明：CSS 樣式區塊結束。 */
 
+/* 第 202 行說明：空行，用來讓程式碼排版更清楚。 */
         /* ── 筆記卡片 ── */
+        /* 第 203 行說明：CSS 註解，用來標示這段樣式的用途。 */
         .topic {
+        /* 第 204 行說明：CSS 選擇器開始，接下來會設定這個元素或 class 的樣式。 */
             background: rgba(255,255,255,0.8);
+            /* 第 205 行說明：設定背景，可以是顏色或漸層。 */
             border-radius: 22px;
+            /* 第 206 行說明：設定圓角。 */
             padding: 1.6rem 2rem;
+            /* 第 207 行說明：設定內距，也就是內容和邊框之間的距離。 */
             margin-bottom: 1.5rem;
+            /* 第 208 行說明：設定下方外距。 */
             border: 1.5px solid #EBD7F5;
+            /* 第 209 行說明：設定邊框。 */
             box-shadow: 0 3px 14px rgba(220,199,242,0.10);
+            /* 第 210 行說明：設定陰影效果。 */
             transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            /* 第 211 行說明：設定狀態變化時的動畫速度。 */
             position: relative;
+            /* 第 212 行說明：設定元素定位方式。 */
             backdrop-filter: blur(4px);
+            /* 第 213 行說明：設定背景模糊效果。 */
         }
+        /* 第 214 行說明：CSS 樣式區塊結束。 */
         .topic:hover {
+        /* 第 215 行說明：CSS 選擇器開始，接下來會設定這個元素或 class 的樣式。 */
             transform: translateY(-5px);
+            /* 第 216 行說明：設定元素變形，例如移動、旋轉、縮放。 */
             box-shadow: 0 8px 28px rgba(220,199,242,0.18);
+            /* 第 217 行說明：設定陰影效果。 */
             border-color: #F8C8DC;
+            /* 第 218 行說明：設定邊框顏色。 */
         }
+        /* 第 219 行說明：CSS 樣式區塊結束。 */
 
+/* 第 220 行說明：空行，用來讓程式碼排版更清楚。 */
         /* 便利貼角標 */
+        /* 第 221 行說明：CSS 註解，用來標示這段樣式的用途。 */
         .topic .tab {
+        /* 第 222 行說明：CSS 選擇器開始，接下來會設定這個元素或 class 的樣式。 */
             position: absolute;
+            /* 第 223 行說明：設定元素定位方式。 */
             top: -8px;
+            /* 第 224 行說明：設定元素距離上方的位置。 */
             left: 24px;
+            /* 第 225 行說明：設定元素距離左方的位置。 */
             background: linear-gradient(135deg, #F8C8DC, #DCC7F2);
+            /* 第 226 行說明：設定背景，可以是顏色或漸層。 */
             color: #fff;
+            /* 第 227 行說明：設定文字顏色。 */
             font-size: 0.6rem;
+            /* 第 228 行說明：設定文字大小。 */
             font-weight: 700;
+            /* 第 229 行說明：設定文字粗細。 */
             padding: 0.2rem 1rem;
+            /* 第 230 行說明：設定內距，也就是內容和邊框之間的距離。 */
             border-radius: 10px 10px 4px 4px;
+            /* 第 231 行說明：設定圓角。 */
             letter-spacing: 1px;
+            /* 第 232 行說明：設定字距。 */
             text-transform: uppercase;
+            /* 第 233 行說明：設定文字大小寫轉換。 */
             box-shadow: 0 2px 6px rgba(248,200,220,0.25);
+            /* 第 234 行說明：設定陰影效果。 */
         }
+        /* 第 235 行說明：CSS 樣式區塊結束。 */
         .topic .tab::after {
+        /* 第 236 行說明：CSS 選擇器開始，接下來會設定這個元素或 class 的樣式。 */
             content: '';
+            /* 第 237 行說明：設定偽元素要顯示的內容。 */
             position: absolute;
+            /* 第 238 行說明：設定元素定位方式。 */
             right: -8px; bottom: 0;
+            /* 第 239 行說明：設定元素距離右方的位置。 */
             width: 0; height: 0;
+            /* 第 240 行說明：設定寬度。 */
             border-style: solid;
+            /* 第 241 行說明：設定邊框樣式。 */
             border-width: 0 0 8px 8px;
+            /* 第 242 行說明：設定邊框寬度。 */
             border-color: transparent transparent #c0a8d8 transparent;
+            /* 第 243 行說明：設定邊框顏色。 */
         }
+        /* 第 244 行說明：CSS 樣式區塊結束。 */
 
+/* 第 245 行說明：空行，用來讓程式碼排版更清楚。 */
         .topic h2 {
+        /* 第 246 行說明：CSS 選擇器開始，接下來會設定這個元素或 class 的樣式。 */
             font-size: 1.15rem;
+            /* 第 247 行說明：設定文字大小。 */
             font-weight: 600;
+            /* 第 248 行說明：設定文字粗細。 */
             color: #4A3F3A;
+            /* 第 249 行說明：設定文字顏色。 */
             margin-bottom: 0.4rem;
+            /* 第 250 行說明：設定下方外距。 */
             letter-spacing: 0.3px;
+            /* 第 251 行說明：設定字距。 */
         }
+        /* 第 252 行說明：CSS 樣式區塊結束。 */
         .topic .file {
+        /* 第 253 行說明：CSS 選擇器開始，接下來會設定這個元素或 class 的樣式。 */
             display: inline-block;
+            /* 第 254 行說明：設定元素的顯示模式。 */
             font-size: 0.7rem;
+            /* 第 255 行說明：設定文字大小。 */
             background: linear-gradient(135deg, rgba(184,230,209,0.3), rgba(220,199,242,0.2));
+            /* 第 256 行說明：設定背景，可以是顏色或漸層。 */
             color: #5A5552;
+            /* 第 257 行說明：設定文字顏色。 */
             padding: 0.15rem 0.8rem;
+            /* 第 258 行說明：設定內距，也就是內容和邊框之間的距離。 */
             border-radius: 16px;
+            /* 第 259 行說明：設定圓角。 */
             margin-bottom: 0.4rem;
+            /* 第 260 行說明：設定下方外距。 */
             font-weight: 500;
+            /* 第 261 行說明：設定文字粗細。 */
             border: 1px solid rgba(184,230,209,0.4);
+            /* 第 262 行說明：設定邊框。 */
         }
+        /* 第 263 行說明：CSS 樣式區塊結束。 */
         .topic .desc {
+        /* 第 264 行說明：CSS 選擇器開始，接下來會設定這個元素或 class 的樣式。 */
             color: #5A5552;
+            /* 第 265 行說明：設定文字顏色。 */
             margin-bottom: 0.75rem;
+            /* 第 266 行說明：設定下方外距。 */
             font-weight: 300;
+            /* 第 267 行說明：設定文字粗細。 */
             font-size: 0.92rem;
+            /* 第 268 行說明：設定文字大小。 */
         }
+        /* 第 269 行說明：CSS 樣式區塊結束。 */
         .topic .desc code {
+        /* 第 270 行說明：CSS 選擇器開始，接下來會設定這個元素或 class 的樣式。 */
             background: rgba(248,200,220,0.15);
+            /* 第 271 行說明：設定背景，可以是顏色或漸層。 */
             padding: 0.05rem 0.35rem;
+            /* 第 272 行說明：設定內距，也就是內容和邊框之間的距離。 */
             border-radius: 6px;
+            /* 第 273 行說明：設定圓角。 */
             font-size: 0.85rem;
+            /* 第 274 行說明：設定文字大小。 */
             color: #4A3F3A;
+            /* 第 275 行說明：設定文字顏色。 */
         }
+        /* 第 276 行說明：CSS 樣式區塊結束。 */
 
+/* 第 277 行說明：空行，用來讓程式碼排版更清楚。 */
         /* ── 標籤 ── */
+        /* 第 278 行說明：CSS 註解，用來標示這段樣式的用途。 */
         .keywords { margin-bottom: 0.7rem; display: flex; flex-wrap: wrap; gap: 4px; }
+        /* 第 279 行說明：設定 CSS 屬性 .keywords { margin-bottom 的樣式。 */
         .tag {
+        /* 第 280 行說明：CSS 選擇器開始，接下來會設定這個元素或 class 的樣式。 */
             display: inline-block;
+            /* 第 281 行說明：設定元素的顯示模式。 */
             font-size: 0.65rem;
+            /* 第 282 行說明：設定文字大小。 */
             background: rgba(220,199,242,0.2);
+            /* 第 283 行說明：設定背景，可以是顏色或漸層。 */
             color: #7A5A8A;
+            /* 第 284 行說明：設定文字顏色。 */
             padding: 0.15rem 0.65rem;
+            /* 第 285 行說明：設定內距，也就是內容和邊框之間的距離。 */
             border-radius: 14px;
+            /* 第 286 行說明：設定圓角。 */
             font-weight: 500;
+            /* 第 287 行說明：設定文字粗細。 */
             border: 1px solid rgba(220,199,242,0.3);
+            /* 第 288 行說明：設定邊框。 */
             transition: all 0.2s ease;
+            /* 第 289 行說明：設定狀態變化時的動畫速度。 */
         }
+        /* 第 290 行說明：CSS 樣式區塊結束。 */
         .tag:hover {
+        /* 第 291 行說明：CSS 選擇器開始，接下來會設定這個元素或 class 的樣式。 */
             background: rgba(220,199,242,0.35);
+            /* 第 292 行說明：設定背景，可以是顏色或漸層。 */
             transform: scale(1.04);
+            /* 第 293 行說明：設定元素變形，例如移動、旋轉、縮放。 */
         }
+        /* 第 294 行說明：CSS 樣式區塊結束。 */
 
+/* 第 295 行說明：空行，用來讓程式碼排版更清楚。 */
         /* ── 程式碼區塊 ── */
+        /* 第 296 行說明：CSS 註解，用來標示這段樣式的用途。 */
         pre {
+        /* 第 297 行說明：CSS 選擇器開始，接下來會設定這個元素或 class 的樣式。 */
             background: #3D3A4A;
+            /* 第 298 行說明：設定背景，可以是顏色或漸層。 */
             color: #F0E6F0;
+            /* 第 299 行說明：設定文字顏色。 */
             padding: 1.1rem 1.3rem;
+            /* 第 300 行說明：設定內距，也就是內容和邊框之間的距離。 */
             border-radius: 16px;
+            /* 第 301 行說明：設定圓角。 */
             overflow-x: auto;
+            /* 第 302 行說明：設定超出寬度時是否出現水平捲動。 */
             font-size: 0.82rem;
+            /* 第 303 行說明：設定文字大小。 */
             line-height: 1.6;
+            /* 第 304 行說明：設定行高，讓文字行距更舒服。 */
             font-family: 'JetBrains Mono', 'Consolas', 'Courier New', monospace;
+            /* 第 305 行說明：設定文字字型。 */
             border: 1px solid rgba(235,215,245,0.15);
+            /* 第 306 行說明：設定邊框。 */
             box-shadow: inset 0 2px 8px rgba(0,0,0,0.15);
+            /* 第 307 行說明：設定陰影效果。 */
             position: relative;
+            /* 第 308 行說明：設定元素定位方式。 */
         }
+        /* 第 309 行說明：CSS 樣式區塊結束。 */
         pre::before {
+        /* 第 310 行說明：CSS 選擇器開始，接下來會設定這個元素或 class 的樣式。 */
             content: '';
+            /* 第 311 行說明：設定偽元素要顯示的內容。 */
             position: absolute;
+            /* 第 312 行說明：設定元素定位方式。 */
             top: 0; left: 0;
+            /* 第 313 行說明：設定元素距離上方的位置。 */
             right: 0;
+            /* 第 314 行說明：設定元素距離右方的位置。 */
             height: 3px;
+            /* 第 315 行說明：設定高度。 */
             background: linear-gradient(90deg, #F8C8DC, #DCC7F2, #B8E6D1, #FFE9A7);
+            /* 第 316 行說明：設定背景，可以是顏色或漸層。 */
             border-radius: 16px 16px 0 0;
+            /* 第 317 行說明：設定圓角。 */
         }
+        /* 第 318 行說明：CSS 樣式區塊結束。 */
 
+/* 第 319 行說明：空行，用來讓程式碼排版更清楚。 */
         /* ── 分隔線 ── */
+        /* 第 320 行說明：CSS 註解，用來標示這段樣式的用途。 */
         hr {
+        /* 第 321 行說明：CSS 選擇器開始，接下來會設定這個元素或 class 的樣式。 */
             border: none;
+            /* 第 322 行說明：設定邊框。 */
             height: 2px;
+            /* 第 323 行說明：設定高度。 */
             background: linear-gradient(90deg, transparent, #EBD7F5, #F8C8DC, #DCC7F2, transparent);
+            /* 第 324 行說明：設定背景，可以是顏色或漸層。 */
             margin: 2.2rem 0;
+            /* 第 325 行說明：設定外距，也就是元素外面和其他元素的距離。 */
             border-radius: 2px;
+            /* 第 326 行說明：設定圓角。 */
             opacity: 0.5;
+            /* 第 327 行說明：設定透明度。 */
         }
+        /* 第 328 行說明：CSS 樣式區塊結束。 */
 
+/* 第 329 行說明：空行，用來讓程式碼排版更清楚。 */
         /* ── 按鈕樣式 ── */
+        /* 第 330 行說明：CSS 註解，用來標示這段樣式的用途。 */
         .btn {
+        /* 第 331 行說明：CSS 選擇器開始，接下來會設定這個元素或 class 的樣式。 */
             display: inline-flex;
+            /* 第 332 行說明：設定元素的顯示模式。 */
             align-items: center;
+            /* 第 333 行說明：設定 CSS 屬性 align-items 的樣式。 */
             gap: 6px;
+            /* 第 334 行說明：設定 flex 或 grid 子元素之間的間距。 */
             background: linear-gradient(135deg, #F8C8DC 0%, #DCC7F2 100%);
+            /* 第 335 行說明：設定背景，可以是顏色或漸層。 */
             color: #4A3F3A;
+            /* 第 336 行說明：設定文字顏色。 */
             border: none;
+            /* 第 337 行說明：設定邊框。 */
             padding: 0.5rem 1.5rem;
+            /* 第 338 行說明：設定內距，也就是內容和邊框之間的距離。 */
             border-radius: 50px;
+            /* 第 339 行說明：設定圓角。 */
             font-size: 0.85rem;
+            /* 第 340 行說明：設定文字大小。 */
             font-weight: 500;
+            /* 第 341 行說明：設定文字粗細。 */
             cursor: pointer;
+            /* 第 342 行說明：設定滑鼠移到元素上的游標樣式。 */
             transition: all 0.3s ease;
+            /* 第 343 行說明：設定狀態變化時的動畫速度。 */
             box-shadow: 0 3px 10px rgba(248,200,220,0.2);
+            /* 第 344 行說明：設定陰影效果。 */
             font-family: inherit;
+            /* 第 345 行說明：設定文字字型。 */
             text-decoration: none;
+            /* 第 346 行說明：設定文字裝飾，例如底線。 */
         }
+        /* 第 347 行說明：CSS 樣式區塊結束。 */
         .btn:hover {
+        /* 第 348 行說明：CSS 選擇器開始，接下來會設定這個元素或 class 的樣式。 */
             transform: translateY(-3px);
+            /* 第 349 行說明：設定元素變形，例如移動、旋轉、縮放。 */
             box-shadow: 0 6px 20px rgba(248,200,220,0.35);
+            /* 第 350 行說明：設定陰影效果。 */
             filter: brightness(1.05);
+            /* 第 351 行說明：設定濾鏡效果，例如亮度。 */
         }
+        /* 第 352 行說明：CSS 樣式區塊結束。 */
         .btn:active {
+        /* 第 353 行說明：CSS 選擇器開始，接下來會設定這個元素或 class 的樣式。 */
             transform: translateY(-1px);
+            /* 第 354 行說明：設定元素變形，例如移動、旋轉、縮放。 */
         }
+        /* 第 355 行說明：CSS 樣式區塊結束。 */
         .btn-star::before { content: '✦ '; }
+        /* 第 356 行說明：設定 CSS 屬性 .btn-star 的樣式。 */
 
+/* 第 357 行說明：空行，用來讓程式碼排版更清楚。 */
         /* ── 卷軸美化 ── */
+        /* 第 358 行說明：CSS 註解，用來標示這段樣式的用途。 */
         ::-webkit-scrollbar { width: 8px; }
+        /* 第 359 行說明：設定 CSS 屬性  的樣式。 */
         ::-webkit-scrollbar-track { background: rgba(235,215,245,0.15); border-radius: 10px; }
+        /* 第 360 行說明：設定 CSS 屬性  的樣式。 */
         ::-webkit-scrollbar-thumb {
+        /* 第 361 行說明：CSS 選擇器開始，接下來會設定這個元素或 class 的樣式。 */
             background: linear-gradient(135deg, #F8C8DC, #DCC7F2);
+            /* 第 362 行說明：設定背景，可以是顏色或漸層。 */
             border-radius: 10px;
+            /* 第 363 行說明：設定圓角。 */
         }
+        /* 第 364 行說明：CSS 樣式區塊結束。 */
         ::-webkit-scrollbar-thumb:hover { background: #DCC7F2; }
+        /* 第 365 行說明：設定 CSS 屬性  的樣式。 */
 
+/* 第 366 行說明：空行，用來讓程式碼排版更清楚。 */
         /* ── 選取文字顏色 ── */
+        /* 第 367 行說明：CSS 註解，用來標示這段樣式的用途。 */
         ::selection {
+        /* 第 368 行說明：CSS 選擇器開始，接下來會設定這個元素或 class 的樣式。 */
             background: rgba(248,200,220,0.3);
+            /* 第 369 行說明：設定背景，可以是顏色或漸層。 */
             color: #4A3F3A;
+            /* 第 370 行說明：設定文字顏色。 */
         }
+        /* 第 371 行說明：CSS 樣式區塊結束。 */
 
+/* 第 372 行說明：空行，用來讓程式碼排版更清楚。 */
         /* ── 響應式 ── */
+        /* 第 373 行說明：CSS 註解，用來標示這段樣式的用途。 */
         @media (max-width: 640px) {
+        /* 第 374 行說明：建立媒體查詢，針對不同螢幕或列印狀態調整樣式。 */
             body { padding: 1rem; }
+            /* 第 375 行說明：設定 CSS 屬性 body { padding 的樣式。 */
             h1 { font-size: 1.6rem; }
+            /* 第 376 行說明：設定 CSS 屬性 h1 { font-size 的樣式。 */
             .topic { padding: 1.2rem 1.2rem; border-radius: 18px; }
+            /* 第 377 行說明：設定 CSS 屬性 .topic { padding 的樣式。 */
             .nav { padding: 0.8rem 1rem; }
+            /* 第 378 行說明：設定 CSS 屬性 .nav { padding 的樣式。 */
             header { padding: 1.8rem 1rem 1.5rem; }
+            /* 第 379 行說明：設定 CSS 屬性 header { padding 的樣式。 */
             .topic .tab { left: 16px; }
+            /* 第 380 行說明：設定 CSS 屬性 .topic .tab { left 的樣式。 */
         }
+        /* 第 381 行說明：CSS 樣式區塊結束。 */
 
+/* 第 382 行說明：空行，用來讓程式碼排版更清楚。 */
         /* ── 印出樣式 ── */
+        /* 第 383 行說明：CSS 註解，用來標示這段樣式的用途。 */
         @media print {
+        /* 第 384 行說明：建立媒體查詢，針對不同螢幕或列印狀態調整樣式。 */
             .bg-dots, .bg-deco, .sticky-note, body::before { display: none; }
+            /* 第 385 行說明：設定 CSS 屬性 .bg-dots, .bg-deco, .sticky-note, body 的樣式。 */
             .topic { break-inside: avoid; box-shadow: none; border: 1px solid #ddd; }
+            /* 第 386 行說明：設定 CSS 屬性 .topic { break-inside 的樣式。 */
             .nav { position: static; }
+            /* 第 387 行說明：設定 CSS 屬性 .nav { position 的樣式。 */
         }
+        /* 第 388 行說明：CSS 樣式區塊結束。 */
     </style>
+    /* 第 389 行說明：CSS 樣式區塊結束。 */
 </head>
+<!-- 第 390 行說明：head 區塊結束。 -->
 <body>
+<!-- 第 391 行說明：body 區塊開始，放使用者在網頁上看得到的內容。 -->
 
+<!-- 第 392 行說明：空行，用來讓程式碼排版更清楚。 -->
 <div class="bg-dots"></div>
+<!-- 第 393 行說明：建立淡圓點背景裝飾。 -->
 
+<!-- 第 394 行說明：空行，用來讓程式碼排版更清楚。 -->
 <div class="bg-deco">
+<!-- 第 395 行說明：建立背景漂浮裝飾符號的容器。 -->
     <span>✦</span>
+    <!-- 第 396 行說明：放入一個背景裝飾符號。 -->
     <span>♥</span>
+    <!-- 第 397 行說明：放入一個背景裝飾符號。 -->
     <span>✧</span>
+    <!-- 第 398 行說明：放入一個背景裝飾符號。 -->
     <span>✦</span>
+    <!-- 第 399 行說明：放入一個背景裝飾符號。 -->
     <span>♥</span>
+    <!-- 第 400 行說明：放入一個背景裝飾符號。 -->
     <span>✧</span>
+    <!-- 第 401 行說明：放入一個背景裝飾符號。 -->
     <span>✦</span>
+    <!-- 第 402 行說明：放入一個背景裝飾符號。 -->
     <span>♥</span>
+    <!-- 第 403 行說明：放入一個背景裝飾符號。 -->
     <span>✧</span>
+    <!-- 第 404 行說明：放入一個背景裝飾符號。 -->
     <span>✦</span>
+    <!-- 第 405 行說明：放入一個背景裝飾符號。 -->
 </div>
+<!-- 第 406 行說明：div 區塊結束。 -->
 
+<!-- 第 407 行說明：空行，用來讓程式碼排版更清楚。 -->
 <div class="sticky-note sn1"></div>
+<!-- 第 408 行說明：建立便利貼造型的背景裝飾。 -->
 <div class="sticky-note sn2"></div>
+<!-- 第 409 行說明：建立便利貼造型的背景裝飾。 -->
 
+<!-- 第 410 行說明：空行，用來讓程式碼排版更清楚。 -->
 <div class="container">
+<!-- 第 411 行說明：建立主要內容容器，控制整體寬度和置中。 -->
 
+<!-- 第 412 行說明：空行，用來讓程式碼排版更清楚。 -->
     <header>
+    <!-- 第 413 行說明：頁首區塊開始，放網頁標題與副標題。 -->
         <h1><span class="emoji">📘</span> JavaScript 綜合練習</h1>
+        <!-- 第 414 行說明：顯示網頁主標題。 -->
         <p class="subtitle">✎ 0320 作業 — if / for / while / function / JSON / array / object</p>
+        <!-- 第 415 行說明：顯示網頁副標題，說明這份筆記的主題。 -->
     </header>
+    <!-- 第 416 行說明：頁首區塊結束。 -->
 
+<!-- 第 417 行說明：空行，用來讓程式碼排版更清楚。 -->
     <div class="nav">
+    <!-- 第 418 行說明：建立目錄導覽列，讓使用者可以快速跳到各個章節。 -->
         <h3>目錄</h3>
+        <!-- 第 419 行說明：顯示目錄的小標題。 -->
         <a href="#t01">01 if — 及格判斷</a>
+        <!-- 第 420 行說明：建立目錄連結，點擊後會跳到指定章節。 -->
         <a href="#t02">02 if else if — 等第判斷</a>
+        <!-- 第 421 行說明：建立目錄連結，點擊後會跳到指定章節。 -->
         <a href="#t03">03 for — 印出 1~10</a>
+        <!-- 第 422 行說明：建立目錄連結，點擊後會跳到指定章節。 -->
         <a href="#t04">04 for — 1~100 總和</a>
+        <!-- 第 423 行說明：建立目錄連結，點擊後會跳到指定章節。 -->
         <a href="#t05">05 while — 印出 1~5</a>
+        <!-- 第 424 行說明：建立目錄連結，點擊後會跳到指定章節。 -->
         <a href="#t06">06 function — 加法</a>
+        <!-- 第 425 行說明：建立目錄連結，點擊後會跳到指定章節。 -->
         <a href="#t07">07 array — 成績陣列</a>
+        <!-- 第 426 行說明：建立目錄連結，點擊後會跳到指定章節。 -->
         <a href="#t08">08 for + array — 水果</a>
+        <!-- 第 427 行說明：建立目錄連結，點擊後會跳到指定章節。 -->
         <a href="#t09">09 object — 學生資料</a>
+        <!-- 第 428 行說明：建立目錄連結，點擊後會跳到指定章節。 -->
         <a href="#t10">10 JSON 綜合</a>
+        <!-- 第 429 行說明：建立目錄連結，點擊後會跳到指定章節。 -->
     </div>
+    <!-- 第 430 行說明：div 區塊結束。 -->
 
+<!-- 第 431 行說明：空行，用來讓程式碼排版更清楚。 -->
     <!-- 01 -->
+    <!-- 第 432 行說明：HTML 註解，用來標示下一段內容的區塊功能，不會顯示在網頁上。 -->
     <div class="topic" id="t01">
+    <!-- 第 433 行說明：建立一張筆記卡片，放一個 JavaScript 練習主題。 -->
         <span class="tab">if</span>
+        <!-- 第 434 行說明：顯示卡片左上角的分類標籤。 -->
         <span class="file">01test.js</span>
+        <!-- 第 435 行說明：顯示這個練習對應的檔案名稱。 -->
         <h2>if — 判斷成績是否及格</h2>
+        <!-- 第 436 行說明：顯示這張筆記卡片的主題標題。 -->
         <div class="keywords">
+        <!-- 第 437 行說明：建立關鍵字標籤區。 -->
             <span class="tag">if</span>
+            <!-- 第 438 行說明：顯示一個語法關鍵字標籤。 -->
             <span class="tag">條件判斷</span>
+            <!-- 第 439 行說明：顯示一個語法關鍵字標籤。 -->
         </div>
+        <!-- 第 440 行說明：div 區塊結束。 -->
         <p class="desc">使用 <code>if</code> 判斷分數是否 ≥ 60，輸出及格或不及格。</p>
+        <!-- 第 441 行說明：顯示這個練習的簡短說明。 -->
         <pre>let score = 75;
+        <!-- 第 442 行說明：建立程式碼區塊，保留換行和空白格式。 -->
 
+<!-- 第 443 行說明：空行，用來讓程式碼排版更清楚。 -->
 if (score >= 60) {
+<!-- 第 444 行說明：JavaScript if 條件判斷，條件成立時執行大括號內的程式。 -->
     console.log("及格");
+    <!-- 第 445 行說明：JavaScript 輸出資料到主控台。 -->
 } else {
+<!-- 第 446 行說明：JavaScript else，前面條件都不成立時執行這裡。 -->
     console.log("不及格");
+    <!-- 第 447 行說明：JavaScript 輸出資料到主控台。 -->
 }</pre>
+<!-- 第 448 行說明：這一行是網頁或程式內容的一部分，用來組成完整頁面。 -->
     </div>
+    <!-- 第 449 行說明：div 區塊結束。 -->
 
+<!-- 第 450 行說明：空行，用來讓程式碼排版更清楚。 -->
     <!-- 02 -->
+    <!-- 第 451 行說明：HTML 註解，用來標示下一段內容的區塊功能，不會顯示在網頁上。 -->
     <div class="topic" id="t02">
+    <!-- 第 452 行說明：建立一張筆記卡片，放一個 JavaScript 練習主題。 -->
         <span class="tab">if else</span>
+        <!-- 第 453 行說明：顯示卡片左上角的分類標籤。 -->
         <span class="file">02test.js</span>
+        <!-- 第 454 行說明：顯示這個練習對應的檔案名稱。 -->
         <h2>if else if — 判斷成績等第</h2>
+        <!-- 第 455 行說明：顯示這張筆記卡片的主題標題。 -->
         <div class="keywords">
+        <!-- 第 456 行說明：建立關鍵字標籤區。 -->
             <span class="tag">if else if</span>
+            <!-- 第 457 行說明：顯示一個語法關鍵字標籤。 -->
             <span class="tag">多條件判斷</span>
+            <!-- 第 458 行說明：顯示一個語法關鍵字標籤。 -->
         </div>
+        <!-- 第 459 行說明：div 區塊結束。 -->
         <p class="desc">依照分數範圍輸出 A / B / C / D / F 等第。</p>
+        <!-- 第 460 行說明：顯示這個練習的簡短說明。 -->
         <pre>let score = 85;
+        <!-- 第 461 行說明：建立程式碼區塊，保留換行和空白格式。 -->
 
+<!-- 第 462 行說明：空行，用來讓程式碼排版更清楚。 -->
 if (score >= 90) {
+<!-- 第 463 行說明：JavaScript if 條件判斷，條件成立時執行大括號內的程式。 -->
     console.log("A");
+    <!-- 第 464 行說明：JavaScript 輸出資料到主控台。 -->
 } else if (score >= 80) {
+<!-- 第 465 行說明：JavaScript else if，前面條件不成立時再檢查這個條件。 -->
     console.log("B");
+    <!-- 第 466 行說明：JavaScript 輸出資料到主控台。 -->
 } else if (score >= 70) {
+<!-- 第 467 行說明：JavaScript else if，前面條件不成立時再檢查這個條件。 -->
     console.log("C");
+    <!-- 第 468 行說明：JavaScript 輸出資料到主控台。 -->
 } else if (score >= 60) {
+<!-- 第 469 行說明：JavaScript else if，前面條件不成立時再檢查這個條件。 -->
     console.log("D");
+    <!-- 第 470 行說明：JavaScript 輸出資料到主控台。 -->
 } else {
+<!-- 第 471 行說明：JavaScript else，前面條件都不成立時執行這裡。 -->
     console.log("F");
+    <!-- 第 472 行說明：JavaScript 輸出資料到主控台。 -->
 }</pre>
+<!-- 第 473 行說明：這一行是網頁或程式內容的一部分，用來組成完整頁面。 -->
     </div>
+    <!-- 第 474 行說明：div 區塊結束。 -->
 
+<!-- 第 475 行說明：空行，用來讓程式碼排版更清楚。 -->
     <!-- 03 -->
+    <!-- 第 476 行說明：HTML 註解，用來標示下一段內容的區塊功能，不會顯示在網頁上。 -->
     <div class="topic" id="t03">
+    <!-- 第 477 行說明：建立一張筆記卡片，放一個 JavaScript 練習主題。 -->
         <span class="tab">for</span>
+        <!-- 第 478 行說明：顯示卡片左上角的分類標籤。 -->
         <span class="file">03test.js</span>
+        <!-- 第 479 行說明：顯示這個練習對應的檔案名稱。 -->
         <h2>for — 印出 1 到 10</h2>
+        <!-- 第 480 行說明：顯示這張筆記卡片的主題標題。 -->
         <div class="keywords">
+        <!-- 第 481 行說明：建立關鍵字標籤區。 -->
             <span class="tag">for</span>
+            <!-- 第 482 行說明：顯示一個語法關鍵字標籤。 -->
             <span class="tag">迴圈</span>
+            <!-- 第 483 行說明：顯示一個語法關鍵字標籤。 -->
         </div>
+        <!-- 第 484 行說明：div 區塊結束。 -->
         <p class="desc"><code>for</code> 迴圈從 1 跑到 10，依序輸出數字。</p>
+        <!-- 第 485 行說明：顯示這個練習的簡短說明。 -->
         <pre>for (let i = 1; i <= 10; i++) {
+        <!-- 第 486 行說明：建立程式碼區塊，保留換行和空白格式。 -->
     console.log(i);
+    <!-- 第 487 行說明：JavaScript 輸出資料到主控台。 -->
 }</pre>
+<!-- 第 488 行說明：這一行是網頁或程式內容的一部分，用來組成完整頁面。 -->
     </div>
+    <!-- 第 489 行說明：div 區塊結束。 -->
 
+<!-- 第 490 行說明：空行，用來讓程式碼排版更清楚。 -->
     <!-- 04 -->
+    <!-- 第 491 行說明：HTML 註解，用來標示下一段內容的區塊功能，不會顯示在網頁上。 -->
     <div class="topic" id="t04">
+    <!-- 第 492 行說明：建立一張筆記卡片，放一個 JavaScript 練習主題。 -->
         <span class="tab">累加</span>
+        <!-- 第 493 行說明：顯示卡片左上角的分類標籤。 -->
         <span class="file">04test.js</span>
+        <!-- 第 494 行說明：顯示這個練習對應的檔案名稱。 -->
         <h2>for — 計算 1 到 100 的總和</h2>
+        <!-- 第 495 行說明：顯示這張筆記卡片的主題標題。 -->
         <div class="keywords">
+        <!-- 第 496 行說明：建立關鍵字標籤區。 -->
             <span class="tag">for</span>
+            <!-- 第 497 行說明：顯示一個語法關鍵字標籤。 -->
             <span class="tag">累加</span>
+            <!-- 第 498 行說明：顯示一個語法關鍵字標籤。 -->
         </div>
+        <!-- 第 499 行說明：div 區塊結束。 -->
         <p class="desc">用 <code>for</code> 迴圈累加 1~100，最後輸出總和。</p>
+        <!-- 第 500 行說明：顯示這個練習的簡短說明。 -->
         <pre>let sum = 0;
+        <!-- 第 501 行說明：建立程式碼區塊，保留換行和空白格式。 -->
 
+<!-- 第 502 行說明：空行，用來讓程式碼排版更清楚。 -->
 for (let i = 1; i <= 100; i++) {
+<!-- 第 503 行說明：JavaScript for 迴圈，用來重複執行指定次數。 -->
     sum = sum + i;
+    <!-- 第 504 行說明：這一行是網頁或程式內容的一部分，用來組成完整頁面。 -->
 }
+<!-- 第 505 行說明：程式區塊或資料結構結束。 -->
 
+<!-- 第 506 行說明：空行，用來讓程式碼排版更清楚。 -->
 console.log("總和是：" + sum);</pre>
+<!-- 第 507 行說明：JavaScript 輸出資料到主控台。 -->
     </div>
+    <!-- 第 508 行說明：div 區塊結束。 -->
 
+<!-- 第 509 行說明：空行，用來讓程式碼排版更清楚。 -->
     <!-- 05 -->
+    <!-- 第 510 行說明：HTML 註解，用來標示下一段內容的區塊功能，不會顯示在網頁上。 -->
     <div class="topic" id="t05">
+    <!-- 第 511 行說明：建立一張筆記卡片，放一個 JavaScript 練習主題。 -->
         <span class="tab">while</span>
+        <!-- 第 512 行說明：顯示卡片左上角的分類標籤。 -->
         <span class="file">05test.js</span>
+        <!-- 第 513 行說明：顯示這個練習對應的檔案名稱。 -->
         <h2>while — 印出 1 到 5</h2>
+        <!-- 第 514 行說明：顯示這張筆記卡片的主題標題。 -->
         <div class="keywords">
+        <!-- 第 515 行說明：建立關鍵字標籤區。 -->
             <span class="tag">while</span>
+            <!-- 第 516 行說明：顯示一個語法關鍵字標籤。 -->
             <span class="tag">迴圈</span>
+            <!-- 第 517 行說明：顯示一個語法關鍵字標籤。 -->
         </div>
+        <!-- 第 518 行說明：div 區塊結束。 -->
         <p class="desc">用 <code>while</code> 在條件成立時重複執行程式碼。</p>
+        <!-- 第 519 行說明：顯示這個練習的簡短說明。 -->
         <pre>let i = 1;
+        <!-- 第 520 行說明：建立程式碼區塊，保留換行和空白格式。 -->
 while (i <= 5) {
+<!-- 第 521 行說明：JavaScript while 迴圈，只要條件成立就持續執行。 -->
     console.log(i);
+    <!-- 第 522 行說明：JavaScript 輸出資料到主控台。 -->
     i++;
+    <!-- 第 523 行說明：這一行是網頁或程式內容的一部分，用來組成完整頁面。 -->
 }</pre>
+<!-- 第 524 行說明：這一行是網頁或程式內容的一部分，用來組成完整頁面。 -->
     </div>
+    <!-- 第 525 行說明：div 區塊結束。 -->
 
+<!-- 第 526 行說明：空行，用來讓程式碼排版更清楚。 -->
     <!-- 06 -->
+    <!-- 第 527 行說明：HTML 註解，用來標示下一段內容的區塊功能，不會顯示在網頁上。 -->
     <div class="topic" id="t06">
+    <!-- 第 528 行說明：建立一張筆記卡片，放一個 JavaScript 練習主題。 -->
         <span class="tab">function</span>
+        <!-- 第 529 行說明：顯示卡片左上角的分類標籤。 -->
         <span class="file">06test.js</span>
+        <!-- 第 530 行說明：顯示這個練習對應的檔案名稱。 -->
         <h2>function — 加法函式</h2>
+        <!-- 第 531 行說明：顯示這張筆記卡片的主題標題。 -->
         <div class="keywords">
+        <!-- 第 532 行說明：建立關鍵字標籤區。 -->
             <span class="tag">function</span>
+            <!-- 第 533 行說明：顯示一個語法關鍵字標籤。 -->
             <span class="tag">函式</span>
+            <!-- 第 534 行說明：顯示一個語法關鍵字標籤。 -->
         </div>
+        <!-- 第 535 行說明：div 區塊結束。 -->
         <p class="desc">建立一個可重複使用的 <code>add</code> 函式，計算兩數相加。</p>
+        <!-- 第 536 行說明：顯示這個練習的簡短說明。 -->
         <pre>function add(a, b) {
+        <!-- 第 537 行說明：建立程式碼區塊，保留換行和空白格式。 -->
     return a + b;
+    <!-- 第 538 行說明：JavaScript 回傳函式計算後的結果。 -->
 }
+<!-- 第 539 行說明：程式區塊或資料結構結束。 -->
 
+<!-- 第 540 行說明：空行，用來讓程式碼排版更清楚。 -->
 let result = add(10, 20);
+<!-- 第 541 行說明：JavaScript 宣告變數，用來存放資料。 -->
 console.log("答案是：" + result);</pre>
+<!-- 第 542 行說明：JavaScript 輸出資料到主控台。 -->
     </div>
+    <!-- 第 543 行說明：div 區塊結束。 -->
 
+<!-- 第 544 行說明：空行，用來讓程式碼排版更清楚。 -->
     <!-- 07 -->
+    <!-- 第 545 行說明：HTML 註解，用來標示下一段內容的區塊功能，不會顯示在網頁上。 -->
     <div class="topic" id="t07">
+    <!-- 第 546 行說明：建立一張筆記卡片，放一個 JavaScript 練習主題。 -->
         <span class="tab">array</span>
+        <!-- 第 547 行說明：顯示卡片左上角的分類標籤。 -->
         <span class="file">07test.js</span>
+        <!-- 第 548 行說明：顯示這個練習對應的檔案名稱。 -->
         <h2>array — 儲存多筆成績</h2>
+        <!-- 第 549 行說明：顯示這張筆記卡片的主題標題。 -->
         <div class="keywords">
+        <!-- 第 550 行說明：建立關鍵字標籤區。 -->
             <span class="tag">array</span>
+            <!-- 第 551 行說明：顯示一個語法關鍵字標籤。 -->
             <span class="tag">索引</span>
+            <!-- 第 552 行說明：顯示一個語法關鍵字標籤。 -->
         </div>
+        <!-- 第 553 行說明：div 區塊結束。 -->
         <p class="desc">用陣列儲存多個成績，並透過索引取值。</p>
+        <!-- 第 554 行說明：顯示這個練習的簡短說明。 -->
         <pre>let scores = [80, 90, 70, 60, 100];
+        <!-- 第 555 行說明：建立程式碼區塊，保留換行和空白格式。 -->
 
+<!-- 第 556 行說明：空行，用來讓程式碼排版更清楚。 -->
 console.log("第一個成績：" + scores[0]);
+<!-- 第 557 行說明：JavaScript 輸出資料到主控台。 -->
 console.log("第二個成績：" + scores[1]);
+<!-- 第 558 行說明：JavaScript 輸出資料到主控台。 -->
 console.log("陣列長度：" + scores.length);</pre>
+<!-- 第 559 行說明：JavaScript 輸出資料到主控台。 -->
     </div>
+    <!-- 第 560 行說明：div 區塊結束。 -->
 
+<!-- 第 561 行說明：空行，用來讓程式碼排版更清楚。 -->
     <!-- 08 -->
+    <!-- 第 562 行說明：HTML 註解，用來標示下一段內容的區塊功能，不會顯示在網頁上。 -->
     <div class="topic" id="t08">
+    <!-- 第 563 行說明：建立一張筆記卡片，放一個 JavaScript 練習主題。 -->
         <span class="tab">for+array</span>
+        <!-- 第 564 行說明：顯示卡片左上角的分類標籤。 -->
         <span class="file">08test.js</span>
+        <!-- 第 565 行說明：顯示這個練習對應的檔案名稱。 -->
         <h2>for + array — 遍歷水果陣列</h2>
+        <!-- 第 566 行說明：顯示這張筆記卡片的主題標題。 -->
         <div class="keywords">
+        <!-- 第 567 行說明：建立關鍵字標籤區。 -->
             <span class="tag">for</span>
+            <!-- 第 568 行說明：顯示一個語法關鍵字標籤。 -->
             <span class="tag">array</span>
+            <!-- 第 569 行說明：顯示一個語法關鍵字標籤。 -->
         </div>
+        <!-- 第 570 行說明：div 區塊結束。 -->
         <p class="desc">用 <code>for</code> 迴圈逐一讀取陣列中的水果名稱。</p>
+        <!-- 第 571 行說明：顯示這個練習的簡短說明。 -->
         <pre>let fruits = ["蘋果", "香蕉", "芭樂", "西瓜"];
+        <!-- 第 572 行說明：建立程式碼區塊，保留換行和空白格式。 -->
 
+<!-- 第 573 行說明：空行，用來讓程式碼排版更清楚。 -->
 for (let i = 0; i < fruits.length; i++) {
+<!-- 第 574 行說明：JavaScript for 迴圈，用來重複執行指定次數。 -->
     console.log("水果：" + fruits[i]);
+    <!-- 第 575 行說明：JavaScript 輸出資料到主控台。 -->
 }</pre>
+<!-- 第 576 行說明：這一行是網頁或程式內容的一部分，用來組成完整頁面。 -->
     </div>
+    <!-- 第 577 行說明：div 區塊結束。 -->
 
+<!-- 第 578 行說明：空行，用來讓程式碼排版更清楚。 -->
     <!-- 09 -->
+    <!-- 第 579 行說明：HTML 註解，用來標示下一段內容的區塊功能，不會顯示在網頁上。 -->
     <div class="topic" id="t09">
+    <!-- 第 580 行說明：建立一張筆記卡片，放一個 JavaScript 練習主題。 -->
         <span class="tab">object</span>
+        <!-- 第 581 行說明：顯示卡片左上角的分類標籤。 -->
         <span class="file">09test.js</span>
+        <!-- 第 582 行說明：顯示這個練習對應的檔案名稱。 -->
         <h2>object — 學生物件</h2>
+        <!-- 第 583 行說明：顯示這張筆記卡片的主題標題。 -->
         <div class="keywords">
+        <!-- 第 584 行說明：建立關鍵字標籤區。 -->
             <span class="tag">object</span>
+            <!-- 第 585 行說明：顯示一個語法關鍵字標籤。 -->
             <span class="tag">屬性</span>
+            <!-- 第 586 行說明：顯示一個語法關鍵字標籤。 -->
         </div>
+        <!-- 第 587 行說明：div 區塊結束。 -->
         <p class="desc">用物件來表示一位學生的完整資料（姓名、年齡、科系）。</p>
+        <!-- 第 588 行說明：顯示這個練習的簡短說明。 -->
         <pre>let student = {
+        <!-- 第 589 行說明：建立程式碼區塊，保留換行和空白格式。 -->
     name: "小美",
+    <!-- 第 590 行說明：這一行是網頁或程式內容的一部分，用來組成完整頁面。 -->
     age: 20,
+    <!-- 第 591 行說明：這一行是網頁或程式內容的一部分，用來組成完整頁面。 -->
     department: "資工系"
+    <!-- 第 592 行說明：這一行是網頁或程式內容的一部分，用來組成完整頁面。 -->
 };
+<!-- 第 593 行說明：程式區塊或資料結構結束。 -->
 
+<!-- 第 594 行說明：空行，用來讓程式碼排版更清楚。 -->
 console.log("姓名：" + student.name);
+<!-- 第 595 行說明：JavaScript 輸出資料到主控台。 -->
 console.log("年齡：" + student.age);
+<!-- 第 596 行說明：JavaScript 輸出資料到主控台。 -->
 console.log("科系：" + student.department);</pre>
+<!-- 第 597 行說明：JavaScript 輸出資料到主控台。 -->
     </div>
+    <!-- 第 598 行說明：div 區塊結束。 -->
 
+<!-- 第 599 行說明：空行，用來讓程式碼排版更清楚。 -->
     <!-- 10 -->
+    <!-- 第 600 行說明：HTML 註解，用來標示下一段內容的區塊功能，不會顯示在網頁上。 -->
     <div class="topic" id="t10">
+    <!-- 第 601 行說明：建立一張筆記卡片，放一個 JavaScript 練習主題。 -->
         <span class="tab">JSON</span>
+        <!-- 第 602 行說明：顯示卡片左上角的分類標籤。 -->
         <span class="file">10test.js</span>
+        <!-- 第 603 行說明：顯示這個練習對應的檔案名稱。 -->
         <h2>JSON + object + array 綜合練習</h2>
+        <!-- 第 604 行說明：顯示這張筆記卡片的主題標題。 -->
         <div class="keywords">
+        <!-- 第 605 行說明：建立關鍵字標籤區。 -->
             <span class="tag">JSON</span>
+            <!-- 第 606 行說明：顯示一個語法關鍵字標籤。 -->
             <span class="tag">JSON.parse</span>
+            <!-- 第 607 行說明：顯示一個語法關鍵字標籤。 -->
             <span class="tag">for</span>
+            <!-- 第 608 行說明：顯示一個語法關鍵字標籤。 -->
             <span class="tag">if</span>
+            <!-- 第 609 行說明：顯示一個語法關鍵字標籤。 -->
         </div>
+        <!-- 第 610 行說明：div 區塊結束。 -->
         <p class="desc">用 <code>JSON.parse</code> 解析 JSON 字串，再用 <code>for</code> + <code>if</code> 判斷每位學生是否及格。</p>
+        <!-- 第 611 行說明：顯示這個練習的簡短說明。 -->
         <pre>let jsonText = `
+        <!-- 第 612 行說明：建立程式碼區塊，保留換行和空白格式。 -->
 [
+<!-- 第 613 行說明：JSON 陣列的開始或結束。 -->
     {"name":"小明","score":85},
+    <!-- 第 614 行說明：JSON 物件資料，儲存一位學生的姓名和分數。 -->
     {"name":"小華","score":58},
+    <!-- 第 615 行說明：JSON 物件資料，儲存一位學生的姓名和分數。 -->
     {"name":"小美","score":92}
+    <!-- 第 616 行說明：JSON 物件資料，儲存一位學生的姓名和分數。 -->
 ]
+<!-- 第 617 行說明：JSON 陣列的開始或結束。 -->
 `;
+<!-- 第 618 行說明：程式區塊或資料結構結束。 -->
 
+<!-- 第 619 行說明：空行，用來讓程式碼排版更清楚。 -->
 let students = JSON.parse(jsonText);
+<!-- 第 620 行說明：JavaScript 宣告變數，用來存放資料。 -->
 
+<!-- 第 621 行說明：空行，用來讓程式碼排版更清楚。 -->
 for (let i = 0; i < students.length; i++) {
+<!-- 第 622 行說明：JavaScript for 迴圈，用來重複執行指定次數。 -->
     if (students[i].score >= 60) {
+    <!-- 第 623 行說明：JavaScript if 條件判斷，條件成立時執行大括號內的程式。 -->
         console.log(students[i].name + " 及格");
+        <!-- 第 624 行說明：JavaScript 輸出資料到主控台。 -->
     } else {
+    <!-- 第 625 行說明：JavaScript else，前面條件都不成立時執行這裡。 -->
         console.log(students[i].name + " 不及格");
+        <!-- 第 626 行說明：JavaScript 輸出資料到主控台。 -->
     }
+    <!-- 第 627 行說明：程式區塊或資料結構結束。 -->
 }</pre>
+<!-- 第 628 行說明：這一行是網頁或程式內容的一部分，用來組成完整頁面。 -->
     </div>
+    <!-- 第 629 行說明：div 區塊結束。 -->
 
+<!-- 第 630 行說明：空行，用來讓程式碼排版更清楚。 -->
     <hr>
+    <!-- 第 631 行說明：建立分隔線，把上方內容和下方整合區隔開。 -->
 
+<!-- 第 632 行說明：空行，用來讓程式碼排版更清楚。 -->
     <div class="topic" id="t-integrate">
+    <!-- 第 633 行說明：建立一張筆記卡片，放一個 JavaScript 練習主題。 -->
         <span class="tab">整合</span>
+        <!-- 第 634 行說明：顯示卡片左上角的分類標籤。 -->
         <h2>📄 完整程式整合</h2>
+        <!-- 第 635 行說明：顯示這張筆記卡片的主題標題。 -->
         <p class="desc"><code>0320 04.md</code> 將以上 10 個練習整合成一份完整的 JavaScript 程式，涵蓋所有語法。</p>
+        <!-- 第 636 行說明：顯示這個練習的簡短說明。 -->
         <pre>// 01: if — 判斷是否及格
+        <!-- 第 637 行說明：建立程式碼區塊，保留換行和空白格式。 -->
 // 02: if else if — 等第判斷
+<!-- 第 638 行說明：JavaScript 註解，用來說明這段整合程式代表的練習主題。 -->
 // 03: for — 印出 1~10
+<!-- 第 639 行說明：JavaScript 註解，用來說明這段整合程式代表的練習主題。 -->
 // 04: for — 1~100 總和
+<!-- 第 640 行說明：JavaScript 註解，用來說明這段整合程式代表的練習主題。 -->
 // 05: while — 印出 1~5
+<!-- 第 641 行說明：JavaScript 註解，用來說明這段整合程式代表的練習主題。 -->
 // 06: function — 加法
+<!-- 第 642 行說明：JavaScript 註解，用來說明這段整合程式代表的練習主題。 -->
 // 07: array — 成績陣列
+<!-- 第 643 行說明：JavaScript 註解，用來說明這段整合程式代表的練習主題。 -->
 // 08: for + array — 遍歷水果
+<!-- 第 644 行說明：JavaScript 註解，用來說明這段整合程式代表的練習主題。 -->
 // 09: object — 學生物件
+<!-- 第 645 行說明：JavaScript 註解，用來說明這段整合程式代表的練習主題。 -->
 // 10: JSON.parse — JSON 資料處理</pre>
+<!-- 第 646 行說明：JavaScript 註解，用來說明這段整合程式代表的練習主題。 -->
     </div>
+    <!-- 第 647 行說明：div 區塊結束。 -->
 
+<!-- 第 648 行說明：空行，用來讓程式碼排版更清楚。 -->
     <div style="text-align: center; margin: 2.5rem 0 1rem;">
+    <!-- 第 649 行說明：建立置中的按鈕區塊。 -->
         <a href="#" class="btn btn-star" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">回到頂部</a>
+        <!-- 第 650 行說明：建立回到頂部按鈕，點擊後用 JavaScript 平滑捲回網頁最上方。 -->
     </div>
+    <!-- 第 651 行說明：div 區塊結束。 -->
 
+<!-- 第 652 行說明：空行，用來讓程式碼排版更清楚。 -->
     <footer style="text-align:center;font-size:0.75rem;color:#B8A8B5;padding:1rem 0 0.5rem;letter-spacing:1px;">
+    <!-- 第 653 行說明：建立頁尾區塊，顯示網頁風格說明。 -->
         ✦ 馬卡龍奶油風 · JavaScript 筆記 ✦
+        <!-- 第 654 行說明：頁尾顯示裝飾文字。 -->
     </footer>
+    <!-- 第 655 行說明：這一行是網頁或程式內容的一部分，用來組成完整頁面。 -->
 
+<!-- 第 656 行說明：空行，用來讓程式碼排版更清楚。 -->
 </div>
+<!-- 第 657 行說明：div 區塊結束。 -->
 </body>
+<!-- 第 658 行說明：body 區塊結束。 -->
 </html>
+<!-- 第 659 行說明：HTML 文件結束。 -->

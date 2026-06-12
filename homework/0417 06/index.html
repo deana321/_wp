@@ -1,583 +1,583 @@
-<!DOCTYPE html>
-<html lang="zh-TW">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>0417 06 筆記 · 馬卡龍奶油風</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    body {
-      font-family: 'Segoe UI', 'Noto Sans TC', system-ui, -apple-system, sans-serif;
-      background-color: #FFF8EF;
-      background-image:
-        radial-gradient(circle at 20% 40%, rgba(248,200,220,.12) 0, transparent 50%),
-        radial-gradient(circle at 80% 60%, rgba(220,199,242,.12) 0, transparent 50%),
-        radial-gradient(circle at 50% 80%, rgba(184,230,209,.10) 0, transparent 50%),
-        repeating-radial-gradient(circle at 10% 10%, transparent 0, transparent 2px, rgba(220,199,242,.08) 2px, rgba(220,199,242,.08) 3px),
-        repeating-radial-gradient(circle at 90% 90%, transparent 0, transparent 2px, rgba(248,200,220,.08) 2px, rgba(248,200,220,.08) 3px);
-      min-height: 100vh;
-      padding: 2rem 1rem;
-      color: #5A5552;
-      position: relative;
-      overflow-x: hidden;
-    }
-
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
-      background-image:
-        url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 15 Q30 5 40 15 Q50 25 60 15 Q70 5 80 15' stroke='%23EBD7F5' stroke-width='.6' fill='none' opacity='.3'/%3E%3C/svg%3E");
-      background-repeat: repeat;
-      background-size: 120px 100px;
-    }
-
-    body::after {
-      content: '';
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
-      background-image:
-        url("data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Ctext x='8' y='30' font-size='14' opacity='.08' fill='%23DCC7F2'%3E%E2%9C%A6%3C/text%3E%3Ctext x='150' y='80' font-size='10' opacity='.06' fill='%23F8C8DC'%3E%E2%9D%A4%3C/text%3E%3Ctext x='40' y='130' font-size='12' opacity='.07' fill='%23B8E6D1'%3E%E2%98%81%3C/text%3E%3Ctext x='160' y='170' font-size='9' opacity='.06' fill='%23FFE9A7'%3E%E2%9C%A6%3C/text%3E%3Ctext x='90' y='50' font-size='8' opacity='.06' fill='%23DCC7F2'%3E%E2%9D%A4%3C/text%3E%3Ctext x='130' y='150' font-size='11' opacity='.05' fill='%23F8C8DC'%3E%E2%98%81%3C/text%3E%3Ctext x='10' y='180' font-size='7' opacity='.07' fill='%23B8E6D1'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E");
-      background-repeat: repeat;
-      background-size: 300px 300px;
-    }
-
-    .container {
-      max-width: 880px;
-      margin: 0 auto;
-      position: relative;
-      z-index: 1;
-    }
-
-    /* ===== Header ===== */
-    header {
-      text-align: center;
-      margin-bottom: 2.8rem;
-      position: relative;
-    }
-
-    header::after {
-      content: '✧';
-      display: block;
-      font-size: 1.4rem;
-      color: #DCC7F2;
-      margin-top: 0.5rem;
-      opacity: .5;
-    }
-
-    header h1 {
-      font-size: 2.2rem;
-      font-weight: 700;
-      color: #4A3F3A;
-      letter-spacing: .04em;
-      position: relative;
-      display: inline-block;
-    }
-
-    header h1::before {
-      content: '✦';
-      position: absolute;
-      left: -1.6rem;
-      top: .2rem;
-      font-size: 1.2rem;
-      color: #FFE9A7;
-      opacity: .7;
-    }
-
-    header h1::after {
-      content: '✦';
-      position: absolute;
-      right: -1.6rem;
-      top: .2rem;
-      font-size: 1.2rem;
-      color: #B8E6D1;
-      opacity: .7;
-    }
-
-    header p {
-      color: #A0958F;
-      margin-top: 0.4rem;
-      font-size: 0.95rem;
-      letter-spacing: .02em;
-    }
-
-    /* ===== Card ===== */
-    .card {
-      background: rgba(255,255,255,.8);
-      backdrop-filter: blur(2px);
-      border-radius: 22px;
-      padding: 1.6rem 1.8rem 1.4rem;
-      margin-bottom: 1.8rem;
-      border: 1.5px solid #EBD7F5;
-      box-shadow: 0 4px 20px rgba(220,199,242,.18), 0 2px 6px rgba(74,63,58,.04);
-      transition: transform .28s cubic-bezier(.34,1.56,.64,1), box-shadow .28s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .card::before {
-      content: '';
-      position: absolute;
-      top: -1px; right: 28px;
-      width: 50px; height: 22px;
-      background: linear-gradient(145deg, #F8C8DC, #DCC7F2);
-      border-radius: 0 0 12px 12px;
-      opacity: .35;
-      transition: opacity .25s;
-      pointer-events: none;
-    }
-
-    .card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 12px 36px rgba(220,199,242,.28), 0 4px 12px rgba(74,63,58,.06);
-      border-color: #DCC7F2;
-    }
-
-    .card:hover::before {
-      opacity: .55;
-    }
-
-    .card-header {
-      display: flex;
-      align-items: center;
-      gap: 0.7rem;
-      margin-bottom: 1rem;
-    }
-
-    .num {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 34px; height: 34px;
-      background: linear-gradient(145deg, #F8C8DC, #DCC7F2);
-      color: #4A3F3A;
-      border-radius: 50%;
-      font-weight: 700;
-      font-size: 0.85rem;
-      flex-shrink: 0;
-      box-shadow: 0 2px 8px rgba(248,200,220,.4);
-      transition: transform .25s ease;
-    }
-
-    .card:hover .num {
-      transform: scale(1.08);
-    }
-
-    .card-title {
-      font-size: 1.05rem;
-      font-weight: 600;
-      line-height: 1.5;
-      color: #4A3F3A;
-    }
-
-    .card-title code {
-      background: rgba(248,200,220,.2);
-      padding: .05em .4em;
-      border-radius: 6px;
-      font-family: 'JetBrains Mono', 'Cascadia Code', 'Consolas', monospace;
-      font-size: .88em;
-      color: #7A5F7A;
-    }
-
-    .card-title .tag {
-      display: inline-block;
-      font-size: 0.65rem;
-      font-weight: 600;
-      padding: 0.15em 0.7em;
-      border-radius: 20px;
-      margin-left: 0.4rem;
-      vertical-align: middle;
-      letter-spacing: .02em;
-    }
-
-    .tag-cb   { background: #B8E6D1; color: #3D6B5A; }
-    .tag-iife { background: #FFE9A7; color: #7A6B3A; }
-    .tag-arr  { background: #DCC7F2; color: #5A4A7A; }
-    .tag-fn   { background: #F8C8DC; color: #7A4A5A; }
-    .tag-async { background: #FFE9A7; color: #7A6B3A; }
-
-    /* ===== Code block ===== */
-    pre {
-      background: rgba(74,63,58,.04);
-      color: #5A5552;
-      border-radius: 14px;
-      padding: 1rem 1.2rem;
-      overflow-x: auto;
-      font-size: 0.84rem;
-      line-height: 1.65;
-      font-family: 'JetBrains Mono', 'Cascadia Code', 'Consolas', monospace;
-      margin-top: 0.3rem;
-      border: 1px solid rgba(235,215,245,.4);
-      position: relative;
-    }
-
-    pre::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0;
-      width: 4px; height: 100%;
-      background: linear-gradient(180deg, #F8C8DC, #DCC7F2, #B8E6D1);
-      border-radius: 14px 0 0 14px;
-      opacity: .3;
-    }
-
-    .comment { color: #A8998F; font-style: italic; }
-    .kw      { color: #8B6F8B; font-weight: 600; }
-    .fn      { color: #7A8FA8; }
-    .str     { color: #7A9F7A; }
-    .num-lit { color: #C88F6F; }
-    .op      { color: #7A9FBF; }
-    .arrow   { color: #7A9FBF; }
-
-    /* ===== Note / highlight box ===== */
-    .note {
-      background: rgba(255,255,255,.55);
-      border: 1px solid rgba(235,215,245,.5);
-      border-radius: 12px;
-      padding: 0.75rem 1rem;
-      margin-top: 0.9rem;
-      font-size: 0.9rem;
-      line-height: 1.6;
-      color: #5A5552;
-      position: relative;
-    }
-
-    .note::before {
-      content: '📌';
-      position: absolute;
-      top: -8px; left: 14px;
-      font-size: .85rem;
-      opacity: .7;
-    }
-
-    .note strong {
-      color: #7A5F7A;
-    }
-
-    .note code {
-      background: rgba(248,200,220,.18);
-      padding: .05em .35em;
-      border-radius: 5px;
-      font-family: 'JetBrains Mono', 'Cascadia Code', 'Consolas', monospace;
-      font-size: .88em;
-      color: #7A5F7A;
-    }
-
-    .console-out {
-      background: rgba(255,233,167,.18);
-      border-left: 4px solid #FFE9A7;
-      padding: 0.5rem 1rem;
-      border-radius: 0 10px 10px 0;
-      margin-top: 0.6rem;
-      font-family: 'Consolas', monospace;
-      font-size: 0.85rem;
-      color: #5A5552;
-    }
-    .console-out strong { color: #4A3F3A; }
-
-    /* ===== Post-it corner accent ===== */
-    .card:nth-child(odd)::after {
-      content: '';
-      position: absolute;
-      top: -1px; left: -1px;
-      width: 0; height: 0;
-      border-style: solid;
-      border-width: 0 28px 28px 0;
-      border-color: transparent rgba(248,200,220,.18) transparent transparent;
-      border-radius: 22px 0 0 0;
-      pointer-events: none;
-    }
-
-    .card:nth-child(even)::after {
-      content: '';
-      position: absolute;
-      top: -1px; right: -1px;
-      width: 0; height: 0;
-      border-style: solid;
-      border-width: 28px 28px 0 0;
-      border-color: rgba(220,199,242,.18) transparent transparent transparent;
-      border-radius: 0 22px 0 0;
-      pointer-events: none;
-    }
-
-    /* ===== Footer ===== */
-    footer {
-      text-align: center;
-      margin-top: 2.8rem;
-      color: #B5AAA5;
-      font-size: 0.82rem;
-      padding-top: 1.5rem;
-      border-top: 1px dashed rgba(220,199,242,.35);
-      position: relative;
-    }
-
-    footer::before {
-      content: '✽ ✾ ✿';
-      display: block;
-      font-size: .9rem;
-      color: #DCC7F2;
-      margin-bottom: .4rem;
-      letter-spacing: .3em;
-      opacity: .45;
-    }
-
-    /* ===== Responsive ===== */
-    @media (max-width: 600px) {
-      body { padding: 1.2rem .8rem; }
-      header h1 { font-size: 1.5rem; }
-      header h1::before,
-      header h1::after { display: none; }
-      .card { padding: 1.2rem 1rem; border-radius: 18px; }
-      pre { font-size: .78rem; padding: .8rem; }
-    }
-  </style>
-</head>
-<body>
-<div class="container">
-
-  <header>
-    <h1>0417 JavaScript 筆記</h1>
-    <p>回呼函式 · IIFE · 陣列操作 · 高階函式 · 閉包 · 非同步</p>
-  </header>
-
-  <!-- 01 -->
-  <div class="card">
-    <div class="card-header">
-      <span class="num">1</span>
-      <div class="card-title">
-        回呼函式（Callback）
-        <span class="tag tag-cb">callback</span>
-      </div>
-    </div>
-    <pre><span class="comment">// 建立一個能接受回呼函式的通用工具</span>
-<span class="kw">function</span> <span class="fn">mathTool</span>(num1, num2, action) {
-  <span class="kw">return</span> <span class="fn">action</span>(num1, num2);
-}
-
-<span class="fn">console</span>.<span class="fn">log</span>(<span class="fn">mathTool</span>(10, 5, <span class="kw">function</span> (a, b) {
-  <span class="kw">return</span> a + b;
-}));  <span class="comment">// 15</span>
-
-<span class="fn">console</span>.<span class="fn">log</span>(<span class="fn">mathTool</span>(10, 5, <span class="kw">function</span> (a, b) {
-  <span class="kw">return</span> a - b;
-}));  <span class="comment">// 5</span></pre>
-    <div class="note">
-      <strong>重點</strong> — 將「行為」當作參數傳入函式，<code>action</code> 就是一個 <strong>回呼函式（callback）</strong>。這樣 <code>mathTool</code> 只負責流程，實際運算由外部決定。
-    </div>
-  </div>
-
-  <!-- 02 -->
-  <div class="card">
-    <div class="card-header">
-      <span class="num">2</span>
-      <div class="card-title">
-        立即執行函式（IIFE）
-        <span class="tag tag-iife">IIFE</span>
-      </div>
-    </div>
-    <pre>(<span class="kw">function</span> () {
-  <span class="kw">let</span> count = 100;
-  <span class="fn">console</span>.<span class="fn">log</span>(<span class="str">"Count is: "</span> + count);
-})();  <span class="comment">// Count is: 100</span></pre>
-    <div class="note">
-      <strong>重點</strong> — IIFE（Immediately Invoked Function Expression）在定義的「當下」就執行，常用來建立<strong>獨立作用域</strong>，避免變數污染全域。
-    </div>
-  </div>
-
-  <!-- 03 -->
-  <div class="card">
-    <div class="card-header">
-      <span class="num">3</span>
-      <div class="card-title">
-        <code>map()</code> 與箭頭函式
-        <span class="tag tag-arr">array</span>
-      </div>
-    </div>
-    <pre><span class="kw">const</span> prices = [100, 200, 300, 400];
-<span class="kw">const</span> discountPrices = <span class="fn">prices</span>.<span class="fn">map</span>(<span class="fn">price</span> => price * 0.8);
-
-<span class="fn">console</span>.<span class="fn">log</span>(discountPrices);
-<span class="comment">// [80, 160, 240, 320]</span></pre>
-    <div class="note">
-      <strong>重點</strong> — <code>map()</code> 遍歷陣列並「回傳一個新陣列」，不修改原陣列。箭頭函式 <code>price => price * 0.8</code> 寫法更簡潔。
-    </div>
-  </div>
-
-  <!-- 04 -->
-  <div class="card">
-    <div class="card-header">
-      <span class="num">4</span>
-      <div class="card-title">
-        陣列方法：<code>pop()</code> &amp; <code>unshift()</code>
-        <span class="tag tag-arr">array</span>
-      </div>
-    </div>
-    <pre><span class="kw">function</span> <span class="fn">cleanData</span>(arr) {
-  arr.<span class="fn">pop</span>();           <span class="comment">// 移除最後一個元素</span>
-  arr.<span class="fn">unshift</span>(<span class="str">"Start"</span>); <span class="comment">// 在最前面加入 "Start"</span>
-}
-
-<span class="kw">let</span> myData = [1, 2, 3];
-<span class="fn">cleanData</span>(myData);
-<span class="fn">console</span>.<span class="fn">log</span>(myData);  <span class="comment">// ["Start", 1, 2]</span></pre>
-    <div class="note">
-      <strong>重點</strong> — 陣列是「參考型別」，在函式內部修改陣列會直接影響原陣列。<code>pop()</code> 移除尾部，<code>unshift()</code> 在頭部插入。
-    </div>
-  </div>
-
-  <!-- 05 -->
-  <div class="card">
-    <div class="card-header">
-      <span class="num">5</span>
-      <div class="card-title">
-        閉包：函式回傳函式
-        <span class="tag tag-fn">closure</span>
-      </div>
-    </div>
-    <pre><span class="kw">function</span> <span class="fn">multiplier</span>(factor) {
-  <span class="kw">return</span> <span class="fn">n</span> => n * factor;
-}
-
-<span class="kw">const</span> double = <span class="fn">multiplier</span>(2);
-<span class="fn">console</span>.<span class="fn">log</span>(<span class="fn">double</span>(10));  <span class="comment">// 20</span></pre>
-    <div class="note">
-      <strong>重點</strong> — <code>multiplier</code> 回傳的箭頭函式「記住」了 <code>factor</code> 參數，這就是<strong>閉包（Closure）</strong>。可以用來「預先設定」某些參數。
-    </div>
-  </div>
-
-  <!-- 06 -->
-  <div class="card">
-    <div class="card-header">
-      <span class="num">6</span>
-      <div class="card-title">
-        自製 <code>filter()</code>
-        <span class="tag tag-cb">callback</span>
-      </div>
-    </div>
-    <pre><span class="kw">function</span> <span class="fn">myFilter</span>(arr, callback) {
-  <span class="kw">let</span> result = [];
-  <span class="kw">for</span> (<span class="kw">let</span> item <span class="kw">of</span> arr) {
-    <span class="kw">if</span> (<span class="fn">callback</span>(item)) {
-      result.<span class="fn">push</span>(item);
-    }
-  }
-  <span class="kw">return</span> result;
-}
-
-<span class="kw">const</span> numbers = [1, 5, 8, 12];
-<span class="kw">const</span> filteredNumbers = <span class="fn">myFilter</span>(numbers, <span class="fn">item</span> => item > 7);
-<span class="fn">console</span>.<span class="fn">log</span>(filteredNumbers);  <span class="comment">// [8, 12]</span></pre>
-    <div class="note">
-      <strong>重點</strong> — 手刻一個 <code>filter</code> 幫助理解其原理：回呼函式回傳 <code>true</code> 的元素才會被收集到新陣列。
-    </div>
-  </div>
-
-  <!-- 07 -->
-  <div class="card">
-    <div class="card-header">
-      <span class="num">7</span>
-      <div class="card-title">
-        物件陣列過濾
-        <span class="tag tag-arr">array</span>
-        <span class="tag tag-cb">callback</span>
-      </div>
-    </div>
-    <pre><span class="kw">const</span> users = [
-  { name: <span class="str">"Alice"</span>, age: 25 },
-  { name: <span class="str">"Bob"</span>,   age: 17 }
-];
-
-<span class="kw">const</span> adults = <span class="fn">users</span>.<span class="fn">filter</span>((user) => {
-  <span class="kw">return</span> user.<span class="fn">age</span> >= 18;
-});
-
-<span class="fn">console</span>.<span class="fn">log</span>(adults);
-<span class="comment">// [{ name: "Alice", age: 25 }]</span></pre>
-    <div class="note">
-      <strong>重點</strong> — 搭配 <code>filter</code> + 箭頭函式，可以很優雅地從物件陣列中篩選出符合條件的資料。
-    </div>
-  </div>
-
-  <!-- 08 -->
-  <div class="card">
-    <div class="card-header">
-      <span class="num">8</span>
-      <div class="card-title">
-        傳參考 vs 傳值
-        <span class="tag tag-fn">概念</span>
-      </div>
-    </div>
-    <pre><span class="kw">let</span> listA = [1, 2];
-<span class="kw">let</span> listB = [3, 4];
-
-<span class="kw">function</span> <span class="fn">process</span>(a, b) {
-  a.<span class="fn">push</span>(99);     <span class="comment">// 修改 a 指向的陣列</span>
-  b = [100];        <span class="comment">// 重新指派 b，不影響原 listB</span>
-}
-
-<span class="fn">process</span>(listA, listB);
-<span class="fn">console</span>.<span class="fn">log</span>(listA);  <span class="comment">// [1, 2, 99]</span>
-<span class="fn">console</span>.<span class="fn">log</span>(listB);  <span class="comment">// [3, 4]</span></pre>
-    <div class="note">
-      <strong>重點</strong> — <code>a.push(99)</code> 修改的是同一個陣列本身，所以 <code>listA</code> 改變了；<code>b = [100]</code> 只是讓區域參數 <code>b</code> 指向新陣列，原 <code>listB</code> 不受影響。這是 JS 中「傳參考」與「傳值」最經典的範例。
-    </div>
-  </div>
-
-  <!-- 09 -->
-  <div class="card">
-    <div class="card-header">
-      <span class="num">9</span>
-      <div class="card-title">
-        <code>setTimeout</code> 與箭頭函式
-        <span class="tag tag-async">async</span>
-      </div>
-    </div>
-    <pre><span class="kw">const</span> words = [<span class="str">"Task"</span>, <span class="str">"Completed"</span>];
-
-<span class="fn">setTimeout</span>(() => {
-  <span class="fn">console</span>.<span class="fn">log</span>(<span class="fn">words</span>.<span class="fn">join</span>(<span class="str">" "</span>));
-}, 2000);
-<span class="comment">// 2 秒後輸出 "Task Completed"</span></pre>
-    <div class="note">
-      <strong>重點</strong> — <code>setTimeout</code> 是非同步函式，在指定延遲後執行回呼。箭頭函式搭配 <code>join()</code> 可以把陣列合併成字串。
-    </div>
-  </div>
-
-  <!-- 10 -->
-  <div class="card">
-    <div class="card-header">
-      <span class="num">10</span>
-      <div class="card-title">
-        購物車折扣（回呼應用）
-        <span class="tag tag-cb">callback</span>
-      </div>
-    </div>
-    <pre><span class="kw">function</span> <span class="fn">calculateTotal</span>(cart, discountFunc) {
-  <span class="kw">let</span> total = 0;
-  <span class="kw">for</span> (<span class="kw">let</span> price <span class="kw">of</span> cart) {
-    total += price;
-  }
-  <span class="kw">return</span> <span class="fn">discountFunc</span>(total);
-}
-
-<span class="kw">const</span> result = <span class="fn">calculateTotal</span>([100, 200, 300], <span class="kw">function</span> (total) {
-  <span class="kw">return</span> total - 50;
-});
-<span class="fn">console</span>.<span class="fn">log</span>(result);  <span class="comment">// 550</span></pre>
-    <div class="note">
-      <strong>重點</strong> — 實用的回呼應用：<code>calculateTotal</code> 計算總額，再透過 <code>discountFunc</code> 回呼套用折扣邏輯，讓折扣規則可以靈活抽換。
-    </div>
-  </div>
-
-  <footer>
-    0417 JavaScript 作業筆記 &middot; 使用 opencode 與 ChatGPT 協助完成
-  </footer>
-
-</div>
-</body>
-</html>
+<!DOCTYPE html> <!-- 第1行：宣告這是一份 HTML5 文件 -->
+<html lang="zh-TW"> <!-- 第2行：HTML 文件開始，lang="zh-TW" 代表網頁主要語言是繁體中文 -->
+<head> <!-- 第3行：head 區塊開始，放網頁設定資料，不會直接顯示在畫面上 -->
+  <meta charset="UTF-8"> <!-- 第4行：設定網頁編碼為 UTF-8，避免中文亂碼 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- 第5行：設定手機與不同螢幕寬度的縮放方式，讓網頁可響應式顯示 -->
+  <title>0417 06 筆記 · 馬卡龍奶油風</title> <!-- 第6行：設定瀏覽器分頁上顯示的網頁標題 -->
+  <style> /* 第7行：CSS 樣式區塊開始，下面會設定網頁外觀 */
+    * { margin: 0; padding: 0; box-sizing: border-box; } /* 第8行：CSS 樣式設定，用來控制網頁的外觀與排版 */
+ /* 第9行：空白行，用來讓程式碼排版更清楚 */
+    body { /* 第10行：選取指定元素或 class，開始設定它的 CSS 樣式 */
+      font-family: 'Segoe UI', 'Noto Sans TC', system-ui, -apple-system, sans-serif; /* 第11行：設定字型，前面的字型找不到時會依序使用後面的備用字型 */
+      background-color: #FFF8EF; /* 第12行：設定背景顏色 */
+      background-image: /* 第13行：設定背景圖片或漸層效果 */
+        radial-gradient(circle at 20% 40%, rgba(248,200,220,.12) 0, transparent 50%), /* 第14行：設定一層柔和的放射狀漸層背景 */
+        radial-gradient(circle at 80% 60%, rgba(220,199,242,.12) 0, transparent 50%), /* 第15行：設定一層柔和的放射狀漸層背景 */
+        radial-gradient(circle at 50% 80%, rgba(184,230,209,.10) 0, transparent 50%), /* 第16行：設定一層柔和的放射狀漸層背景 */
+        repeating-radial-gradient(circle at 10% 10%, transparent 0, transparent 2px, rgba(220,199,242,.08) 2px, rgba(220,199,242,.08) 3px), /* 第17行：設定重複的點點狀背景裝飾 */
+        repeating-radial-gradient(circle at 90% 90%, transparent 0, transparent 2px, rgba(248,200,220,.08) 2px, rgba(248,200,220,.08) 3px); /* 第18行：設定重複的點點狀背景裝飾 */
+      min-height: 100vh; /* 第19行：設定最小高度，100vh 代表至少佔滿整個瀏覽器高度 */
+      padding: 2rem 1rem; /* 第20行：設定內距，也就是元素內容與邊框的距離 */
+      color: #5A5552; /* 第21行：設定文字顏色 */
+      position: relative; /* 第22行：設定元素定位方式，例如 relative、absolute、fixed */
+      overflow-x: hidden; /* 第23行：控制水平方向超出畫面時的顯示方式 */
+    } /* 第24行：結束這一段 CSS 樣式設定 */
+ /* 第25行：空白行，用來讓程式碼排版更清楚 */
+    body::before { /* 第26行：選取指定元素或 class，開始設定它的 CSS 樣式 */
+      content: ''; /* 第27行：設定偽元素要顯示的內容 */
+      position: fixed; /* 第28行：設定元素定位方式，例如 relative、absolute、fixed */
+      inset: 0; /* 第29行：設定 fixed 或 absolute 元素距離四邊的位置 */
+      pointer-events: none; /* 第30行：讓裝飾層不會影響滑鼠點擊 */
+      z-index: 0; /* 第31行：設定元素堆疊順序，數字越大越上層 */
+      background-image: /* 第32行：設定背景圖片或漸層效果 */
+        url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 15 Q30 5 40 15 Q50 25 60 15 Q70 5 80 15' stroke='%23EBD7F5' stroke-width='.6' fill='none' opacity='.3'/%3E%3C/svg%3E"); /* 第33行：使用 SVG data URL 做背景裝飾圖案 */
+      background-repeat: repeat; /* 第34行：設定背景是否重複 */
+      background-size: 120px 100px; /* 第35行：設定背景圖案大小 */
+    } /* 第36行：結束這一段 CSS 樣式設定 */
+ /* 第37行：空白行，用來讓程式碼排版更清楚 */
+    body::after { /* 第38行：選取指定元素或 class，開始設定它的 CSS 樣式 */
+      content: ''; /* 第39行：設定偽元素要顯示的內容 */
+      position: fixed; /* 第40行：設定元素定位方式，例如 relative、absolute、fixed */
+      inset: 0; /* 第41行：設定 fixed 或 absolute 元素距離四邊的位置 */
+      pointer-events: none; /* 第42行：讓裝飾層不會影響滑鼠點擊 */
+      z-index: 0; /* 第43行：設定元素堆疊順序，數字越大越上層 */
+      background-image: /* 第44行：設定背景圖片或漸層效果 */
+        url("data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Ctext x='8' y='30' font-size='14' opacity='.08' fill='%23DCC7F2'%3E%E2%9C%A6%3C/text%3E%3Ctext x='150' y='80' font-size='10' opacity='.06' fill='%23F8C8DC'%3E%E2%9D%A4%3C/text%3E%3Ctext x='40' y='130' font-size='12' opacity='.07' fill='%23B8E6D1'%3E%E2%98%81%3C/text%3E%3Ctext x='160' y='170' font-size='9' opacity='.06' fill='%23FFE9A7'%3E%E2%9C%A6%3C/text%3E%3Ctext x='90' y='50' font-size='8' opacity='.06' fill='%23DCC7F2'%3E%E2%9D%A4%3C/text%3E%3Ctext x='130' y='150' font-size='11' opacity='.05' fill='%23F8C8DC'%3E%E2%98%81%3C/text%3E%3Ctext x='10' y='180' font-size='7' opacity='.07' fill='%23B8E6D1'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E"); /* 第45行：使用 SVG data URL 做背景裝飾圖案 */
+      background-repeat: repeat; /* 第46行：設定背景是否重複 */
+      background-size: 300px 300px; /* 第47行：設定背景圖案大小 */
+    } /* 第48行：結束這一段 CSS 樣式設定 */
+ /* 第49行：空白行，用來讓程式碼排版更清楚 */
+    .container { /* 第50行：選取指定元素或 class，開始設定它的 CSS 樣式 */
+      max-width: 880px; /* 第51行：設定最大寬度，避免內容太寬不好閱讀 */
+      margin: 0 auto; /* 第52行：設定外距，也就是元素外面的距離 */
+      position: relative; /* 第53行：設定元素定位方式，例如 relative、absolute、fixed */
+      z-index: 1; /* 第54行：設定元素堆疊順序，數字越大越上層 */
+    } /* 第55行：結束這一段 CSS 樣式設定 */
+ /* 第56行：空白行，用來讓程式碼排版更清楚 */
+    /* ===== Header ===== */ /* 第57行：CSS 樣式設定，用來控制網頁的外觀與排版 */
+    header { /* 第58行：選取指定元素或 class，開始設定它的 CSS 樣式 */
+      text-align: center; /* 第59行：設定文字水平對齊方式 */
+      margin-bottom: 2.8rem; /* 第60行：CSS 樣式設定，用來控制網頁的外觀與排版 */
+      position: relative; /* 第61行：設定元素定位方式，例如 relative、absolute、fixed */
+    } /* 第62行：結束這一段 CSS 樣式設定 */
+ /* 第63行：空白行，用來讓程式碼排版更清楚 */
+    header::after { /* 第64行：選取指定元素或 class，開始設定它的 CSS 樣式 */
+      content: '✧'; /* 第65行：設定偽元素要顯示的內容 */
+      display: block; /* 第66行：設定元素顯示方式，例如 block、flex、inline-block */
+      font-size: 1.4rem; /* 第67行：設定文字大小 */
+      color: #DCC7F2; /* 第68行：設定文字顏色 */
+      margin-top: 0.5rem; /* 第69行：CSS 樣式設定，用來控制網頁的外觀與排版 */
+      opacity: .5; /* 第70行：設定透明度 */
+    } /* 第71行：結束這一段 CSS 樣式設定 */
+ /* 第72行：空白行，用來讓程式碼排版更清楚 */
+    header h1 { /* 第73行：選取指定元素或 class，開始設定它的 CSS 樣式 */
+      font-size: 2.2rem; /* 第74行：設定文字大小 */
+      font-weight: 700; /* 第75行：設定文字粗細 */
+      color: #4A3F3A; /* 第76行：設定文字顏色 */
+      letter-spacing: .04em; /* 第77行：設定字距 */
+      position: relative; /* 第78行：設定元素定位方式，例如 relative、absolute、fixed */
+      display: inline-block; /* 第79行：設定元素顯示方式，例如 block、flex、inline-block */
+    } /* 第80行：結束這一段 CSS 樣式設定 */
+ /* 第81行：空白行，用來讓程式碼排版更清楚 */
+    header h1::before { /* 第82行：選取指定元素或 class，開始設定它的 CSS 樣式 */
+      content: '✦'; /* 第83行：設定偽元素要顯示的內容 */
+      position: absolute; /* 第84行：設定元素定位方式，例如 relative、absolute、fixed */
+      left: -1.6rem; /* 第85行：設定定位元素距離左側的位置 */
+      top: .2rem; /* 第86行：設定定位元素距離上方的位置 */
+      font-size: 1.2rem; /* 第87行：設定文字大小 */
+      color: #FFE9A7; /* 第88行：設定文字顏色 */
+      opacity: .7; /* 第89行：設定透明度 */
+    } /* 第90行：結束這一段 CSS 樣式設定 */
+ /* 第91行：空白行，用來讓程式碼排版更清楚 */
+    header h1::after { /* 第92行：選取指定元素或 class，開始設定它的 CSS 樣式 */
+      content: '✦'; /* 第93行：設定偽元素要顯示的內容 */
+      position: absolute; /* 第94行：設定元素定位方式，例如 relative、absolute、fixed */
+      right: -1.6rem; /* 第95行：設定定位元素距離右側的位置 */
+      top: .2rem; /* 第96行：設定定位元素距離上方的位置 */
+      font-size: 1.2rem; /* 第97行：設定文字大小 */
+      color: #B8E6D1; /* 第98行：設定文字顏色 */
+      opacity: .7; /* 第99行：設定透明度 */
+    } /* 第100行：結束這一段 CSS 樣式設定 */
+ /* 第101行：空白行，用來讓程式碼排版更清楚 */
+    header p { /* 第102行：選取指定元素或 class，開始設定它的 CSS 樣式 */
+      color: #A0958F; /* 第103行：設定文字顏色 */
+      margin-top: 0.4rem; /* 第104行：CSS 樣式設定，用來控制網頁的外觀與排版 */
+      font-size: 0.95rem; /* 第105行：設定文字大小 */
+      letter-spacing: .02em; /* 第106行：設定字距 */
+    } /* 第107行：結束這一段 CSS 樣式設定 */
+ /* 第108行：空白行，用來讓程式碼排版更清楚 */
+    /* ===== Card ===== */ /* 第109行：CSS 樣式設定，用來控制網頁的外觀與排版 */
+    .card { /* 第110行：選取指定元素或 class，開始設定它的 CSS 樣式 */
+      background: rgba(255,255,255,.8); /* 第111行：CSS 樣式設定，用來控制網頁的外觀與排版 */
+      backdrop-filter: blur(2px); /* 第112行：設定背景模糊效果，讓卡片有霧面玻璃感 */
+      border-radius: 22px; /* 第113行：設定圓角 */
+      padding: 1.6rem 1.8rem 1.4rem; /* 第114行：設定內距，也就是元素內容與邊框的距離 */
+      margin-bottom: 1.8rem; /* 第115行：CSS 樣式設定，用來控制網頁的外觀與排版 */
+      border: 1.5px solid #EBD7F5; /* 第116行：設定邊框粗細、樣式與顏色 */
+      box-shadow: 0 4px 20px rgba(220,199,242,.18), 0 2px 6px rgba(74,63,58,.04); /* 第117行：設定陰影效果，讓卡片更有層次 */
+      transition: transform .28s cubic-bezier(.34,1.56,.64,1), box-shadow .28s ease; /* 第118行：設定動畫過渡效果，讓 hover 變化更滑順 */
+      position: relative; /* 第119行：設定元素定位方式，例如 relative、absolute、fixed */
+      overflow: hidden; /* 第120行：設定內容超出元素時的處理方式 */
+    } /* 第121行：結束這一段 CSS 樣式設定 */
+ /* 第122行：空白行，用來讓程式碼排版更清楚 */
+    .card::before { /* 第123行：選取指定元素或 class，開始設定它的 CSS 樣式 */
+      content: ''; /* 第124行：設定偽元素要顯示的內容 */
+      position: absolute; /* 第125行：設定元素定位方式，例如 relative、absolute、fixed */
+      top: -1px; right: 28px; /* 第126行：設定定位元素距離上方的位置 */
+      width: 50px; height: 22px; /* 第127行：設定寬度 */
+      background: linear-gradient(145deg, #F8C8DC, #DCC7F2); /* 第128行：CSS 樣式設定，用來控制網頁的外觀與排版 */
+      border-radius: 0 0 12px 12px; /* 第129行：設定圓角 */
+      opacity: .35; /* 第130行：設定透明度 */
+      transition: opacity .25s; /* 第131行：設定動畫過渡效果，讓 hover 變化更滑順 */
+      pointer-events: none; /* 第132行：讓裝飾層不會影響滑鼠點擊 */
+    } /* 第133行：結束這一段 CSS 樣式設定 */
+ /* 第134行：空白行，用來讓程式碼排版更清楚 */
+    .card:hover { /* 第135行：選取指定元素或 class，開始設定它的 CSS 樣式 */
+      transform: translateY(-6px); /* 第136行：設定變形效果，例如移動或放大 */
+      box-shadow: 0 12px 36px rgba(220,199,242,.28), 0 4px 12px rgba(74,63,58,.06); /* 第137行：設定陰影效果，讓卡片更有層次 */
+      border-color: #DCC7F2; /* 第138行：設定邊框顏色 */
+    } /* 第139行：結束這一段 CSS 樣式設定 */
+ /* 第140行：空白行，用來讓程式碼排版更清楚 */
+    .card:hover::before { /* 第141行：選取指定元素或 class，開始設定它的 CSS 樣式 */
+      opacity: .55; /* 第142行：設定透明度 */
+    } /* 第143行：結束這一段 CSS 樣式設定 */
+ /* 第144行：空白行，用來讓程式碼排版更清楚 */
+    .card-header { /* 第145行：選取指定元素或 class，開始設定它的 CSS 樣式 */
+      display: flex; /* 第146行：設定元素顯示方式，例如 block、flex、inline-block */
+      align-items: center; /* 第147行：設定 flex 項目在交叉軸的對齊方式 */
+      gap: 0.7rem; /* 第148行：設定 flex 項目之間的間距 */
+      margin-bottom: 1rem; /* 第149行：CSS 樣式設定，用來控制網頁的外觀與排版 */
+    } /* 第150行：結束這一段 CSS 樣式設定 */
+ /* 第151行：空白行，用來讓程式碼排版更清楚 */
+    .num { /* 第152行：選取指定元素或 class，開始設定它的 CSS 樣式 */
+      display: inline-flex; /* 第153行：設定元素顯示方式，例如 block、flex、inline-block */
+      align-items: center; /* 第154行：設定 flex 項目在交叉軸的對齊方式 */
+      justify-content: center; /* 第155行：設定 flex 項目在主軸的對齊方式 */
+      width: 34px; height: 34px; /* 第156行：設定寬度 */
+      background: linear-gradient(145deg, #F8C8DC, #DCC7F2); /* 第157行：CSS 樣式設定，用來控制網頁的外觀與排版 */
+      color: #4A3F3A; /* 第158行：設定文字顏色 */
+      border-radius: 50%; /* 第159行：設定圓角 */
+      font-weight: 700; /* 第160行：設定文字粗細 */
+      font-size: 0.85rem; /* 第161行：設定文字大小 */
+      flex-shrink: 0; /* 第162行：設定 flex 項目是否允許縮小 */
+      box-shadow: 0 2px 8px rgba(248,200,220,.4); /* 第163行：設定陰影效果，讓卡片更有層次 */
+      transition: transform .25s ease; /* 第164行：設定動畫過渡效果，讓 hover 變化更滑順 */
+    } /* 第165行：結束這一段 CSS 樣式設定 */
+ /* 第166行：空白行，用來讓程式碼排版更清楚 */
+    .card:hover .num { /* 第167行：選取指定元素或 class，開始設定它的 CSS 樣式 */
+      transform: scale(1.08); /* 第168行：設定變形效果，例如移動或放大 */
+    } /* 第169行：結束這一段 CSS 樣式設定 */
+ /* 第170行：空白行，用來讓程式碼排版更清楚 */
+    .card-title { /* 第171行：選取指定元素或 class，開始設定它的 CSS 樣式 */
+      font-size: 1.05rem; /* 第172行：設定文字大小 */
+      font-weight: 600; /* 第173行：設定文字粗細 */
+      line-height: 1.5; /* 第174行：設定行高，讓文字閱讀更舒服 */
+      color: #4A3F3A; /* 第175行：設定文字顏色 */
+    } /* 第176行：結束這一段 CSS 樣式設定 */
+ /* 第177行：空白行，用來讓程式碼排版更清楚 */
+    .card-title code { /* 第178行：選取指定元素或 class，開始設定它的 CSS 樣式 */
+      background: rgba(248,200,220,.2); /* 第179行：CSS 樣式設定，用來控制網頁的外觀與排版 */
+      padding: .05em .4em; /* 第180行：設定內距，也就是元素內容與邊框的距離 */
+      border-radius: 6px; /* 第181行：設定圓角 */
+      font-family: 'JetBrains Mono', 'Cascadia Code', 'Consolas', monospace; /* 第182行：設定字型，前面的字型找不到時會依序使用後面的備用字型 */
+      font-size: .88em; /* 第183行：設定文字大小 */
+      color: #7A5F7A; /* 第184行：設定文字顏色 */
+    } /* 第185行：結束這一段 CSS 樣式設定 */
+ /* 第186行：空白行，用來讓程式碼排版更清楚 */
+    .card-title .tag { /* 第187行：選取指定元素或 class，開始設定它的 CSS 樣式 */
+      display: inline-block; /* 第188行：設定元素顯示方式，例如 block、flex、inline-block */
+      font-size: 0.65rem; /* 第189行：設定文字大小 */
+      font-weight: 600; /* 第190行：設定文字粗細 */
+      padding: 0.15em 0.7em; /* 第191行：設定內距，也就是元素內容與邊框的距離 */
+      border-radius: 20px; /* 第192行：設定圓角 */
+      margin-left: 0.4rem; /* 第193行：CSS 樣式設定，用來控制網頁的外觀與排版 */
+      vertical-align: middle; /* 第194行：設定行內元素的垂直對齊方式 */
+      letter-spacing: .02em; /* 第195行：設定字距 */
+    } /* 第196行：結束這一段 CSS 樣式設定 */
+ /* 第197行：空白行，用來讓程式碼排版更清楚 */
+    .tag-cb   { background: #B8E6D1; color: #3D6B5A; } /* 第198行：選取指定元素或 class，開始設定它的 CSS 樣式 */
+    .tag-iife { background: #FFE9A7; color: #7A6B3A; } /* 第199行：選取指定元素或 class，開始設定它的 CSS 樣式 */
+    .tag-arr  { background: #DCC7F2; color: #5A4A7A; } /* 第200行：選取指定元素或 class，開始設定它的 CSS 樣式 */
+    .tag-fn   { background: #F8C8DC; color: #7A4A5A; } /* 第201行：選取指定元素或 class，開始設定它的 CSS 樣式 */
+    .tag-async { background: #FFE9A7; color: #7A6B3A; } /* 第202行：選取指定元素或 class，開始設定它的 CSS 樣式 */
+ /* 第203行：空白行，用來讓程式碼排版更清楚 */
+    /* ===== Code block ===== */ /* 第204行：CSS 樣式設定，用來控制網頁的外觀與排版 */
+    pre { /* 第205行：選取指定元素或 class，開始設定它的 CSS 樣式 */
+      background: rgba(74,63,58,.04); /* 第206行：CSS 樣式設定，用來控制網頁的外觀與排版 */
+      color: #5A5552; /* 第207行：設定文字顏色 */
+      border-radius: 14px; /* 第208行：設定圓角 */
+      padding: 1rem 1.2rem; /* 第209行：設定內距，也就是元素內容與邊框的距離 */
+      overflow-x: auto; /* 第210行：控制水平方向超出畫面時的顯示方式 */
+      font-size: 0.84rem; /* 第211行：設定文字大小 */
+      line-height: 1.65; /* 第212行：設定行高，讓文字閱讀更舒服 */
+      font-family: 'JetBrains Mono', 'Cascadia Code', 'Consolas', monospace; /* 第213行：設定字型，前面的字型找不到時會依序使用後面的備用字型 */
+      margin-top: 0.3rem; /* 第214行：CSS 樣式設定，用來控制網頁的外觀與排版 */
+      border: 1px solid rgba(235,215,245,.4); /* 第215行：設定邊框粗細、樣式與顏色 */
+      position: relative; /* 第216行：設定元素定位方式，例如 relative、absolute、fixed */
+    } /* 第217行：結束這一段 CSS 樣式設定 */
+ /* 第218行：空白行，用來讓程式碼排版更清楚 */
+    pre::before { /* 第219行：選取指定元素或 class，開始設定它的 CSS 樣式 */
+      content: ''; /* 第220行：設定偽元素要顯示的內容 */
+      position: absolute; /* 第221行：設定元素定位方式，例如 relative、absolute、fixed */
+      top: 0; left: 0; /* 第222行：設定定位元素距離上方的位置 */
+      width: 4px; height: 100%; /* 第223行：設定寬度 */
+      background: linear-gradient(180deg, #F8C8DC, #DCC7F2, #B8E6D1); /* 第224行：CSS 樣式設定，用來控制網頁的外觀與排版 */
+      border-radius: 14px 0 0 14px; /* 第225行：設定圓角 */
+      opacity: .3; /* 第226行：設定透明度 */
+    } /* 第227行：結束這一段 CSS 樣式設定 */
+ /* 第228行：空白行，用來讓程式碼排版更清楚 */
+    .comment { color: #A8998F; font-style: italic; } /* 第229行：選取指定元素或 class，開始設定它的 CSS 樣式 */
+    .kw      { color: #8B6F8B; font-weight: 600; } /* 第230行：選取指定元素或 class，開始設定它的 CSS 樣式 */
+    .fn      { color: #7A8FA8; } /* 第231行：選取指定元素或 class，開始設定它的 CSS 樣式 */
+    .str     { color: #7A9F7A; } /* 第232行：選取指定元素或 class，開始設定它的 CSS 樣式 */
+    .num-lit { color: #C88F6F; } /* 第233行：選取指定元素或 class，開始設定它的 CSS 樣式 */
+    .op      { color: #7A9FBF; } /* 第234行：選取指定元素或 class，開始設定它的 CSS 樣式 */
+    .arrow   { color: #7A9FBF; } /* 第235行：選取指定元素或 class，開始設定它的 CSS 樣式 */
+ /* 第236行：空白行，用來讓程式碼排版更清楚 */
+    /* ===== Note / highlight box ===== */ /* 第237行：CSS 樣式設定，用來控制網頁的外觀與排版 */
+    .note { /* 第238行：選取指定元素或 class，開始設定它的 CSS 樣式 */
+      background: rgba(255,255,255,.55); /* 第239行：CSS 樣式設定，用來控制網頁的外觀與排版 */
+      border: 1px solid rgba(235,215,245,.5); /* 第240行：設定邊框粗細、樣式與顏色 */
+      border-radius: 12px; /* 第241行：設定圓角 */
+      padding: 0.75rem 1rem; /* 第242行：設定內距，也就是元素內容與邊框的距離 */
+      margin-top: 0.9rem; /* 第243行：CSS 樣式設定，用來控制網頁的外觀與排版 */
+      font-size: 0.9rem; /* 第244行：設定文字大小 */
+      line-height: 1.6; /* 第245行：設定行高，讓文字閱讀更舒服 */
+      color: #5A5552; /* 第246行：設定文字顏色 */
+      position: relative; /* 第247行：設定元素定位方式，例如 relative、absolute、fixed */
+    } /* 第248行：結束這一段 CSS 樣式設定 */
+ /* 第249行：空白行，用來讓程式碼排版更清楚 */
+    .note::before { /* 第250行：選取指定元素或 class，開始設定它的 CSS 樣式 */
+      content: '📌'; /* 第251行：設定偽元素要顯示的內容 */
+      position: absolute; /* 第252行：設定元素定位方式，例如 relative、absolute、fixed */
+      top: -8px; left: 14px; /* 第253行：設定定位元素距離上方的位置 */
+      font-size: .85rem; /* 第254行：設定文字大小 */
+      opacity: .7; /* 第255行：設定透明度 */
+    } /* 第256行：結束這一段 CSS 樣式設定 */
+ /* 第257行：空白行，用來讓程式碼排版更清楚 */
+    .note strong { /* 第258行：選取指定元素或 class，開始設定它的 CSS 樣式 */
+      color: #7A5F7A; /* 第259行：設定文字顏色 */
+    } /* 第260行：結束這一段 CSS 樣式設定 */
+ /* 第261行：空白行，用來讓程式碼排版更清楚 */
+    .note code { /* 第262行：選取指定元素或 class，開始設定它的 CSS 樣式 */
+      background: rgba(248,200,220,.18); /* 第263行：CSS 樣式設定，用來控制網頁的外觀與排版 */
+      padding: .05em .35em; /* 第264行：設定內距，也就是元素內容與邊框的距離 */
+      border-radius: 5px; /* 第265行：設定圓角 */
+      font-family: 'JetBrains Mono', 'Cascadia Code', 'Consolas', monospace; /* 第266行：設定字型，前面的字型找不到時會依序使用後面的備用字型 */
+      font-size: .88em; /* 第267行：設定文字大小 */
+      color: #7A5F7A; /* 第268行：設定文字顏色 */
+    } /* 第269行：結束這一段 CSS 樣式設定 */
+ /* 第270行：空白行，用來讓程式碼排版更清楚 */
+    .console-out { /* 第271行：選取指定元素或 class，開始設定它的 CSS 樣式 */
+      background: rgba(255,233,167,.18); /* 第272行：CSS 樣式設定，用來控制網頁的外觀與排版 */
+      border-left: 4px solid #FFE9A7; /* 第273行：設定左邊框，常用來做提示區塊的強調線 */
+      padding: 0.5rem 1rem; /* 第274行：設定內距，也就是元素內容與邊框的距離 */
+      border-radius: 0 10px 10px 0; /* 第275行：設定圓角 */
+      margin-top: 0.6rem; /* 第276行：CSS 樣式設定，用來控制網頁的外觀與排版 */
+      font-family: 'Consolas', monospace; /* 第277行：設定字型，前面的字型找不到時會依序使用後面的備用字型 */
+      font-size: 0.85rem; /* 第278行：設定文字大小 */
+      color: #5A5552; /* 第279行：設定文字顏色 */
+    } /* 第280行：結束這一段 CSS 樣式設定 */
+    .console-out strong { color: #4A3F3A; } /* 第281行：選取指定元素或 class，開始設定它的 CSS 樣式 */
+ /* 第282行：空白行，用來讓程式碼排版更清楚 */
+    /* ===== Post-it corner accent ===== */ /* 第283行：CSS 樣式設定，用來控制網頁的外觀與排版 */
+    .card:nth-child(odd)::after { /* 第284行：選取指定元素或 class，開始設定它的 CSS 樣式 */
+      content: ''; /* 第285行：設定偽元素要顯示的內容 */
+      position: absolute; /* 第286行：設定元素定位方式，例如 relative、absolute、fixed */
+      top: -1px; left: -1px; /* 第287行：設定定位元素距離上方的位置 */
+      width: 0; height: 0; /* 第288行：設定寬度 */
+      border-style: solid; /* 第289行：設定邊框樣式 */
+      border-width: 0 28px 28px 0; /* 第290行：設定邊框寬度 */
+      border-color: transparent rgba(248,200,220,.18) transparent transparent; /* 第291行：設定邊框顏色 */
+      border-radius: 22px 0 0 0; /* 第292行：設定圓角 */
+      pointer-events: none; /* 第293行：讓裝飾層不會影響滑鼠點擊 */
+    } /* 第294行：結束這一段 CSS 樣式設定 */
+ /* 第295行：空白行，用來讓程式碼排版更清楚 */
+    .card:nth-child(even)::after { /* 第296行：選取指定元素或 class，開始設定它的 CSS 樣式 */
+      content: ''; /* 第297行：設定偽元素要顯示的內容 */
+      position: absolute; /* 第298行：設定元素定位方式，例如 relative、absolute、fixed */
+      top: -1px; right: -1px; /* 第299行：設定定位元素距離上方的位置 */
+      width: 0; height: 0; /* 第300行：設定寬度 */
+      border-style: solid; /* 第301行：設定邊框樣式 */
+      border-width: 28px 28px 0 0; /* 第302行：設定邊框寬度 */
+      border-color: rgba(220,199,242,.18) transparent transparent transparent; /* 第303行：設定邊框顏色 */
+      border-radius: 0 22px 0 0; /* 第304行：設定圓角 */
+      pointer-events: none; /* 第305行：讓裝飾層不會影響滑鼠點擊 */
+    } /* 第306行：結束這一段 CSS 樣式設定 */
+ /* 第307行：空白行，用來讓程式碼排版更清楚 */
+    /* ===== Footer ===== */ /* 第308行：CSS 樣式設定，用來控制網頁的外觀與排版 */
+    footer { /* 第309行：選取指定元素或 class，開始設定它的 CSS 樣式 */
+      text-align: center; /* 第310行：設定文字水平對齊方式 */
+      margin-top: 2.8rem; /* 第311行：CSS 樣式設定，用來控制網頁的外觀與排版 */
+      color: #B5AAA5; /* 第312行：設定文字顏色 */
+      font-size: 0.82rem; /* 第313行：設定文字大小 */
+      padding-top: 1.5rem; /* 第314行：CSS 樣式設定，用來控制網頁的外觀與排版 */
+      border-top: 1px dashed rgba(220,199,242,.35); /* 第315行：設定上邊框 */
+      position: relative; /* 第316行：設定元素定位方式，例如 relative、absolute、fixed */
+    } /* 第317行：結束這一段 CSS 樣式設定 */
+ /* 第318行：空白行，用來讓程式碼排版更清楚 */
+    footer::before { /* 第319行：選取指定元素或 class，開始設定它的 CSS 樣式 */
+      content: '✽ ✾ ✿'; /* 第320行：設定偽元素要顯示的內容 */
+      display: block; /* 第321行：設定元素顯示方式，例如 block、flex、inline-block */
+      font-size: .9rem; /* 第322行：設定文字大小 */
+      color: #DCC7F2; /* 第323行：設定文字顏色 */
+      margin-bottom: .4rem; /* 第324行：CSS 樣式設定，用來控制網頁的外觀與排版 */
+      letter-spacing: .3em; /* 第325行：設定字距 */
+      opacity: .45; /* 第326行：設定透明度 */
+    } /* 第327行：結束這一段 CSS 樣式設定 */
+ /* 第328行：空白行，用來讓程式碼排版更清楚 */
+    /* ===== Responsive ===== */ /* 第329行：CSS 樣式設定，用來控制網頁的外觀與排版 */
+    @media (max-width: 600px) { /* 第330行：響應式設計設定，當螢幕寬度符合條件時套用裡面的樣式 */
+      body { padding: 1.2rem .8rem; } /* 第331行：選取指定元素或 class，開始設定它的 CSS 樣式 */
+      header h1 { font-size: 1.5rem; } /* 第332行：選取指定元素或 class，開始設定它的 CSS 樣式 */
+      header h1::before, /* 第333行：CSS 樣式設定，用來控制網頁的外觀與排版 */
+      header h1::after { display: none; } /* 第334行：選取指定元素或 class，開始設定它的 CSS 樣式 */
+      .card { padding: 1.2rem 1rem; border-radius: 18px; } /* 第335行：選取指定元素或 class，開始設定它的 CSS 樣式 */
+      pre { font-size: .78rem; padding: .8rem; } /* 第336行：選取指定元素或 class，開始設定它的 CSS 樣式 */
+    } /* 第337行：結束這一段 CSS 樣式設定 */
+  </style> <!-- 第338行：CSS 樣式區塊結束 -->
+</head> <!-- 第339行：head 區塊結束 -->
+<body> <!-- 第340行：body 區塊開始，放真正會顯示在網頁上的內容 -->
+<div class="container"> <!-- 第341行：建立主要容器，用來限制內容寬度並置中 -->
+ <!-- 第342行：空白行，用來讓程式碼排版更清楚 -->
+  <header> <!-- 第343行：頁首區塊開始，放標題與副標 -->
+    <h1>0417 JavaScript 筆記</h1> <!-- 第344行：主標題文字，顯示這份筆記的名稱 -->
+    <p>回呼函式 · IIFE · 陣列操作 · 高階函式 · 閉包 · 非同步</p> <!-- 第345行：副標題文字，說明這份筆記包含的主題 -->
+  </header> <!-- 第346行：頁首區塊結束 -->
+ <!-- 第347行：空白行，用來讓程式碼排版更清楚 -->
+  <!-- 01 --> <!-- 第348行：HTML 註解，用來標記區塊或題號，不會顯示在畫面上 -->
+  <div class="card"> <!-- 第349行：建立一張卡片，用來放一個 JavaScript 觀念或題目 -->
+    <div class="card-header"> <!-- 第350行：卡片標題列開始，放題號與標題 -->
+      <span class="num">1</span> <!-- 第351行：顯示題號圓形標籤 -->
+      <div class="card-title"> <!-- 第352行：卡片標題區塊開始 -->
+        回呼函式（Callback） <!-- 第353行：HTML 結構或內容，負責建立網頁畫面的一部分 -->
+        <span class="tag tag-cb">callback</span> <!-- 第354行：顯示分類標籤，例如 callback、array、closure -->
+      </div> <!-- 第355行：結束目前這一層 div 區塊 -->
+    </div> <!-- 第356行：結束目前這一層 div 區塊 -->
+    <pre><span class="comment">// 建立一個能接受回呼函式的通用工具</span> <!-- 第357行：程式碼區塊開始，pre 會保留程式碼的換行與縮排 -->
+<span class="kw">function</span> <span class="fn">mathTool</span>(num1, num2, action) { <!-- 第358行：顯示 JavaScript 函數宣告的程式碼 -->
+  <span class="kw">return</span> <span class="fn">action</span>(num1, num2); <!-- 第359行：顯示 return，代表把結果回傳出去 -->
+} <!-- 第360行：顯示在網頁上的程式碼內容 -->
+ <!-- 第361行：空白行，用來讓程式碼排版更清楚 -->
+<span class="fn">console</span>.<span class="fn">log</span>(<span class="fn">mathTool</span>(10, 5, <span class="kw">function</span> (a, b) { <!-- 第362行：顯示 JavaScript 函數宣告的程式碼 -->
+  <span class="kw">return</span> a + b; <!-- 第363行：顯示 return，代表把結果回傳出去 -->
+}));  <span class="comment">// 15</span> <!-- 第364行：顯示程式碼中的註解文字，用來說明該行結果或用途 -->
+ <!-- 第365行：空白行，用來讓程式碼排版更清楚 -->
+<span class="fn">console</span>.<span class="fn">log</span>(<span class="fn">mathTool</span>(10, 5, <span class="kw">function</span> (a, b) { <!-- 第366行：顯示 JavaScript 函數宣告的程式碼 -->
+  <span class="kw">return</span> a - b; <!-- 第367行：顯示 return，代表把結果回傳出去 -->
+}));  <span class="comment">// 5</span></pre> <!-- 第368行：程式碼區塊結束 -->
+    <div class="note"> <!-- 第369行：重點說明區塊開始，用來補充觀念 -->
+      <strong>重點</strong> — 將「行為」當作參數傳入函式，<code>action</code> 就是一個 <strong>回呼函式（callback）</strong>。這樣 <code>mathTool</code> 只負責流程，實際運算由外部決定。 <!-- 第370行：重點文字，使用粗體強調核心概念 -->
+    </div> <!-- 第371行：結束目前這一層 div 區塊 -->
+  </div> <!-- 第372行：結束目前這一層 div 區塊 -->
+ <!-- 第373行：空白行，用來讓程式碼排版更清楚 -->
+  <!-- 02 --> <!-- 第374行：HTML 註解，用來標記區塊或題號，不會顯示在畫面上 -->
+  <div class="card"> <!-- 第375行：建立一張卡片，用來放一個 JavaScript 觀念或題目 -->
+    <div class="card-header"> <!-- 第376行：卡片標題列開始，放題號與標題 -->
+      <span class="num">2</span> <!-- 第377行：顯示題號圓形標籤 -->
+      <div class="card-title"> <!-- 第378行：卡片標題區塊開始 -->
+        立即執行函式（IIFE） <!-- 第379行：HTML 結構或內容，負責建立網頁畫面的一部分 -->
+        <span class="tag tag-iife">IIFE</span> <!-- 第380行：顯示分類標籤，例如 callback、array、closure -->
+      </div> <!-- 第381行：結束目前這一層 div 區塊 -->
+    </div> <!-- 第382行：結束目前這一層 div 區塊 -->
+    <pre>(<span class="kw">function</span> () { <!-- 第383行：程式碼區塊開始，pre 會保留程式碼的換行與縮排 -->
+  <span class="kw">let</span> count = 100; <!-- 第384行：顯示 JavaScript 建立變數或常數的程式碼 -->
+  <span class="fn">console</span>.<span class="fn">log</span>(<span class="str">"Count is: "</span> + count); <!-- 第385行：顯示 console.log，代表把結果印到控制台 -->
+})();  <span class="comment">// Count is: 100</span></pre> <!-- 第386行：程式碼區塊結束 -->
+    <div class="note"> <!-- 第387行：重點說明區塊開始，用來補充觀念 -->
+      <strong>重點</strong> — IIFE（Immediately Invoked Function Expression）在定義的「當下」就執行，常用來建立<strong>獨立作用域</strong>，避免變數污染全域。 <!-- 第388行：重點文字，使用粗體強調核心概念 -->
+    </div> <!-- 第389行：結束目前這一層 div 區塊 -->
+  </div> <!-- 第390行：結束目前這一層 div 區塊 -->
+ <!-- 第391行：空白行，用來讓程式碼排版更清楚 -->
+  <!-- 03 --> <!-- 第392行：HTML 註解，用來標記區塊或題號，不會顯示在畫面上 -->
+  <div class="card"> <!-- 第393行：建立一張卡片，用來放一個 JavaScript 觀念或題目 -->
+    <div class="card-header"> <!-- 第394行：卡片標題列開始，放題號與標題 -->
+      <span class="num">3</span> <!-- 第395行：顯示題號圓形標籤 -->
+      <div class="card-title"> <!-- 第396行：卡片標題區塊開始 -->
+        <code>map()</code> 與箭頭函式 <!-- 第397行：HTML 結構或內容，負責建立網頁畫面的一部分 -->
+        <span class="tag tag-arr">array</span> <!-- 第398行：顯示分類標籤，例如 callback、array、closure -->
+      </div> <!-- 第399行：結束目前這一層 div 區塊 -->
+    </div> <!-- 第400行：結束目前這一層 div 區塊 -->
+    <pre><span class="kw">const</span> prices = [100, 200, 300, 400]; <!-- 第401行：程式碼區塊開始，pre 會保留程式碼的換行與縮排 -->
+<span class="kw">const</span> discountPrices = <span class="fn">prices</span>.<span class="fn">map</span>(<span class="fn">price</span> => price * 0.8); <!-- 第402行：顯示 JavaScript 建立變數或常數的程式碼 -->
+ <!-- 第403行：空白行，用來讓程式碼排版更清楚 -->
+<span class="fn">console</span>.<span class="fn">log</span>(discountPrices); <!-- 第404行：顯示 console.log，代表把結果印到控制台 -->
+<span class="comment">// [80, 160, 240, 320]</span></pre> <!-- 第405行：程式碼區塊結束 -->
+    <div class="note"> <!-- 第406行：重點說明區塊開始，用來補充觀念 -->
+      <strong>重點</strong> — <code>map()</code> 遍歷陣列並「回傳一個新陣列」，不修改原陣列。箭頭函式 <code>price => price * 0.8</code> 寫法更簡潔。 <!-- 第407行：重點文字，使用粗體強調核心概念 -->
+    </div> <!-- 第408行：結束目前這一層 div 區塊 -->
+  </div> <!-- 第409行：結束目前這一層 div 區塊 -->
+ <!-- 第410行：空白行，用來讓程式碼排版更清楚 -->
+  <!-- 04 --> <!-- 第411行：HTML 註解，用來標記區塊或題號，不會顯示在畫面上 -->
+  <div class="card"> <!-- 第412行：建立一張卡片，用來放一個 JavaScript 觀念或題目 -->
+    <div class="card-header"> <!-- 第413行：卡片標題列開始，放題號與標題 -->
+      <span class="num">4</span> <!-- 第414行：顯示題號圓形標籤 -->
+      <div class="card-title"> <!-- 第415行：卡片標題區塊開始 -->
+        陣列方法：<code>pop()</code> &amp; <code>unshift()</code> <!-- 第416行：HTML 結構或內容，負責建立網頁畫面的一部分 -->
+        <span class="tag tag-arr">array</span> <!-- 第417行：顯示分類標籤，例如 callback、array、closure -->
+      </div> <!-- 第418行：結束目前這一層 div 區塊 -->
+    </div> <!-- 第419行：結束目前這一層 div 區塊 -->
+    <pre><span class="kw">function</span> <span class="fn">cleanData</span>(arr) { <!-- 第420行：程式碼區塊開始，pre 會保留程式碼的換行與縮排 -->
+  arr.<span class="fn">pop</span>();           <span class="comment">// 移除最後一個元素</span> <!-- 第421行：顯示程式碼中的註解文字，用來說明該行結果或用途 -->
+  arr.<span class="fn">unshift</span>(<span class="str">"Start"</span>); <span class="comment">// 在最前面加入 "Start"</span> <!-- 第422行：顯示程式碼中的註解文字，用來說明該行結果或用途 -->
+} <!-- 第423行：顯示在網頁上的程式碼內容 -->
+ <!-- 第424行：空白行，用來讓程式碼排版更清楚 -->
+<span class="kw">let</span> myData = [1, 2, 3]; <!-- 第425行：顯示 JavaScript 建立變數或常數的程式碼 -->
+<span class="fn">cleanData</span>(myData); <!-- 第426行：顯示在網頁上的程式碼內容 -->
+<span class="fn">console</span>.<span class="fn">log</span>(myData);  <span class="comment">// ["Start", 1, 2]</span></pre> <!-- 第427行：程式碼區塊結束 -->
+    <div class="note"> <!-- 第428行：重點說明區塊開始，用來補充觀念 -->
+      <strong>重點</strong> — 陣列是「參考型別」，在函式內部修改陣列會直接影響原陣列。<code>pop()</code> 移除尾部，<code>unshift()</code> 在頭部插入。 <!-- 第429行：重點文字，使用粗體強調核心概念 -->
+    </div> <!-- 第430行：結束目前這一層 div 區塊 -->
+  </div> <!-- 第431行：結束目前這一層 div 區塊 -->
+ <!-- 第432行：空白行，用來讓程式碼排版更清楚 -->
+  <!-- 05 --> <!-- 第433行：HTML 註解，用來標記區塊或題號，不會顯示在畫面上 -->
+  <div class="card"> <!-- 第434行：建立一張卡片，用來放一個 JavaScript 觀念或題目 -->
+    <div class="card-header"> <!-- 第435行：卡片標題列開始，放題號與標題 -->
+      <span class="num">5</span> <!-- 第436行：顯示題號圓形標籤 -->
+      <div class="card-title"> <!-- 第437行：卡片標題區塊開始 -->
+        閉包：函式回傳函式 <!-- 第438行：HTML 結構或內容，負責建立網頁畫面的一部分 -->
+        <span class="tag tag-fn">closure</span> <!-- 第439行：顯示分類標籤，例如 callback、array、closure -->
+      </div> <!-- 第440行：結束目前這一層 div 區塊 -->
+    </div> <!-- 第441行：結束目前這一層 div 區塊 -->
+    <pre><span class="kw">function</span> <span class="fn">multiplier</span>(factor) { <!-- 第442行：程式碼區塊開始，pre 會保留程式碼的換行與縮排 -->
+  <span class="kw">return</span> <span class="fn">n</span> => n * factor; <!-- 第443行：顯示 return，代表把結果回傳出去 -->
+} <!-- 第444行：顯示在網頁上的程式碼內容 -->
+ <!-- 第445行：空白行，用來讓程式碼排版更清楚 -->
+<span class="kw">const</span> double = <span class="fn">multiplier</span>(2); <!-- 第446行：顯示 JavaScript 建立變數或常數的程式碼 -->
+<span class="fn">console</span>.<span class="fn">log</span>(<span class="fn">double</span>(10));  <span class="comment">// 20</span></pre> <!-- 第447行：程式碼區塊結束 -->
+    <div class="note"> <!-- 第448行：重點說明區塊開始，用來補充觀念 -->
+      <strong>重點</strong> — <code>multiplier</code> 回傳的箭頭函式「記住」了 <code>factor</code> 參數，這就是<strong>閉包（Closure）</strong>。可以用來「預先設定」某些參數。 <!-- 第449行：重點文字，使用粗體強調核心概念 -->
+    </div> <!-- 第450行：結束目前這一層 div 區塊 -->
+  </div> <!-- 第451行：結束目前這一層 div 區塊 -->
+ <!-- 第452行：空白行，用來讓程式碼排版更清楚 -->
+  <!-- 06 --> <!-- 第453行：HTML 註解，用來標記區塊或題號，不會顯示在畫面上 -->
+  <div class="card"> <!-- 第454行：建立一張卡片，用來放一個 JavaScript 觀念或題目 -->
+    <div class="card-header"> <!-- 第455行：卡片標題列開始，放題號與標題 -->
+      <span class="num">6</span> <!-- 第456行：顯示題號圓形標籤 -->
+      <div class="card-title"> <!-- 第457行：卡片標題區塊開始 -->
+        自製 <code>filter()</code> <!-- 第458行：HTML 結構或內容，負責建立網頁畫面的一部分 -->
+        <span class="tag tag-cb">callback</span> <!-- 第459行：顯示分類標籤，例如 callback、array、closure -->
+      </div> <!-- 第460行：結束目前這一層 div 區塊 -->
+    </div> <!-- 第461行：結束目前這一層 div 區塊 -->
+    <pre><span class="kw">function</span> <span class="fn">myFilter</span>(arr, callback) { <!-- 第462行：程式碼區塊開始，pre 會保留程式碼的換行與縮排 -->
+  <span class="kw">let</span> result = []; <!-- 第463行：顯示 JavaScript 建立變數或常數的程式碼 -->
+  <span class="kw">for</span> (<span class="kw">let</span> item <span class="kw">of</span> arr) { <!-- 第464行：顯示 JavaScript 建立變數或常數的程式碼 -->
+    <span class="kw">if</span> (<span class="fn">callback</span>(item)) { <!-- 第465行：顯示在網頁上的程式碼內容 -->
+      result.<span class="fn">push</span>(item); <!-- 第466行：顯示在網頁上的程式碼內容 -->
+    } <!-- 第467行：顯示在網頁上的程式碼內容 -->
+  } <!-- 第468行：顯示在網頁上的程式碼內容 -->
+  <span class="kw">return</span> result; <!-- 第469行：顯示 return，代表把結果回傳出去 -->
+} <!-- 第470行：顯示在網頁上的程式碼內容 -->
+ <!-- 第471行：空白行，用來讓程式碼排版更清楚 -->
+<span class="kw">const</span> numbers = [1, 5, 8, 12]; <!-- 第472行：顯示 JavaScript 建立變數或常數的程式碼 -->
+<span class="kw">const</span> filteredNumbers = <span class="fn">myFilter</span>(numbers, <span class="fn">item</span> => item > 7); <!-- 第473行：顯示 JavaScript 建立變數或常數的程式碼 -->
+<span class="fn">console</span>.<span class="fn">log</span>(filteredNumbers);  <span class="comment">// [8, 12]</span></pre> <!-- 第474行：程式碼區塊結束 -->
+    <div class="note"> <!-- 第475行：重點說明區塊開始，用來補充觀念 -->
+      <strong>重點</strong> — 手刻一個 <code>filter</code> 幫助理解其原理：回呼函式回傳 <code>true</code> 的元素才會被收集到新陣列。 <!-- 第476行：重點文字，使用粗體強調核心概念 -->
+    </div> <!-- 第477行：結束目前這一層 div 區塊 -->
+  </div> <!-- 第478行：結束目前這一層 div 區塊 -->
+ <!-- 第479行：空白行，用來讓程式碼排版更清楚 -->
+  <!-- 07 --> <!-- 第480行：HTML 註解，用來標記區塊或題號，不會顯示在畫面上 -->
+  <div class="card"> <!-- 第481行：建立一張卡片，用來放一個 JavaScript 觀念或題目 -->
+    <div class="card-header"> <!-- 第482行：卡片標題列開始，放題號與標題 -->
+      <span class="num">7</span> <!-- 第483行：顯示題號圓形標籤 -->
+      <div class="card-title"> <!-- 第484行：卡片標題區塊開始 -->
+        物件陣列過濾 <!-- 第485行：HTML 結構或內容，負責建立網頁畫面的一部分 -->
+        <span class="tag tag-arr">array</span> <!-- 第486行：顯示分類標籤，例如 callback、array、closure -->
+        <span class="tag tag-cb">callback</span> <!-- 第487行：顯示分類標籤，例如 callback、array、closure -->
+      </div> <!-- 第488行：結束目前這一層 div 區塊 -->
+    </div> <!-- 第489行：結束目前這一層 div 區塊 -->
+    <pre><span class="kw">const</span> users = [ <!-- 第490行：程式碼區塊開始，pre 會保留程式碼的換行與縮排 -->
+  { name: <span class="str">"Alice"</span>, age: 25 }, <!-- 第491行：顯示在網頁上的程式碼內容 -->
+  { name: <span class="str">"Bob"</span>,   age: 17 } <!-- 第492行：顯示在網頁上的程式碼內容 -->
+]; <!-- 第493行：顯示在網頁上的程式碼內容 -->
+ <!-- 第494行：空白行，用來讓程式碼排版更清楚 -->
+<span class="kw">const</span> adults = <span class="fn">users</span>.<span class="fn">filter</span>((user) => { <!-- 第495行：顯示 JavaScript 建立變數或常數的程式碼 -->
+  <span class="kw">return</span> user.<span class="fn">age</span> >= 18; <!-- 第496行：顯示 return，代表把結果回傳出去 -->
+}); <!-- 第497行：顯示在網頁上的程式碼內容 -->
+ <!-- 第498行：空白行，用來讓程式碼排版更清楚 -->
+<span class="fn">console</span>.<span class="fn">log</span>(adults); <!-- 第499行：顯示 console.log，代表把結果印到控制台 -->
+<span class="comment">// [{ name: "Alice", age: 25 }]</span></pre> <!-- 第500行：程式碼區塊結束 -->
+    <div class="note"> <!-- 第501行：重點說明區塊開始，用來補充觀念 -->
+      <strong>重點</strong> — 搭配 <code>filter</code> + 箭頭函式，可以很優雅地從物件陣列中篩選出符合條件的資料。 <!-- 第502行：重點文字，使用粗體強調核心概念 -->
+    </div> <!-- 第503行：結束目前這一層 div 區塊 -->
+  </div> <!-- 第504行：結束目前這一層 div 區塊 -->
+ <!-- 第505行：空白行，用來讓程式碼排版更清楚 -->
+  <!-- 08 --> <!-- 第506行：HTML 註解，用來標記區塊或題號，不會顯示在畫面上 -->
+  <div class="card"> <!-- 第507行：建立一張卡片，用來放一個 JavaScript 觀念或題目 -->
+    <div class="card-header"> <!-- 第508行：卡片標題列開始，放題號與標題 -->
+      <span class="num">8</span> <!-- 第509行：顯示題號圓形標籤 -->
+      <div class="card-title"> <!-- 第510行：卡片標題區塊開始 -->
+        傳參考 vs 傳值 <!-- 第511行：HTML 結構或內容，負責建立網頁畫面的一部分 -->
+        <span class="tag tag-fn">概念</span> <!-- 第512行：顯示分類標籤，例如 callback、array、closure -->
+      </div> <!-- 第513行：結束目前這一層 div 區塊 -->
+    </div> <!-- 第514行：結束目前這一層 div 區塊 -->
+    <pre><span class="kw">let</span> listA = [1, 2]; <!-- 第515行：程式碼區塊開始，pre 會保留程式碼的換行與縮排 -->
+<span class="kw">let</span> listB = [3, 4]; <!-- 第516行：顯示 JavaScript 建立變數或常數的程式碼 -->
+ <!-- 第517行：空白行，用來讓程式碼排版更清楚 -->
+<span class="kw">function</span> <span class="fn">process</span>(a, b) { <!-- 第518行：顯示 JavaScript 函數宣告的程式碼 -->
+  a.<span class="fn">push</span>(99);     <span class="comment">// 修改 a 指向的陣列</span> <!-- 第519行：顯示程式碼中的註解文字，用來說明該行結果或用途 -->
+  b = [100];        <span class="comment">// 重新指派 b，不影響原 listB</span> <!-- 第520行：顯示程式碼中的註解文字，用來說明該行結果或用途 -->
+} <!-- 第521行：顯示在網頁上的程式碼內容 -->
+ <!-- 第522行：空白行，用來讓程式碼排版更清楚 -->
+<span class="fn">process</span>(listA, listB); <!-- 第523行：顯示在網頁上的程式碼內容 -->
+<span class="fn">console</span>.<span class="fn">log</span>(listA);  <span class="comment">// [1, 2, 99]</span> <!-- 第524行：顯示 console.log，代表把結果印到控制台 -->
+<span class="fn">console</span>.<span class="fn">log</span>(listB);  <span class="comment">// [3, 4]</span></pre> <!-- 第525行：程式碼區塊結束 -->
+    <div class="note"> <!-- 第526行：重點說明區塊開始，用來補充觀念 -->
+      <strong>重點</strong> — <code>a.push(99)</code> 修改的是同一個陣列本身，所以 <code>listA</code> 改變了；<code>b = [100]</code> 只是讓區域參數 <code>b</code> 指向新陣列，原 <code>listB</code> 不受影響。這是 JS 中「傳參考」與「傳值」最經典的範例。 <!-- 第527行：重點文字，使用粗體強調核心概念 -->
+    </div> <!-- 第528行：結束目前這一層 div 區塊 -->
+  </div> <!-- 第529行：結束目前這一層 div 區塊 -->
+ <!-- 第530行：空白行，用來讓程式碼排版更清楚 -->
+  <!-- 09 --> <!-- 第531行：HTML 註解，用來標記區塊或題號，不會顯示在畫面上 -->
+  <div class="card"> <!-- 第532行：建立一張卡片，用來放一個 JavaScript 觀念或題目 -->
+    <div class="card-header"> <!-- 第533行：卡片標題列開始，放題號與標題 -->
+      <span class="num">9</span> <!-- 第534行：顯示題號圓形標籤 -->
+      <div class="card-title"> <!-- 第535行：卡片標題區塊開始 -->
+        <code>setTimeout</code> 與箭頭函式 <!-- 第536行：HTML 結構或內容，負責建立網頁畫面的一部分 -->
+        <span class="tag tag-async">async</span> <!-- 第537行：顯示分類標籤，例如 callback、array、closure -->
+      </div> <!-- 第538行：結束目前這一層 div 區塊 -->
+    </div> <!-- 第539行：結束目前這一層 div 區塊 -->
+    <pre><span class="kw">const</span> words = [<span class="str">"Task"</span>, <span class="str">"Completed"</span>]; <!-- 第540行：程式碼區塊開始，pre 會保留程式碼的換行與縮排 -->
+ <!-- 第541行：空白行，用來讓程式碼排版更清楚 -->
+<span class="fn">setTimeout</span>(() => { <!-- 第542行：顯示 setTimeout，代表延遲指定時間後執行程式 -->
+  <span class="fn">console</span>.<span class="fn">log</span>(<span class="fn">words</span>.<span class="fn">join</span>(<span class="str">" "</span>)); <!-- 第543行：顯示 console.log，代表把結果印到控制台 -->
+}, 2000); <!-- 第544行：顯示在網頁上的程式碼內容 -->
+<span class="comment">// 2 秒後輸出 "Task Completed"</span></pre> <!-- 第545行：程式碼區塊結束 -->
+    <div class="note"> <!-- 第546行：重點說明區塊開始，用來補充觀念 -->
+      <strong>重點</strong> — <code>setTimeout</code> 是非同步函式，在指定延遲後執行回呼。箭頭函式搭配 <code>join()</code> 可以把陣列合併成字串。 <!-- 第547行：重點文字，使用粗體強調核心概念 -->
+    </div> <!-- 第548行：結束目前這一層 div 區塊 -->
+  </div> <!-- 第549行：結束目前這一層 div 區塊 -->
+ <!-- 第550行：空白行，用來讓程式碼排版更清楚 -->
+  <!-- 10 --> <!-- 第551行：HTML 註解，用來標記區塊或題號，不會顯示在畫面上 -->
+  <div class="card"> <!-- 第552行：建立一張卡片，用來放一個 JavaScript 觀念或題目 -->
+    <div class="card-header"> <!-- 第553行：卡片標題列開始，放題號與標題 -->
+      <span class="num">10</span> <!-- 第554行：顯示題號圓形標籤 -->
+      <div class="card-title"> <!-- 第555行：卡片標題區塊開始 -->
+        購物車折扣（回呼應用） <!-- 第556行：HTML 結構或內容，負責建立網頁畫面的一部分 -->
+        <span class="tag tag-cb">callback</span> <!-- 第557行：顯示分類標籤，例如 callback、array、closure -->
+      </div> <!-- 第558行：結束目前這一層 div 區塊 -->
+    </div> <!-- 第559行：結束目前這一層 div 區塊 -->
+    <pre><span class="kw">function</span> <span class="fn">calculateTotal</span>(cart, discountFunc) { <!-- 第560行：程式碼區塊開始，pre 會保留程式碼的換行與縮排 -->
+  <span class="kw">let</span> total = 0; <!-- 第561行：顯示 JavaScript 建立變數或常數的程式碼 -->
+  <span class="kw">for</span> (<span class="kw">let</span> price <span class="kw">of</span> cart) { <!-- 第562行：顯示 JavaScript 建立變數或常數的程式碼 -->
+    total += price; <!-- 第563行：顯示在網頁上的程式碼內容 -->
+  } <!-- 第564行：顯示在網頁上的程式碼內容 -->
+  <span class="kw">return</span> <span class="fn">discountFunc</span>(total); <!-- 第565行：顯示 return，代表把結果回傳出去 -->
+} <!-- 第566行：顯示在網頁上的程式碼內容 -->
+ <!-- 第567行：空白行，用來讓程式碼排版更清楚 -->
+<span class="kw">const</span> result = <span class="fn">calculateTotal</span>([100, 200, 300], <span class="kw">function</span> (total) { <!-- 第568行：顯示 JavaScript 函數宣告的程式碼 -->
+  <span class="kw">return</span> total - 50; <!-- 第569行：顯示 return，代表把結果回傳出去 -->
+}); <!-- 第570行：顯示在網頁上的程式碼內容 -->
+<span class="fn">console</span>.<span class="fn">log</span>(result);  <span class="comment">// 550</span></pre> <!-- 第571行：程式碼區塊結束 -->
+    <div class="note"> <!-- 第572行：重點說明區塊開始，用來補充觀念 -->
+      <strong>重點</strong> — 實用的回呼應用：<code>calculateTotal</code> 計算總額，再透過 <code>discountFunc</code> 回呼套用折扣邏輯，讓折扣規則可以靈活抽換。 <!-- 第573行：重點文字，使用粗體強調核心概念 -->
+    </div> <!-- 第574行：結束目前這一層 div 區塊 -->
+  </div> <!-- 第575行：結束目前這一層 div 區塊 -->
+ <!-- 第576行：空白行，用來讓程式碼排版更清楚 -->
+  <footer> <!-- 第577行：頁尾區塊開始，放作業或來源說明 -->
+    0417 JavaScript 作業筆記 &middot; 使用 opencode 與 ChatGPT 協助完成 <!-- 第578行：HTML 結構或內容，負責建立網頁畫面的一部分 -->
+  </footer> <!-- 第579行：頁尾區塊結束 -->
+ <!-- 第580行：空白行，用來讓程式碼排版更清楚 -->
+</div> <!-- 第581行：結束目前這一層 div 區塊 -->
+</body> <!-- 第582行：body 區塊結束 -->
+</html> <!-- 第583行：HTML 文件結束 -->
